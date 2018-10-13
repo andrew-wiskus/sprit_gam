@@ -22,14 +22,15 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb2d.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("LeftHorizontal") * speedMultiplier, 0.8f),
-            Mathf.Lerp(0, Input.GetAxis("LeftVertical") * speedMultiplier, 0.8f));
+        rb2d.velocity = new Vector2(Mathf.Lerp(0, ControllerInput.LeftStickHorizontal() * speedMultiplier, 0.8f),
+            Mathf.Lerp(0, ControllerInput.LeftStickVertical() * speedMultiplier, 0.8f));
     }
 
     void Update()
     {
-        bool player_is_walking = Input.GetAxis("LeftHorizontal") != 0 || Input.GetAxis("LeftVertical") != 0;
-        bool player_is_aiming = Input.GetAxis("RightHorizontal") != 0 || Input.GetAxis("RightVertical") != 0;
+        bool player_is_walking = ControllerInput.LeftStickHorizontal() != 0 || ControllerInput.LeftStickVertical() != 0;
+        bool player_is_aiming = ControllerInput.RightStickHorizontal() != 0 || ControllerInput.RightStickVertical() != 0;
+        bool right_trigger_active = ControllerInput.RightTrigger() != 0;
 
         if (player_is_aiming)
         {
@@ -51,30 +52,11 @@ public class PlayerMovement : MonoBehaviour
         {
             m_animator.Play("Idle");
         }
+
+        if(right_trigger_active)
+        {
+            Debug.Log(ControllerInput.RightTrigger());
+        }
     }
 
-
-}
-
-public class Controller
-{
-    public static float GetRightAnalogStickAngle()
-    {
-
-        float y = Input.GetAxis("RightVertical");
-        float x = Input.GetAxis("RightHorizontal");
-        float angle = Mathf.Atan2(y, x) - Mathf.PI / 2;
-        angle = Mathf.Rad2Deg * angle;
-
-        if (angle < 0)
-        {
-            angle = angle * -1.0f;
-        }
-        else if (angle > 0)
-        {
-            angle = (90.0f - angle) + 270.0f;
-        }
-
-        return angle;
-    }
 }
