@@ -209,7 +209,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 91122876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.026675224, y: -0.14576483, z: -10}
+  m_LocalPosition: {x: 0.020001411, y: -0.14576483, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 711014049}
@@ -732,7 +732,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 230310918}
-  - component: {fileID: 230310919}
   m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
@@ -754,20 +753,6 @@ Transform:
   m_Father: {fileID: 469630310}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &230310919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 230310917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
-    type: 2}
-  m_weaponAudio: {fileID: 469630313}
 --- !u!1 &242154406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +995,7 @@ GameObject:
   - component: {fileID: 469630311}
   - component: {fileID: 469630312}
   - component: {fileID: 469630313}
+  - component: {fileID: 469630314}
   m_Layer: 0
   m_Name: Tommy Gun
   m_TagString: Untagged
@@ -1184,10 +1170,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a141be2fa847c2d4888e80e7e82579b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_audioSource: {fileID: 469630312}
-  tommyGun_Reload_audio: {fileID: 8300000, guid: c2a368ea3ce48e7458199610d518e7e1,
-    type: 3}
-  tommyGun_Fire_audio: {fileID: 8300000, guid: 2e8ee82abb8433b4eb52c3db70aa4fb4, type: 3}
+  m_audio_source: {fileID: 469630312}
+  m_reload_audioclip: {fileID: 8300000, guid: c2a368ea3ce48e7458199610d518e7e1, type: 3}
+  m_fire_audioclip: {fileID: 8300000, guid: 2e8ee82abb8433b4eb52c3db70aa4fb4, type: 3}
+--- !u!114 &469630314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 469630309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
+    type: 2}
+  m_fire_point: {fileID: 230310917}
+  m_weapon_audio: {fileID: 469630313}
+  m_weapon_animator: {fileID: 1951218841}
 --- !u!1 &495135112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +1993,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 972792862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2208853, y: -0.14576006, z: -10}
+  m_LocalPosition: {x: 3.2041264, y: -0.14576292, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2631,8 +2632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1036d86d47b652143876c76dcfe88b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAnimator: {fileID: 1951218841}
-  m_weaponAudio: {fileID: 469630313}
+  m_gun_controller: {fileID: 469630314}
 --- !u!4 &1043477088
 Transform:
   m_ObjectHideFlags: 0

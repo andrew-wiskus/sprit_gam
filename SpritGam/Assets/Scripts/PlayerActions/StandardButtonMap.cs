@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class StandardButtonMap : MonoBehaviour {
 
-    [SerializeField] Animator weaponAnimator;
-    public WeaponAudio m_weaponAudio;
-    
+    [SerializeField] GunController m_gun_controller;
 
-	// Use this for initialization
-	void Awake () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
-        bool x_pressed = ControllerInput.Pressed_X() != false;
 
-        if (x_pressed == true)
+        if (ControllerInput.Pressed_X(Key.DOWN))
         {
-            m_weaponAudio.reloadTommyGun();
-            weaponAnimator.Play("TommyGun_Reload");
+            m_gun_controller.ReloadWeapon();
         }
     }
 }

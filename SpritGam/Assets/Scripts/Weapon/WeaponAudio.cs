@@ -4,33 +4,19 @@ using UnityEngine;
 
 public class WeaponAudio : MonoBehaviour {
 
-    [SerializeField] public AudioSource m_audioSource;
+    [SerializeField] private AudioSource m_audio_source;
+    [SerializeField] private AudioClip m_reload_audioclip;
+    [SerializeField] private AudioClip m_fire_audioclip;
 
-    [SerializeField] private AudioClip tommyGun_Reload_audio;
-    [SerializeField] private AudioClip tommyGun_Fire_audio;
-
-
-    // Use this for initialization
-    void Awake () {
-        
-    }
-	
-    public void reloadTommyGun()
+    public void PlayReloadGunSFX()
     {
-        m_audioSource.clip = tommyGun_Reload_audio;
-        m_audioSource.Play();
+        m_audio_source.clip = m_reload_audioclip;
+        m_audio_source.Play();
     }
     
-    public void fireTommyGun()
+    public void PlayFireGunSFX()
     {
-        m_audioSource.clip = tommyGun_Fire_audio;
-        m_audioSource.Play();
-
-    }
-
-	// Update is called once per frame
-	void Update () {
-        
-
+        m_audio_source.clip = m_fire_audioclip;
+        m_audio_source.Play();
     }
 }

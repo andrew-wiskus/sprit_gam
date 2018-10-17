@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GunAnimationName
+{
+    TommyGun_Reload
+}
+
 public class GunController : MonoBehaviour
 {
     [SerializeField] private GameObject m_item_to_shoot;
-    public WeaponAudio m_weaponAudio;
+    [SerializeField] private GameObject m_fire_point;
+    [SerializeField] private WeaponAudio m_weapon_audio;
+    [SerializeField] private Animator m_weapon_animator;
+    [SerializeField] private GunAnimationName m_reload_animation;
 
     private bool m_is_shooting_projectile = false;
 
@@ -36,9 +44,15 @@ public class GunController : MonoBehaviour
         yield break;
     }
 
+    public void ReloadWeapon()
+    {
+        m_weapon_audio.PlayReloadGunSFX();
+        m_weapon_animator.Play(m_reload_animation.ToString());
+    }
+
     private void shoot_single_projectile()
     {
-        var item = (GameObject)Instantiate(m_item_to_shoot, transform.position, transform.rotation);
-        m_weaponAudio.fireTommyGun();
+        var item = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, transform.rotation);
+        m_weapon_audio.PlayFireGunSFX();
     }
 }
