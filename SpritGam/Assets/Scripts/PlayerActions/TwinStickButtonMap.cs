@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandardButtonMap : MonoBehaviour {
+public class TwinStickButtonMap : MonoBehaviour {
 
     [SerializeField] GunController m_gun_controller;
 
