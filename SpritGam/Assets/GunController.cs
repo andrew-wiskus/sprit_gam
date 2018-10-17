@@ -27,7 +27,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private GunGUIController m_gun_gui_controller;
     [SerializeField] private float m_fire_rate_in_seconds = 0.15f;
     [SerializeField] private bool m_should_auto_reload = false;
-    [SerializeField] private GunFireStyle m_firerate_style;
+    [SerializeField] private GunFireStyle m_fire_style;
     [SerializeField] private float m_burst_speed = 0.05f;
     [SerializeField] private int m_burst_count = 3;
     [SerializeField] private float m_firerate_inbetween_bursts_in_seconds = 0.15f;
@@ -38,6 +38,10 @@ public class GunController : MonoBehaviour
     private bool m_weapon_is_reloading = false;
     private bool m_trigger_was_toggled = true;
 
+    public void SwitchFireMode(GunFireStyle style)
+    {
+        m_fire_style = style;
+    }
     private void Awake()
     {
         m_current_ammo = m_clip_size;
@@ -81,7 +85,7 @@ public class GunController : MonoBehaviour
 
         if (m_weapon_is_reloading == false)
         {
-            switch (m_firerate_style)
+            switch (m_fire_style)
             {
 
                 case GunFireStyle.AUTOMATIC:
