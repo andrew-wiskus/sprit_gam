@@ -8,9 +8,7 @@ public class TwinStickMovement : MonoBehaviour
     [SerializeField] private Animator m_animator;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] private float m_speed_multiplier;
-
-    // PAT
-    [SerializeField] private Animator m_weapon_animator;
+    
 
     private Rigidbody2D m_rigid_body;
     private AudioSource m_audio_source;
@@ -31,9 +29,7 @@ public class TwinStickMovement : MonoBehaviour
     {
         bool player_is_walking = ControllerInput.LeftStickHorizontal() != 0 || ControllerInput.LeftStickVertical() != 0;
         bool player_is_aiming = ControllerInput.RightStickHorizontal() != 0 || ControllerInput.RightStickVertical() != 0;
-
-        // PAT
-        bool x_pressed = ControllerInput.Pressed_X() != false;
+        
 
         if (player_is_aiming)
         {
@@ -55,12 +51,7 @@ public class TwinStickMovement : MonoBehaviour
         {
             m_animator.Play("Idle");
         }
-
-        // PAT
-        if (x_pressed == true)
-        {
-            m_weapon_animator.Play("TommyGun_Reload");
-        }
+        
 
     }
 }
