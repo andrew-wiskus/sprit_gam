@@ -767,6 +767,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
     type: 2}
+  m_gunShot: {fileID: 469630312}
+  m_weaponAudio: {fileID: 1951218842}
 --- !u!1 &242154406
 GameObject:
   m_ObjectHideFlags: 0
@@ -8453,7 +8455,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tommyGun_Reload_audio: {fileID: 8300000, guid: c2a368ea3ce48e7458199610d518e7e1,
     type: 3}
-  m_audioSource: {fileID: 469630312}
+  m_reloadSound: {fileID: 469630312}
+  tommyGun_Fire_audio: {fileID: 8300000, guid: 2e8ee82abb8433b4eb52c3db70aa4fb4, type: 3}
+  m_fireSound: {fileID: 469630312}
 --- !u!1 &1951990829
 GameObject:
   m_ObjectHideFlags: 0

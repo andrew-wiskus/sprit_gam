@@ -5,6 +5,8 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [SerializeField] private GameObject m_item_to_shoot;
+    [SerializeField] private AudioSource m_gunShot;
+    public WeaponAudio m_weaponAudio;
 
     private bool m_is_shooting_projectile = false;
 
@@ -38,5 +40,6 @@ public class GunController : MonoBehaviour
     private void shoot_single_projectile()
     {
         var item = (GameObject)Instantiate(m_item_to_shoot, transform.position, transform.rotation);
+        m_weaponAudio.fireTommyGun();
     }
 }
