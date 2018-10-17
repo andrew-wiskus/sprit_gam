@@ -209,7 +209,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 91122876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.020001411, y: -0.14576483, z: -10}
+  m_LocalPosition: {x: 0.026675224, y: -0.14576483, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 711014049}
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_fire_point: {fileID: 230310917}
   m_weapon_audio: {fileID: 469630313}
   m_weapon_animator: {fileID: 1951218841}
-  m_clip_size: 60
+  m_clip_size: 30
   m_reload_time_in_seconds: 1.75
   m_reload_animation: 0
   m_gun_gui_controller: {fileID: 876140562}
@@ -2182,7 +2182,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 972792862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2041264, y: -0.14576292, z: -10}
+  m_LocalPosition: {x: 3.2208853, y: -0.14576006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
