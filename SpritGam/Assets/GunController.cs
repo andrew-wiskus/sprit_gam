@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum GunAnimationName
 {
-    TommyGun_Reload
+    TommyGun_Reload,
+    DesertEagle_Reload
 }
 
 public enum GunFireStyle

@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="DesertEagle_Reload_data" version="1.3.0" audacityversion="2.2.2" sel0="1.3750613500" sel1="1.3750613500" vpos="0" h="0.0000000000" zoom="298.5150898973" rate="96000.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="TITLE" value="Darkscape 1911 Charge 6"/>
+		<tag name="ARTIST" value="NIOCZKUS"/>
+		<tag name="ENCODER" value="UnrealEngine3"/>
+	</tags>
+	<wavetrack name="DesertEagle_Reload" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="96000" gain="0.281838" pan="0.0" colorindex="0">
+		<waveclip offset="0.78880208" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="56281">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808923.au" len="56281" min="-1.0" max="0.999969" rms="0.176269"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="DesertEagle_Reload" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="96000" gain="0.281838" pan="0.0" colorindex="0">
+		<waveclip offset="0.78880208" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="56281">
+				<waveblock start="0">
+					<simpleblockfile filename="e08080b2.au" len="56281" min="-1.0" max="0.999969" rms="0.187218"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="DesertEagle_Mag" channel="2" linked="0" mute="0" solo="0" height="283" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="-0.14739229" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="17285">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808c2a.au" len="17285" min="-0.34668" max="0.294678" rms="0.01869"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+		<waveclip offset="0.24455782" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="7683">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808750.au" len="7683" min="-0.019867" max="0.028442" rms="0.003326"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+		<waveclip offset="0.41877551" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="19499">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808a2b.au" len="19499" min="-1.0" max="0.999969" rms="0.077136"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>
