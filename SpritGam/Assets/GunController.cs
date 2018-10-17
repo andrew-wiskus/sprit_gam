@@ -18,6 +18,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private GunAnimationName m_reload_animation;
     [SerializeField] private GunGUIController m_gun_gui_controller;
     [SerializeField] private float m_fire_rate_in_seconds;
+    [SerializeField] private bool m_should_auto_reload = false;
 
     private bool m_is_shooting_projectile = false;
     private int m_current_ammo = 0;
@@ -96,6 +97,10 @@ public class GunController : MonoBehaviour
             m_weapon_audio.PlayFireGunSFX();
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+            if(m_current_ammo == 0 && m_should_auto_reload)
+            {
+                StartCoroutine(reload_weapon());
+            }
         }
     }
 }

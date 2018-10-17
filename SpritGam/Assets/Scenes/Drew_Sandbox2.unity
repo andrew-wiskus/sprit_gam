@@ -1269,6 +1269,7 @@ MonoBehaviour:
   m_reload_animation: 0
   m_gun_gui_controller: {fileID: 876140562}
   m_fire_rate_in_seconds: 0.1
+  m_should_auto_reload: 1
 --- !u!1 &495135112
 GameObject:
   m_ObjectHideFlags: 0
