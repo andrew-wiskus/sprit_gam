@@ -12,5 +12,10 @@ public class TwinStickButtonMap : MonoBehaviour {
         {
             m_gun_controller.ReloadWeapon();
         }
+
+        if(ControllerInput.Pressed_B(Key.DOWN))
+        {
+            m_gun_controller.ToggleFireStyle();
+        }
     }
 }

@@ -12,7 +12,7 @@ public enum GunFireStyle
 {
     AUTOMATIC,
     SEMI_AUTOMATIC,
-    BURST_SEMIAUTO,
+    BURST_SEMIAUTOMATIC,
     BURST_AUTOMATIC
 }
 
@@ -28,26 +28,42 @@ public class GunController : MonoBehaviour
     [SerializeField] private GunGUIController m_gun_gui_controller;
     [SerializeField] private float m_fire_rate_in_seconds = 0.15f;
     [SerializeField] private bool m_should_auto_reload = false;
-    [SerializeField] private GunFireStyle m_fire_style;
+  
     [SerializeField] private float m_burst_speed = 0.05f;
     [SerializeField] private int m_burst_count = 3;
     [SerializeField] private float m_firerate_inbetween_bursts_in_seconds = 0.15f;
-
+    [SerializeField] private GunFireStyle[] m_fire_styles = new GunFireStyle[] { GunFireStyle.AUTOMATIC, GunFireStyle.SEMI_AUTOMATIC, GunFireStyle.BURST_SEMIAUTOMATIC, GunFireStyle.BURST_AUTOMATIC };
 
     private bool m_is_shooting_projectile = false;
     private int m_current_ammo = 0;
     private bool m_weapon_is_reloading = false;
     private bool m_trigger_was_toggled = true;
+    private int m_fire_style_index = 0;
 
-    public void SwitchFireMode(GunFireStyle style)
-    {
-        m_fire_style = style;
-    }
+
     private void Awake()
     {
         m_current_ammo = m_clip_size;
-        m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+        init_gui();
+
         StartCoroutine(start_trigger_listener());
+    }
+
+    private void init_gui()
+    {
+        m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+        m_gun_gui_controller.SetFireMode(m_fire_styles[m_fire_style_index].ToString());
+    }
+
+    public void ToggleFireStyle()
+    {
+        m_fire_style_index += 1;
+        if (m_fire_style_index >= m_fire_styles.Length)
+        {
+            m_fire_style_index = 0;
+        }
+
+        m_gun_gui_controller.SetFireMode(m_fire_styles[m_fire_style_index].ToString());
     }
 
     private IEnumerator start_trigger_listener()
@@ -86,7 +102,7 @@ public class GunController : MonoBehaviour
 
         if (m_weapon_is_reloading == false)
         {
-            switch (m_fire_style)
+            switch (m_fire_styles[m_fire_style_index])
             {
 
                 case GunFireStyle.AUTOMATIC:
@@ -96,7 +112,7 @@ public class GunController : MonoBehaviour
 
                     yield break;
 
-                case GunFireStyle.BURST_SEMIAUTO:
+                case GunFireStyle.BURST_SEMIAUTOMATIC:
                     if (m_trigger_was_toggled)
                     {
 
