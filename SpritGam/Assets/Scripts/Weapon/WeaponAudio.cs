@@ -13,6 +13,8 @@ public class WeaponAudio : MonoBehaviour {
     [SerializeField] private AudioClip m_shotgun_finishLoad;
     [SerializeField] private AudioClip m_shotgun_pump;
 
+    [SerializeField] private AudioClip m_dry_fire_audioclip;
+
     public void PlayReloadGunSFX()
     {
         m_audio_source.clip = m_reload_audioclip;
@@ -25,6 +27,13 @@ public class WeaponAudio : MonoBehaviour {
         m_audio_source.Play();
     }
 
+    public void PlayDryFireSFX()
+    {
+        m_audio_source.clip = m_dry_fire_audioclip;
+        m_audio_source.Play();
+    }
+
+    // SHOTGUN
     public void PlayShotgunStartLoad()
     {
         m_audio_source.clip = m_shotgun_startLoad;
@@ -45,4 +54,5 @@ public class WeaponAudio : MonoBehaviour {
         m_audio_source.clip = m_shotgun_pump;
         m_audio_source.Play();
     }
+
 }

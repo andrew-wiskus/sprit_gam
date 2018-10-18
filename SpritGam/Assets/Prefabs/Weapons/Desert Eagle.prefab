@@ -253,6 +253,8 @@ MonoBehaviour:
   m_burst_count: 3
   m_firerate_inbetween_bursts_in_seconds: 0.15
   m_fire_styles: 00000000010000000200000003000000
+  m_is_shotgun: 0
+  m_shotgun_spray_angle: 0
 --- !u!114 &114452445172581688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,6 +269,12 @@ MonoBehaviour:
   m_audio_source: {fileID: 82558636229647440}
   m_reload_audioclip: {fileID: 8300000, guid: f66fcb1d2834f1e458562d72434107e1, type: 3}
   m_fire_audioclip: {fileID: 8300000, guid: 3f66cb0c288b6d043b3a8b131871ac97, type: 3}
+  m_shotgun_startLoad: {fileID: 0}
+  m_shotgun_loadOne: {fileID: 0}
+  m_shotgun_finishLoad: {fileID: 0}
+  m_shotgun_pump: {fileID: 0}
+  m_dry_fire_audioclip: {fileID: 8300000, guid: c76ee135a16b01543a23c8b9b2766109,
+    type: 3}
 --- !u!212 &212081845916776186
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -105,6 +105,11 @@ public class GunController : MonoBehaviour
             yield break;
         }
 
+        if (m_current_ammo == 0)
+        {
+            m_weapon_audio.PlayDryFireSFX();
+        }
+
 
         if (m_weapon_is_reloading == false)
         {
@@ -180,6 +185,7 @@ public class GunController : MonoBehaviour
                     yield break;
             }
         }
+
 
         yield break;
     }

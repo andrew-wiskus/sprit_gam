@@ -304,6 +304,8 @@ MonoBehaviour:
   m_shotgun_finishLoad: {fileID: 8300000, guid: 88e2b17762e5fc94f8ad50bc9eb4adf9,
     type: 3}
   m_shotgun_pump: {fileID: 8300000, guid: 6c61d44dfdfd79145922b5ac85392d49, type: 3}
+  m_dry_fire_audioclip: {fileID: 8300000, guid: c76ee135a16b01543a23c8b9b2766109,
+    type: 3}
 --- !u!212 &212309466964776228
 SpriteRenderer:
   m_ObjectHideFlags: 1
