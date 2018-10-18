@@ -295,8 +295,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_audio_source: {fileID: 82118300731253466}
-  m_reload_audioclip: {fileID: 8300000, guid: c2a368ea3ce48e7458199610d518e7e1, type: 3}
-  m_fire_audioclip: {fileID: 8300000, guid: 2e8ee82abb8433b4eb52c3db70aa4fb4, type: 3}
+  m_reload_audioclip: {fileID: 8300000, guid: 6c61d44dfdfd79145922b5ac85392d49, type: 3}
+  m_fire_audioclip: {fileID: 8300000, guid: 0b7f94c4833858c4cbda830431debc41, type: 3}
+  m_shotgun_startLoad: {fileID: 8300000, guid: 0153f4ba5d0e7704b903ad3337d6534b, type: 3}
+  m_shotgun_loadOne: {fileID: 8300000, guid: 1aac26fdcd1495846b4cfdb138169fb2, type: 3}
+  m_shotgun_finishLoad: {fileID: 8300000, guid: 88e2b17762e5fc94f8ad50bc9eb4adf9,
+    type: 3}
 --- !u!212 &212003604646474680
 SpriteRenderer:
   m_ObjectHideFlags: 1

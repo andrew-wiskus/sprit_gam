@@ -5,7 +5,8 @@ using UnityEngine;
 public enum GunAnimationName
 {
     TommyGun_Reload,
-    DesertEagle_Reload
+    DesertEagle_Reload,
+    Mossberg_Reload
 }
 
 public enum GunFireStyle
@@ -13,7 +14,9 @@ public enum GunFireStyle
     AUTOMATIC,
     SEMI_AUTOMATIC,
     BURST_SEMIAUTOMATIC,
-    BURST_AUTOMATIC
+    BURST_AUTOMATIC,
+    SHOTGUN_PUMP,
+    SHOTGUN_SEMIAUTO
 }
 
 public class GunController : MonoBehaviour
@@ -39,6 +42,8 @@ public class GunController : MonoBehaviour
     private bool m_weapon_is_reloading = false;
     private bool m_trigger_was_toggled = true;
     private int m_fire_style_index = 0;
+
+    public bool m_is_shotgun;
 
 
     private void Awake()
@@ -153,6 +158,16 @@ public class GunController : MonoBehaviour
                     }
 
                     yield break;
+
+                // PAT
+                case GunFireStyle.SHOTGUN_PUMP:
+                    if (m_trigger_was_toggled)
+                    {
+                        shoot_shotgun_pellets();
+                        m_trigger_was_toggled = false;
+                    }
+
+                    yield break;
             }
         }
 
@@ -167,10 +182,18 @@ public class GunController : MonoBehaviour
         }
     }
 
+    // PAT
+    public void ReloadShotgun()
+    {
+        if (m_weapon_is_reloading == false)
+        {
+            StartCoroutine(reload_shotgun());
+        }
+    }
+
     private IEnumerator reload_weapon()
     {
         m_weapon_is_reloading = true;
-
 
         m_weapon_audio.PlayReloadGunSFX();
         m_weapon_animator.Play(m_reload_animation.ToString());
@@ -182,6 +205,62 @@ public class GunController : MonoBehaviour
         m_is_shooting_projectile = false;
         yield break;
     }
+
+    // PAT
+    private IEnumerator reload_shotgun()
+    {
+        m_weapon_is_reloading = true;
+
+        // START LOAD
+        m_weapon_audio.PlayShotgunStartLoad();
+        m_weapon_animator.Play("Mossberg_StartLoad");
+
+        yield return new WaitForSeconds(m_weapon_animator.GetCurrentAnimatorStateInfo(0).length);
+
+        // LOAD ONE
+        while (m_current_ammo < m_clip_size)
+        {
+            //if (m_current_ammo < m_clip_size)
+            //{
+                StartCoroutine(load_shell());
+                m_current_ammo++;
+                m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+                yield return new WaitForSeconds(m_weapon_animator.GetCurrentAnimatorStateInfo(0).length);
+           // }
+        }
+
+        
+        
+        // FINISH LOAD
+        m_weapon_audio.PlayShotgunFinishLoad();
+        m_weapon_animator.Play("Mossberg_FinishLoad");
+        m_weapon_is_reloading = false;
+        m_is_shooting_projectile = false;
+        yield break;
+    }
+
+    private IEnumerator load_shell()
+    {
+        m_weapon_audio.PlayShotgunLoadOne();
+        m_weapon_animator.Play("Mossberg_LoadOne");
+        yield break;
+    }
+
+
+
+    private IEnumerator shotgun_pump()
+    {
+        m_weapon_is_reloading = true;
+        yield return new WaitForSeconds(m_fire_rate_in_seconds);
+        m_weapon_audio.PlayShotgunPump();
+        m_weapon_animator.Play("Mossberg_Pump");
+        yield return new WaitForSeconds(0.6f);
+        m_weapon_is_reloading = false;
+        m_is_shooting_projectile = false;
+        
+        yield break;
+    }
+
 
     private void shoot_single_projectile()
     {
@@ -197,4 +276,24 @@ public class GunController : MonoBehaviour
             }
         }
     }
+
+    // PAT
+    private void shoot_shotgun_pellets()
+    {
+        if (m_current_ammo != 0)
+        {
+            var item = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, transform.rotation);
+            m_weapon_audio.PlayFireGunSFX();
+            m_current_ammo -= 1;
+            m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+            
+            StartCoroutine(shotgun_pump());
+
+            if (m_current_ammo == 0 && m_should_auto_reload)
+            {
+                StartCoroutine(reload_shotgun());
+            }
+        }
+    }
+
 }

@@ -10,7 +10,14 @@ public class TwinStickButtonMap : MonoBehaviour {
 
         if (ControllerInput.Pressed_X(Key.DOWN))
         {
-            m_gun_controller.ReloadWeapon();
+            
+            if (m_gun_controller.m_is_shotgun == true)
+            {
+                m_gun_controller.ReloadShotgun();
+            } else
+            {
+                m_gun_controller.ReloadWeapon();
+            }
         }
 
         if(ControllerInput.Pressed_B(Key.DOWN))
