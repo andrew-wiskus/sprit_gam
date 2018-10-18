@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95e0756db3dfac4fa39777a632b07d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 50
   gunController: {fileID: 0}
   bulletCount: 1
 --- !u!212 &212315765260624164
