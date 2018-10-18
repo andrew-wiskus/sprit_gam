@@ -169,6 +169,15 @@ public class GunController : MonoBehaviour
                     }
 
                     yield break;
+
+                case GunFireStyle.SHOTGUN_SEMIAUTO:
+                    if (m_trigger_was_toggled)
+                    {
+                        shoot_shotgun_pellets();
+                        m_trigger_was_toggled = false;
+                    }
+
+                    yield break;
             }
         }
 
@@ -215,22 +224,16 @@ public class GunController : MonoBehaviour
         // START LOAD
         m_weapon_audio.PlayShotgunStartLoad();
         m_weapon_animator.Play("Mossberg_StartLoad");
-
         yield return new WaitForSeconds(m_weapon_animator.GetCurrentAnimatorStateInfo(0).length);
 
-        // LOAD ONE
+        // LOAD ONE, FILL CLIP
         while (m_current_ammo < m_clip_size)
         {
-            //if (m_current_ammo < m_clip_size)
-            //{
-                StartCoroutine(load_shell());
-                m_current_ammo++;
-                m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
-                yield return new WaitForSeconds(m_weapon_animator.GetCurrentAnimatorStateInfo(0).length);
-           // }
+              StartCoroutine(load_shell());
+              m_current_ammo++;
+              m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+              yield return new WaitForSeconds(m_weapon_animator.GetCurrentAnimatorStateInfo(0).length);
         }
-
-        
         
         // FINISH LOAD
         m_weapon_audio.PlayShotgunFinishLoad();
@@ -246,7 +249,6 @@ public class GunController : MonoBehaviour
         m_weapon_animator.Play("Mossberg_LoadOne");
         yield break;
     }
-
 
 
     private IEnumerator shotgun_pump()
@@ -281,12 +283,6 @@ public class GunController : MonoBehaviour
     // PAT
     private void shoot_shotgun_pellets()
     {
-        //var angleWideLeft = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + m_shotgun_spray_angle));
-        //var angleMidLeft = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  m_shotgun_spray_angle /2));
-        //var angleStraight = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  0));
-        //var angleMidRight = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  -m_shotgun_spray_angle/2));
-        //var angleWideRight = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  -m_shotgun_spray_angle));
-
         Quaternion angleWideLeft = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z + m_shotgun_spray_angle)));
         Quaternion angleMidLeft = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z + m_shotgun_spray_angle / 2)));
         Quaternion angleStraight = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z)));
@@ -304,7 +300,11 @@ public class GunController : MonoBehaviour
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             
-            StartCoroutine(shotgun_pump());
+            if (m_fire_styles[m_fire_style_index] == GunFireStyle.SHOTGUN_PUMP)
+            {
+                StartCoroutine(shotgun_pump());
+            }
+            
 
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
