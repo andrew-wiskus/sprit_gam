@@ -29,7 +29,7 @@ public class TwinStickButtonMap : MonoBehaviour {
         m_gun_controller = currentWeapon;
 
         // (TEMPORARY UNTIL I FIX HANDS TO ATTACH TO TOMMY GUN WEAPON)
-        if (primaryWeapon.activeSelf == true)
+        if (secondaryWeapon.activeSelf == true)
         {
             L_Hand.SetActive(true);
             R_Hand.SetActive(true);

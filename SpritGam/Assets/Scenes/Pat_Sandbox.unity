@@ -3147,10 +3147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gun_controller: {fileID: 1692928073}
-  m_primary_weapon: {fileID: 469630314}
-  m_secondary_weapon: {fileID: 1692928073}
-  primaryWeapon: {fileID: 469630309}
-  secondaryWeapon: {fileID: 1692928071}
+  m_primary_weapon: {fileID: 1692928073}
+  m_secondary_weapon: {fileID: 469630314}
+  primaryWeapon: {fileID: 1692928071}
+  secondaryWeapon: {fileID: 469630309}
   L_Hand: {fileID: 1893028206}
   R_Hand: {fileID: 1613313549}
 --- !u!4 &1043477088
