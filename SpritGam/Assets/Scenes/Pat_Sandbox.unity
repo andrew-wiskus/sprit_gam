@@ -1449,6 +1449,7 @@ MonoBehaviour:
   m_firerate_inbetween_bursts_in_seconds: 0.15
   m_fire_styles: 00000000020000000300000001000000
   m_is_shotgun: 0
+  m_shotgun_spray_angle: 0
 --- !u!1001 &475568980
 Prefab:
   m_ObjectHideFlags: 0
@@ -3793,6 +3794,11 @@ Prefab:
         type: 2}
       propertyPath: m_is_shotgun
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114531722061019422, guid: 256a032430fc4244a86d1122ab4a5846,
+        type: 2}
+      propertyPath: m_shotgun_spray_angle
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 256a032430fc4244a86d1122ab4a5846, type: 2}

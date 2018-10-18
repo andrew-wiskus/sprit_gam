@@ -83,6 +83,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  gunController: {fileID: 0}
+  bulletCount: 5
 --- !u!212 &212315765260624164
 SpriteRenderer:
   m_ObjectHideFlags: 1

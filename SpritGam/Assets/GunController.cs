@@ -44,6 +44,7 @@ public class GunController : MonoBehaviour
     private int m_fire_style_index = 0;
 
     public bool m_is_shotgun;
+    public int m_shotgun_spray_angle;
 
 
     private void Awake()
@@ -280,9 +281,25 @@ public class GunController : MonoBehaviour
     // PAT
     private void shoot_shotgun_pellets()
     {
+        //var angleWideLeft = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + m_shotgun_spray_angle));
+        //var angleMidLeft = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  m_shotgun_spray_angle /2));
+        //var angleStraight = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  0));
+        //var angleMidRight = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  -m_shotgun_spray_angle/2));
+        //var angleWideRight = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z +  -m_shotgun_spray_angle));
+
+        Quaternion angleWideLeft = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z + m_shotgun_spray_angle)));
+        Quaternion angleMidLeft = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z + m_shotgun_spray_angle / 2)));
+        Quaternion angleStraight = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z)));
+        Quaternion angleMidRight = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z - m_shotgun_spray_angle / 2)));
+        Quaternion angleWideRight = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z - m_shotgun_spray_angle)));
+
         if (m_current_ammo != 0)
         {
-            var item = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, transform.rotation);
+            var item = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleWideLeft);
+            var item2 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleMidLeft);
+            var item3 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleStraight);
+            var item4 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleMidRight);
+            var item5 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleWideRight);
             m_weapon_audio.PlayFireGunSFX();
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
