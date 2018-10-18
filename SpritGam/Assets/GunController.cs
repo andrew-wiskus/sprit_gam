@@ -45,10 +45,12 @@ public class GunController : MonoBehaviour
 
     public bool m_is_shotgun;
     public int m_shotgun_spray_angle;
+    
 
 
     private void Awake()
     {
+        
         m_current_ammo = m_clip_size;
         init_gui();
 
@@ -190,6 +192,7 @@ public class GunController : MonoBehaviour
         yield break;
     }
 
+
     public void ReloadWeapon()
     {
         if (m_weapon_is_reloading == false)
@@ -237,8 +240,8 @@ public class GunController : MonoBehaviour
         {
               StartCoroutine(load_shell());
               m_current_ammo++;
-              m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
-              yield return new WaitForSeconds(m_weapon_animator.GetCurrentAnimatorStateInfo(0).length);
+            m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+            yield return new WaitForSeconds(m_weapon_animator.GetCurrentAnimatorStateInfo(0).length);
         }
         
         // FINISH LOAD
