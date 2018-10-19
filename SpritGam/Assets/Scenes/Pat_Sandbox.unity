@@ -10773,8 +10773,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 12, y: 9, z: 0}
     second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 2
       m_ObjectToInstantiate: {fileID: 0}
@@ -11124,8 +11124,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 11, y: 10, z: 0}
     second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 2
       m_ObjectToInstantiate: {fileID: 0}
@@ -11142,8 +11142,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 13, y: 10, z: 0}
     second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 2
       m_ObjectToInstantiate: {fileID: 0}
@@ -11151,8 +11151,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 14, y: 10, z: 0}
     second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 2
       m_ObjectToInstantiate: {fileID: 0}
@@ -11475,8 +11475,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 10, y: 11, z: 0}
     second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 2
       m_ObjectToInstantiate: {fileID: 0}
@@ -11529,8 +11529,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 16, y: 11, z: 0}
     second:
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 2
       m_ObjectToInstantiate: {fileID: 0}
@@ -16238,19 +16238,19 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 21
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 194f7700e141c4643acbac15bf32b2ec, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: a78b01b1d5c5a9a49aa2644c6a88ba96, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 33823e08bd5add24481bbac8e7106698, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: c05dc272ee356424eaf0cfff689a02c3, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 4de5eb100aba2334b9013ce941c9bb2c, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 7da8368828a9ac24c8c47ec7a812d691, type: 2}
+  - m_RefCount: 15
     m_Data: {fileID: 11400000, guid: c742676e5e00b0c41806272a25721f1f, type: 2}
   - m_RefCount: 1478
     m_Data: {fileID: 11400000, guid: f206a83d4df286240b5fdc6b57347fc8, type: 2}
@@ -16259,19 +16259,19 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 21
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 982dbd3e19ce45f4289a2fa3637ded2c, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: f7faa5a0ea45fb24aba1982f0900b842, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 748b18c7e19b72e44a08e17a38df647b, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 466df9759e9c329489d2ab30d8d7ca83, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 74027e3de8a656c4ab86256c86db2082, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 109780ac79b1a6543861690af8a9bf66, type: 3}
+  - m_RefCount: 15
     m_Data: {fileID: 21300000, guid: b7304d917cca8b145ba5fdc68fbbc5c5, type: 3}
   - m_RefCount: 1478
     m_Data: {fileID: 21300000, guid: 867627579303a0f4a89d6494467b21e7, type: 3}
