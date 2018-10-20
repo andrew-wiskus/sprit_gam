@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1822378420042670
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 1
+  weaponType: 0
   m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
     type: 2}
   m_fire_point: {fileID: 1822378420042670}
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_burst_speed: 0.05
   m_burst_count: 3
   m_firerate_inbetween_bursts_in_seconds: 0.15
-  m_fire_styles: 00000000010000000200000003000000
+  m_fire_styles: 01000000
   m_is_shotgun: 0
   m_shotgun_spray_angle: 0
 --- !u!114 &114452445172581688

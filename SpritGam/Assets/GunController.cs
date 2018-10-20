@@ -90,7 +90,6 @@ public class GunController : MonoBehaviour
     private IEnumerator start_trigger_listener()
     {
         
-
         while (ControllerInput.RightTrigger() <= 0.2)
         {
             yield return new WaitForEndOfFrame();
@@ -106,9 +105,7 @@ public class GunController : MonoBehaviour
         {
             m_trigger_was_toggled = true;
         }
-
         
-
 
         yield return start_trigger_listener();
         yield break;
@@ -124,12 +121,13 @@ public class GunController : MonoBehaviour
         if (m_current_ammo == 0)
         {
             m_weapon_audio.PlayDryFireSFX();
+            yield break;
         }
 
 
         if (m_weapon_is_reloading == false)
         {
-            
+
             switch (m_fire_styles[m_fire_style_index])
             {
 
@@ -188,6 +186,13 @@ public class GunController : MonoBehaviour
                     {
                         shoot_shotgun_pellets();
                         m_trigger_was_toggled = false;
+                        if (m_current_ammo == 0)
+                        {
+                            yield break;
+                        }
+                        StartCoroutine(shotgun_pump());
+
+                        
                     }
 
                     yield break;
@@ -202,6 +207,7 @@ public class GunController : MonoBehaviour
                     yield break;
             }
         }
+
 
 
         yield break;
@@ -294,14 +300,16 @@ public class GunController : MonoBehaviour
         if (m_current_ammo != 0)
         {
             var item = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, transform.rotation);
-            m_weapon_audio.PlayFireGunSFX();
+            
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+            m_weapon_audio.PlayFireGunSFX();
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
                 StartCoroutine(reload_weapon());
             }
         }
+
     }
 
     // PAT
@@ -324,10 +332,10 @@ public class GunController : MonoBehaviour
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             
-            if (m_fire_styles[m_fire_style_index] == GunFireStyle.SHOTGUN_PUMP)
-            {
-                StartCoroutine(shotgun_pump());
-            }
+            //if (m_fire_styles[m_fire_style_index] == GunFireStyle.SHOTGUN_PUMP)
+            //{
+            //    StartCoroutine(shotgun_pump());
+            //}
             
 
             if (m_current_ammo == 0 && m_should_auto_reload)
@@ -335,6 +343,8 @@ public class GunController : MonoBehaviour
                 StartCoroutine(reload_shotgun());
             }
         }
+
+
     }
 
     void update()

@@ -8,7 +8,7 @@ public class GunGUIController : MonoBehaviour {
     [SerializeField] private Text m_clip_status;
     [SerializeField] private Text m_clip_status_graphic; //temp using text; update this to graphic 
     [SerializeField] private Text m_fire_mode;
-    
+    [SerializeField] private Text m_current_weapon;
 
     public void SetClipStatus(int current_ammo, int max_ammo)
     {
@@ -26,6 +26,11 @@ public class GunGUIController : MonoBehaviour {
     public void SetFireMode(string mode)
     {
         m_fire_mode.text = mode;
+    }
+
+    public void SetCurrentWeapon(string weapon)
+    {
+        m_current_weapon.text = weapon;
     }
 
 

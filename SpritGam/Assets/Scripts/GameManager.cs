@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
 {
     private AudioSource audioSrc;
 
-    [SerializeField]
-    private AudioClip shootClip;
 
     public static GameManager instance;
 
@@ -65,8 +63,7 @@ public class GameManager : MonoBehaviour
         {
             audioSrc.Stop();
         }
-
-        audioSrc.clip = shootClip;
+        
         audioSrc.Play();
     }
 }

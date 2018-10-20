@@ -162,15 +162,6 @@ Prefab:
       propertyPath: m_gun_gui_controller
       value: 
       objectReference: {fileID: 876140562}
-    - target: {fileID: 114295523607902584, guid: 72f19afdbd45d884c98f9b388067142e,
-        type: 2}
-      propertyPath: weaponType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1460624801555664, guid: 72f19afdbd45d884c98f9b388067142e, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f19afdbd45d884c98f9b388067142e, type: 2}
   m_IsPrefabAsset: 0
@@ -835,7 +826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -76.97, y: 45.36}
+  m_AnchoredPosition: {x: 221.7, y: 45.36}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &419931844
@@ -864,7 +855,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 5
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2083,6 +2074,7 @@ RectTransform:
   m_Children:
   - {fileID: 1191855562}
   - {fileID: 896110739}
+  - {fileID: 1210568855}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2105,6 +2097,7 @@ MonoBehaviour:
   m_clip_status: {fileID: 1191855563}
   m_clip_status_graphic: {fileID: 94830872}
   m_fire_mode: {fileID: 419931844}
+  m_current_weapon: {fileID: 1210568856}
 --- !u!1 &896110738
 GameObject:
   m_ObjectHideFlags: 0
@@ -29311,7 +29304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   twinStickButtonMap: {fileID: 1043477087}
   currentWeaponController: {fileID: 469630314}
-  weaponsInInventory: 000000000100000002000000
+  weaponsInInventory: 020000000000000001000000
   torso: {fileID: 1032836048}
   doubleHand_TorsoAngle: -45
   singleHand_TorsoAngle: 25
@@ -29325,8 +29318,9 @@ MonoBehaviour:
   tommyGun: {fileID: 469630309}
   mossberg: {fileID: 1692928071}
   desertEagle: {fileID: 903504730}
-  currentWeapon: {fileID: 0}
+  currentWeapon: {fileID: 903504730}
   currentStance: 0
+  m_gun_gui_controller: {fileID: 876140562}
 --- !u!114 &1043477085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29686,6 +29680,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1028642234314450, guid: 01d70df420b766548adcbe4d7199baf8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01d70df420b766548adcbe4d7199baf8, type: 2}
   m_IsPrefabAsset: 0
@@ -29765,6 +29763,81 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1191855561}
+  m_CullTransparentMesh: 0
+--- !u!1 &1210568854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210568855}
+  - component: {fileID: 1210568857}
+  - component: {fileID: 1210568856}
+  m_Layer: 5
+  m_Name: Current Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1210568855
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1210568854}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 876140561}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -322.7, y: -444.8}
+  m_SizeDelta: {x: 200, y: 100}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &1210568856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1210568854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Tommy Gun
+--- !u!222 &1210568857
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1210568854}
   m_CullTransparentMesh: 0
 --- !u!1 &1213561774
 GameObject:
@@ -32912,7 +32985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b92887a2073ec48ac68c0225045454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootClip: {fileID: 8300000, guid: 4b39f8914f3a4ae41b3293804d869469, type: 3}
 --- !u!4 &1951990831
 Transform:
   m_ObjectHideFlags: 0

@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.UI;
 
 public enum WeaponsList
 {
@@ -25,12 +24,7 @@ public class PlayerWeaponStance : MonoBehaviour {
     [SerializeField] private float dualWield_TorsoAngle;
     [SerializeField] private float melee_TorsoAngle;
     [SerializeField] private float noEquip_TorsoAngle;
-
-    //private WeaponStance[] weaponStances = new WeaponStance[] { WeaponStance.SINGLE_HAND, WeaponStance.DOUBLE_HAND, WeaponStance.DUAL_WIELD};
     
-
-    //private int weaponStanceIndex = 1;
-
     [SerializeField] private GameObject twoHandedWeapon;
     [SerializeField] private GameObject oneHandedWeapon;
     [SerializeField] private GameObject dualWieldedWeapon;
@@ -45,24 +39,23 @@ public class PlayerWeaponStance : MonoBehaviour {
     public GameObject currentWeapon;
     public WeaponStance currentStance;
 
+    [SerializeField] private GunGUIController m_gun_gui_controller;
+
     // Use this for initialization
-    void Start () {
-        currentWeapon = tommyGun;
-        currentWeapon.SetActive(true);
+    void Awake () {
+        SetEquippedWeapon();
         currentStance = currentWeapon.GetComponent<GunController>().weaponType;
-        
-        StartCoroutine(SetEquippedWeapon());
-        StartCoroutine(SetTorsoAngle());
+        SetTorsoAngle();
     }
     
 
-    public IEnumerator SetEquippedWeapon()
+    public void SetEquippedWeapon()
     {
         switch (weaponsInInventory[weaponInventoryIndex]){
             case WeaponsList.TOMMY_GUN:
                 currentWeapon = tommyGun;
                 currentWeaponController = tommyGun.GetComponent<GunController>();
-            break;
+                break;
 
             case WeaponsList.MOSSBERG:
                 currentWeapon = mossberg;
@@ -74,13 +67,14 @@ public class PlayerWeaponStance : MonoBehaviour {
                 currentWeapon = desertEagle;
                 currentWeaponController = desertEagle.GetComponent<GunController>();
                 break;
-
         }
         currentWeapon.SetActive(true);
-        yield break;
+        currentStance = currentWeapon.GetComponent<GunController>().weaponType;
+        m_gun_gui_controller.SetCurrentWeapon(currentWeapon.name.ToString());
+        SetTorsoAngle();
     }
 
-    public IEnumerator SetTorsoAngle()
+    public void SetTorsoAngle()
     {
         switch (currentStance)
         {
@@ -91,7 +85,7 @@ public class PlayerWeaponStance : MonoBehaviour {
 
             case WeaponStance.DOUBLE_HAND:
                 torso.transform.eulerAngles = new Vector3(0, 0, doubleHand_TorsoAngle);
-                break;
+               break;
 
             case WeaponStance.DUAL_WIELD:
                 torso.transform.eulerAngles = new Vector3(0, 0, dualWield_TorsoAngle);
@@ -101,7 +95,6 @@ public class PlayerWeaponStance : MonoBehaviour {
                 torso.transform.eulerAngles = new Vector3(0, 0, noEquip_TorsoAngle);
                 break;
         }
-        yield break;
     }
 
     public void ToggleEquippedWeapon()
@@ -112,8 +105,7 @@ public class PlayerWeaponStance : MonoBehaviour {
             weaponInventoryIndex = 0;
         }
         
-        StartCoroutine(SetEquippedWeapon());
-        StartCoroutine(SetTorsoAngle());
+        SetEquippedWeapon();
     }
 
     
