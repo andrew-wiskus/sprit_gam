@@ -23,6 +23,8 @@ public class TwinStickMovement : MonoBehaviour
     {
         m_rigid_body.velocity = new Vector2(Mathf.Lerp(0, ControllerInput.LeftStickHorizontal() * m_speed_multiplier, 0.8f),
             Mathf.Lerp(0, ControllerInput.LeftStickVertical() * m_speed_multiplier, 0.8f));
+        
+       
     }
 
     void Update()

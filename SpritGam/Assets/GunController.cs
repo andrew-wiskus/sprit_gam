@@ -19,8 +19,18 @@ public enum GunFireStyle
     SHOTGUN_SEMIAUTO
 }
 
+public enum WeaponStance
+{
+    SINGLE_HAND,
+    DOUBLE_HAND,
+    DUAL_WIELD,
+    MELEE,
+    NONE
+}
+
 public class GunController : MonoBehaviour
 {
+    [SerializeField] public WeaponStance weaponType;
     [SerializeField] private GameObject m_item_to_shoot;
     [SerializeField] private GameObject m_fire_point;
     [SerializeField] private WeaponAudio m_weapon_audio;
@@ -36,6 +46,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private int m_burst_count = 3;
     [SerializeField] private float m_firerate_inbetween_bursts_in_seconds = 0.15f;
     [SerializeField] private GunFireStyle[] m_fire_styles = new GunFireStyle[] { GunFireStyle.AUTOMATIC, GunFireStyle.SEMI_AUTOMATIC, GunFireStyle.BURST_SEMIAUTOMATIC, GunFireStyle.BURST_AUTOMATIC };
+    
+
 
     private bool m_is_shooting_projectile = false;
     private int m_current_ammo = 0;
@@ -45,17 +57,18 @@ public class GunController : MonoBehaviour
 
     public bool m_is_shotgun;
     public int m_shotgun_spray_angle;
+
     
 
 
-    private void Awake()
+    private void OnEnable()
     {
-        
         m_current_ammo = m_clip_size;
         init_gui();
-
         StartCoroutine(start_trigger_listener());
     }
+    
+    
 
     private void init_gui()
     {
@@ -76,14 +89,13 @@ public class GunController : MonoBehaviour
 
     private IEnumerator start_trigger_listener()
     {
-
+        
 
         while (ControllerInput.RightTrigger() <= 0.2)
         {
             yield return new WaitForEndOfFrame();
         }
-
-
+        
         yield return pull_gun_trigger();
 
         if (ControllerInput.RightTrigger() >= 0.2)
@@ -94,6 +106,8 @@ public class GunController : MonoBehaviour
         {
             m_trigger_was_toggled = true;
         }
+
+        
 
 
         yield return start_trigger_listener();
@@ -115,6 +129,7 @@ public class GunController : MonoBehaviour
 
         if (m_weapon_is_reloading == false)
         {
+            
             switch (m_fire_styles[m_fire_style_index])
             {
 
@@ -139,7 +154,7 @@ public class GunController : MonoBehaviour
                         m_trigger_was_toggled = false;
                     }
 
-                    break;
+                    yield break;
 
                 case GunFireStyle.BURST_AUTOMATIC:
                     if (m_trigger_was_toggled)
@@ -156,7 +171,7 @@ public class GunController : MonoBehaviour
                         yield return pull_gun_trigger();
                     }
 
-                    break;
+                    yield break;
 
                 case GunFireStyle.SEMI_AUTOMATIC:
                     if (m_trigger_was_toggled)
@@ -320,6 +335,11 @@ public class GunController : MonoBehaviour
                 StartCoroutine(reload_shotgun());
             }
         }
+    }
+
+    void update()
+    {
+
     }
 
 }

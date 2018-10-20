@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
   m_item_to_shoot: {fileID: 1691174634483652, guid: cbdfe8adf588572449083803a821345e,
     type: 2}
   m_fire_point: {fileID: 1127577020852906}
