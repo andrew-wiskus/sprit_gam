@@ -23,6 +23,9 @@ public class TwinStickButtonMap : MonoBehaviour {
             if (m_gun_controller.m_is_shotgun == true)
             {
                 m_gun_controller.ReloadShotgun();
+            } else if(m_gun_controller.m_is_dual == true)
+            {
+                m_gun_controller.ReloadDualWeapon();
             } else
             {
                 m_gun_controller.ReloadWeapon();

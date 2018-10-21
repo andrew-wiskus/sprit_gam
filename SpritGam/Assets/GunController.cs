@@ -7,7 +7,8 @@ public enum GunAnimationName
     TommyGun_Reload,
     DesertEagle_Reload,
     Mossberg_Reload,
-    Mac11_Reload
+    Mac11_Reload,
+    Mac11Dual_Reload
 }
 
 public enum GunFireStyle
@@ -58,6 +59,8 @@ public class GunController : MonoBehaviour
 
     public bool m_is_shotgun;
     public int m_shotgun_spray_angle;
+
+    public bool m_is_dual;
 
     
 
@@ -223,6 +226,14 @@ public class GunController : MonoBehaviour
         }
     }
 
+    public void ReloadDualWeapon()
+    {
+        if (m_weapon_is_reloading == false)
+        {
+            StartCoroutine(reload_dual());
+        }
+    }
+
     // PAT
     public void ReloadShotgun()
     {
@@ -244,6 +255,22 @@ public class GunController : MonoBehaviour
         m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
         m_weapon_is_reloading = false;
         m_is_shooting_projectile = false;
+        yield break;
+    }
+
+    private IEnumerator reload_dual()
+    {
+        m_weapon_is_reloading = true;
+        m_weapon_animator.Play(m_reload_animation.ToString());
+
+
+        yield return new WaitForSeconds(m_reload_time_in_seconds);
+        m_current_ammo = m_clip_size;
+        m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
+        m_weapon_is_reloading = false;
+        m_is_shooting_projectile = false;
+
+        
         yield break;
     }
 
