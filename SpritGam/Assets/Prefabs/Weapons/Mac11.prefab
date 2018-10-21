@@ -238,12 +238,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
   m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
     type: 2}
   m_fire_point: {fileID: 1822378420042670}
   m_weapon_audio: {fileID: 114452445172581688}
   m_weapon_animator: {fileID: 0}
-  m_clip_size: 9
+  m_clip_size: 32
   m_reload_time_in_seconds: 1.25
   m_reload_animation: 1
   m_gun_gui_controller: {fileID: 0}
@@ -252,7 +253,9 @@ MonoBehaviour:
   m_burst_speed: 0.05
   m_burst_count: 3
   m_firerate_inbetween_bursts_in_seconds: 0.15
-  m_fire_styles: 00000000010000000200000003000000
+  m_fire_styles: 000000000200000001000000
+  m_is_shotgun: 0
+  m_shotgun_spray_angle: 0
 --- !u!114 &114452445172581688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,7 +269,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_audio_source: {fileID: 82558636229647440}
   m_reload_audioclip: {fileID: 8300000, guid: f66fcb1d2834f1e458562d72434107e1, type: 3}
-  m_fire_audioclip: {fileID: 8300000, guid: 3f66cb0c288b6d043b3a8b131871ac97, type: 3}
+  m_fire_audioclip: {fileID: 8300000, guid: aa23cc1de1bdba64db1f2772dd5f71d3, type: 3}
+  m_shotgun_startLoad: {fileID: 0}
+  m_shotgun_loadOne: {fileID: 0}
+  m_shotgun_finishLoad: {fileID: 0}
+  m_shotgun_pump: {fileID: 0}
+  m_dry_fire_audioclip: {fileID: 8300000, guid: c76ee135a16b01543a23c8b9b2766109,
+    type: 3}
 --- !u!212 &212081845916776186
 SpriteRenderer:
   m_ObjectHideFlags: 1

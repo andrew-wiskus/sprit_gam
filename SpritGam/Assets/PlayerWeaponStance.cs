@@ -7,7 +7,9 @@ public enum WeaponsList
 {
     TOMMY_GUN,
     MOSSBERG,
-    DESERT_EAGLE
+    DESERT_EAGLE,
+    MAC_11,
+    MAC_11_DUAL
 }
 
 public class PlayerWeaponStance : MonoBehaviour {
@@ -15,7 +17,7 @@ public class PlayerWeaponStance : MonoBehaviour {
     [SerializeField] private TwinStickButtonMap twinStickButtonMap;
     [SerializeField] private GunController currentWeaponController;
 
-    [SerializeField] private WeaponsList[] weaponsInInventory = new WeaponsList[] { WeaponsList.TOMMY_GUN, WeaponsList.MOSSBERG, WeaponsList.DESERT_EAGLE };
+    [SerializeField] private WeaponsList[] weaponsInInventory = new WeaponsList[] { WeaponsList.TOMMY_GUN, WeaponsList.MOSSBERG, WeaponsList.DESERT_EAGLE, WeaponsList.MAC_11, WeaponsList.MAC_11_DUAL };
     
     [SerializeField] private GameObject torso;
     
@@ -35,6 +37,9 @@ public class PlayerWeaponStance : MonoBehaviour {
     [SerializeField] private GameObject tommyGun;
     [SerializeField] private GameObject mossberg;
     [SerializeField] private GameObject desertEagle;
+    [SerializeField] private GameObject mac11;
+    [SerializeField] private GameObject mac11_dual;
+    //[SerializeField] private GameObject mac11_dualOne;
 
     public GameObject currentWeapon;
     public WeaponStance currentStance;
@@ -67,6 +72,17 @@ public class PlayerWeaponStance : MonoBehaviour {
                 currentWeapon = desertEagle;
                 currentWeaponController = desertEagle.GetComponent<GunController>();
                 break;
+
+            case WeaponsList.MAC_11:
+                currentWeapon = mac11;
+                currentWeaponController = mac11.GetComponent<GunController>();
+                break;
+
+            case WeaponsList.MAC_11_DUAL:
+                currentWeapon = mac11_dual;
+                currentWeaponController = mac11_dual.GetComponent<GunController>();
+                break;
+
         }
         currentWeapon.SetActive(true);
         currentStance = currentWeapon.GetComponent<GunController>().weaponType;
@@ -126,6 +142,14 @@ public class PlayerWeaponStance : MonoBehaviour {
         if (desertEagle != currentWeapon)
         {
             desertEagle.SetActive(false);
+        }
+        if (mac11 != currentWeapon)
+        {
+            mac11.SetActive(false);
+        }
+        if (mac11_dual != currentWeapon)
+        {
+            mac11_dual.SetActive(false);
         }
 
         if (currentStance == WeaponStance.SINGLE_HAND)

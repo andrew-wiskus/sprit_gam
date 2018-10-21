@@ -6,7 +6,8 @@ public enum GunAnimationName
 {
     TommyGun_Reload,
     DesertEagle_Reload,
-    Mossberg_Reload
+    Mossberg_Reload,
+    Mac11_Reload
 }
 
 public enum GunFireStyle
