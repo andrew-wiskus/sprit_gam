@@ -164,7 +164,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 2 Handed Weapon/Hand_L
+    path: 2 Handed Weapon/Tommy Gun/Hand_L
   m_ScaleCurves: []
   m_FloatCurves:
   - curve:
@@ -201,7 +201,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-    path: 2 Handed Weapon/Hand_L
+    path: 2 Handed Weapon/Tommy Gun/Hand_L
     classID: 212
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -213,14 +213,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3519242723
+      path: 3698047902
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3519242723
+      path: 3698047902
       attribute: 3762991556
       script: {fileID: 0}
       typeID: 212
@@ -399,7 +399,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 2 Handed Weapon/Hand_L
+    path: 2 Handed Weapon/Tommy Gun/Hand_L
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -553,7 +553,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 2 Handed Weapon/Hand_L
+    path: 2 Handed Weapon/Tommy Gun/Hand_L
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -707,7 +707,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 2 Handed Weapon/Hand_L
+    path: 2 Handed Weapon/Tommy Gun/Hand_L
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -744,7 +744,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-    path: 2 Handed Weapon/Hand_L
+    path: 2 Handed Weapon/Tommy Gun/Hand_L
     classID: 212
     script: {fileID: 0}
   m_EulerEditorCurves: []

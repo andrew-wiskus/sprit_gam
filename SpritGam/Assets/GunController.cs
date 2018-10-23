@@ -273,6 +273,8 @@ public class GunController : MonoBehaviour
     private IEnumerator reload_dual()
     {
         m_weapon_is_reloading = true;
+
+        m_weapon_audio.PlayReloadGunSFX();
         m_weapon_animator.Play(m_reload_animation.ToString());
 
 

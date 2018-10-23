@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4278942764404796}
   - component: {fileID: 212344291757201658}
   m_Layer: 0
-  m_Name: Hand_R
+  m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1424440614065914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.14999881, y: -2.6999996, z: 0}
+  m_LocalPosition: {x: 0, y: -2.6999996, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_Children: []
   m_Father: {fileID: 4997169983914152}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
+  weaponType: 2
   m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
     type: 2}
   m_fire_point: {fileID: 1822378420042670}
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_weapon_animator: {fileID: 0}
   m_clip_size: 32
   m_reload_time_in_seconds: 1.25
-  m_reload_animation: 1
+  m_reload_animation: 4
   m_gun_gui_controller: {fileID: 0}
   m_fire_rate_in_seconds: 0.05
   m_should_auto_reload: 0
@@ -254,8 +254,11 @@ MonoBehaviour:
   m_burst_count: 3
   m_firerate_inbetween_bursts_in_seconds: 0.15
   m_fire_styles: 000000000200000001000000
+  crosshair: {fileID: 1390655931605280}
   m_is_shotgun: 0
   m_shotgun_spray_angle: 0
+  m_is_dual: 1
+  m_is_vape: 0
 --- !u!114 &114452445172581688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_audio_source: {fileID: 82558636229647440}
-  m_reload_audioclip: {fileID: 8300000, guid: f66fcb1d2834f1e458562d72434107e1, type: 3}
+  m_reload_audioclip: {fileID: 8300000, guid: 3ee315663f62f6d4b9a1a9c89056fd1c, type: 3}
   m_fire_audioclip: {fileID: 8300000, guid: aa23cc1de1bdba64db1f2772dd5f71d3, type: 3}
   m_shotgun_startLoad: {fileID: 0}
   m_shotgun_loadOne: {fileID: 0}
@@ -291,7 +294,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3614d6d07a1f974d9035b996cc0cccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -337,7 +340,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3614d6d07a1f974d9035b996cc0cccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -383,7 +386,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3614d6d07a1f974d9035b996cc0cccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
