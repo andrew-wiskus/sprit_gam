@@ -55,4 +55,16 @@ public class WeaponAudio : MonoBehaviour {
         m_audio_source.Play();
     }
 
+    //VAPE
+    public void HitVape()
+    {
+        m_audio_source.clip = m_reload_audioclip;
+        m_audio_source.Play();
+    }
+    public void BlowVape()
+    {
+        m_audio_source.clip = m_fire_audioclip;
+        m_audio_source.Play();
+    }
+
 }

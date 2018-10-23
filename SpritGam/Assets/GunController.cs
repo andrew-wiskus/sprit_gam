@@ -8,7 +8,8 @@ public enum GunAnimationName
     DesertEagle_Reload,
     Mossberg_Reload,
     Mac11_Reload,
-    Mac11Dual_Reload
+    Mac11Dual_Reload,
+    Vape_Reload
 }
 
 public enum GunFireStyle
@@ -18,7 +19,8 @@ public enum GunFireStyle
     BURST_SEMIAUTOMATIC,
     BURST_AUTOMATIC,
     SHOTGUN_PUMP,
-    SHOTGUN_SEMIAUTO
+    SHOTGUN_SEMIAUTO,
+    VAPE_HIT
 }
 
 public enum WeaponStance
@@ -48,7 +50,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private int m_burst_count = 3;
     [SerializeField] private float m_firerate_inbetween_bursts_in_seconds = 0.15f;
     [SerializeField] private GunFireStyle[] m_fire_styles = new GunFireStyle[] { GunFireStyle.AUTOMATIC, GunFireStyle.SEMI_AUTOMATIC, GunFireStyle.BURST_SEMIAUTOMATIC, GunFireStyle.BURST_AUTOMATIC };
-    
+
+    [SerializeField] private GameObject crosshair;
 
 
     private bool m_is_shooting_projectile = false;
@@ -61,6 +64,7 @@ public class GunController : MonoBehaviour
     public int m_shotgun_spray_angle;
 
     public bool m_is_dual;
+    public bool m_is_vape;
 
     
 
@@ -209,6 +213,14 @@ public class GunController : MonoBehaviour
                     }
 
                     yield break;
+
+                case GunFireStyle.VAPE_HIT:
+                    if (m_trigger_was_toggled)
+                    {
+                        StartCoroutine(hitVape());
+                        m_trigger_was_toggled = false;
+                    }
+                    yield break;
             }
         }
 
@@ -271,6 +283,17 @@ public class GunController : MonoBehaviour
         m_is_shooting_projectile = false;
 
         
+        yield break;
+    }
+
+    private IEnumerator hitVape()
+    {
+        m_weapon_animator.Play("Vape_Hit");
+        yield return new WaitForSeconds(0.5f);
+        m_weapon_audio.HitVape();
+        yield return new WaitForSeconds(m_reload_time_in_seconds);
+        m_weapon_animator.Play("Vape_Blow");
+        m_weapon_audio.BlowVape();
         yield break;
     }
 
@@ -339,8 +362,8 @@ public class GunController : MonoBehaviour
         }
 
     }
+    
 
-    // PAT
     private void shoot_shotgun_pellets()
     {
         Quaternion angleWideLeft = transform.rotation * (Quaternion.Euler(new Vector3(0, 0, transform.rotation.z + m_shotgun_spray_angle)));
@@ -360,11 +383,6 @@ public class GunController : MonoBehaviour
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             
-            //if (m_fire_styles[m_fire_style_index] == GunFireStyle.SHOTGUN_PUMP)
-            //{
-            //    StartCoroutine(shotgun_pump());
-            //}
-            
 
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
@@ -375,9 +393,16 @@ public class GunController : MonoBehaviour
 
     }
 
-    void update()
+    void Update()
     {
-
+        if (m_weapon_is_reloading == true)
+        {
+            crosshair.SetActive(false);
+        }
+        else
+        {
+            crosshair.SetActive(true);
+        }
     }
 
 }

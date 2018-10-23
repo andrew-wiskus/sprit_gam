@@ -9,7 +9,8 @@ public enum WeaponsList
     MOSSBERG,
     DESERT_EAGLE,
     MAC_11,
-    MAC_11_DUAL
+    MAC_11_DUAL,
+    VAPE
 }
 
 public class PlayerWeaponStance : MonoBehaviour {
@@ -17,7 +18,7 @@ public class PlayerWeaponStance : MonoBehaviour {
     [SerializeField] private TwinStickButtonMap twinStickButtonMap;
     [SerializeField] private GunController currentWeaponController;
 
-    [SerializeField] private WeaponsList[] weaponsInInventory = new WeaponsList[] { WeaponsList.TOMMY_GUN, WeaponsList.MOSSBERG, WeaponsList.DESERT_EAGLE, WeaponsList.MAC_11, WeaponsList.MAC_11_DUAL };
+    [SerializeField] private WeaponsList[] weaponsInInventory = new WeaponsList[] { WeaponsList.TOMMY_GUN, WeaponsList.MOSSBERG, WeaponsList.DESERT_EAGLE, WeaponsList.MAC_11, WeaponsList.MAC_11_DUAL, WeaponsList.VAPE };
     
     [SerializeField] private GameObject torso;
     
@@ -39,7 +40,7 @@ public class PlayerWeaponStance : MonoBehaviour {
     [SerializeField] private GameObject desertEagle;
     [SerializeField] private GameObject mac11;
     [SerializeField] private GameObject mac11_dual;
-    //[SerializeField] private GameObject mac11_dualOne;
+    [SerializeField] private GameObject vape;
 
     public GameObject currentWeapon;
     public WeaponStance currentStance;
@@ -83,6 +84,11 @@ public class PlayerWeaponStance : MonoBehaviour {
                 currentWeaponController = mac11_dual.GetComponent<GunController>();
                 break;
 
+            case WeaponsList.VAPE:
+                currentWeapon = vape;
+                currentWeaponController = vape.GetComponent<GunController>();
+                break;
+
         }
         currentWeapon.SetActive(true);
         currentStance = currentWeapon.GetComponent<GunController>().weaponType;
@@ -95,8 +101,14 @@ public class PlayerWeaponStance : MonoBehaviour {
         switch (currentStance)
         {
             case WeaponStance.SINGLE_HAND:
-                torso.transform.eulerAngles = new Vector3(0, 0, singleHand_TorsoAngle);
                 
+                if (currentWeaponController.m_is_vape == true)
+                {
+                    torso.transform.eulerAngles = new Vector3(0, 0, dualWield_TorsoAngle);
+                } else
+                {
+                    torso.transform.eulerAngles = new Vector3(0, 0, singleHand_TorsoAngle);
+                }
                 break;
 
             case WeaponStance.DOUBLE_HAND:
@@ -150,6 +162,10 @@ public class PlayerWeaponStance : MonoBehaviour {
         if (mac11_dual != currentWeapon)
         {
             mac11_dual.SetActive(false);
+        }
+        if (vape != currentWeapon)
+        {
+            vape.SetActive(false);
         }
 
         if (currentStance == WeaponStance.SINGLE_HAND)
