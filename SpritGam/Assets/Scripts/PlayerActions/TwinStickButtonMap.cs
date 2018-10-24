@@ -43,5 +43,14 @@ public class TwinStickButtonMap : MonoBehaviour {
         }
 
         m_gun_controller = playerWeaponStance.currentWeapon.GetComponent<GunController>();
-    }
+
+        if (ControllerInput.Pressed_A(Key.DOWN))
+        {
+            m_gun_controller.ToggleAttachment();
+        }
+
+
+
+        }
+    
 }
