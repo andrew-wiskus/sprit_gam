@@ -73,12 +73,13 @@ public class GunController : MonoBehaviour
     void Start()
     {
         weaponAttachment.SetActive(true);
+        m_current_ammo = m_clip_size;
+        init_gui();
     }
 
 
     private void OnEnable()
     {
-        m_current_ammo = m_clip_size;
         init_gui();
         StartCoroutine(start_trigger_listener());
     }
