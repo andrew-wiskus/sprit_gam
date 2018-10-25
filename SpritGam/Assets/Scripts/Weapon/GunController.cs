@@ -35,6 +35,7 @@ public enum WeaponStance
 
 public class GunController : MonoBehaviour
 {
+    [SerializeField] private GamepadController gpc;
     [SerializeField] public WeaponStance weaponType;
     [SerializeField] private GameObject m_item_to_shoot;
     [SerializeField] private GameObject m_fire_point;
@@ -378,6 +379,7 @@ public class GunController : MonoBehaviour
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             m_weapon_audio.PlayFireGunSFX();
+            StartCoroutine(gpc.Vibrate(gpc.quick_Duration, gpc.soft_Strength));
             StartCoroutine(ShakeCamera());
             //ShakeCamera();
             if (m_current_ammo == 0 && m_should_auto_reload)
@@ -406,6 +408,7 @@ public class GunController : MonoBehaviour
             var item4 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleMidRight);
             var item5 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleWideRight);
             m_weapon_audio.PlayFireGunSFX();
+            StartCoroutine(gpc.Vibrate(gpc.medium_Duration, gpc.medium_Strength));
             StartCoroutine(ShakeCamera());
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);

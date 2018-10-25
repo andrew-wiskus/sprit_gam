@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class TwinStickButtonMap : MonoBehaviour {
 
     [SerializeField] GunController m_gun_controller;
     [SerializeField] PlayerWeaponStance playerWeaponStance;
+    [SerializeField] GamepadController gpc;
 
     private void Awake ()
     {

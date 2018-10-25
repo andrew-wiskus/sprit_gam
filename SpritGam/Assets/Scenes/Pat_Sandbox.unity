@@ -201,6 +201,11 @@ Prefab:
       propertyPath: testCam
       value: 
       objectReference: {fileID: 1763107994}
+    - target: {fileID: 114295523607902584, guid: 72f19afdbd45d884c98f9b388067142e,
+        type: 2}
+      propertyPath: gpc
+      value: 
+      objectReference: {fileID: 1043477090}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f19afdbd45d884c98f9b388067142e, type: 2}
   m_IsPrefabAsset: 0
@@ -1431,6 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gpc: {fileID: 1043477090}
   weaponType: 1
   m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
     type: 2}
@@ -1650,6 +1656,11 @@ Prefab:
       propertyPath: testCam
       value: 
       objectReference: {fileID: 1763107994}
+    - target: {fileID: 114241480057608320, guid: 423e4331727baae4386d5960584a8255,
+        type: 2}
+      propertyPath: gpc
+      value: 
+      objectReference: {fileID: 1043477090}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 423e4331727baae4386d5960584a8255, type: 2}
   m_IsPrefabAsset: 0
@@ -30054,6 +30065,7 @@ GameObject:
   - component: {fileID: 1043477089}
   - component: {fileID: 1043477087}
   - component: {fileID: 1043477084}
+  - component: {fileID: 1043477090}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -30141,6 +30153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gun_controller: {fileID: 1692928073}
   playerWeaponStance: {fileID: 1043477084}
+  gpc: {fileID: 1043477090}
 --- !u!4 &1043477088
 Transform:
   m_ObjectHideFlags: 0
@@ -30255,6 +30268,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1043477090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1043477083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703f86780ea86cb49ab9ec0615067b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quick_Duration: 0.2
+  medium_Duration: 0.5
+  long_Duration: 1
+  soft_Strength: 1
+  medium_Strength: 2
+  hard_Strength: 3
 --- !u!1 &1093395846
 GameObject:
   m_ObjectHideFlags: 0
@@ -30600,6 +30630,11 @@ Prefab:
       propertyPath: testCam
       value: 
       objectReference: {fileID: 1763107994}
+    - target: {fileID: 114048970718867666, guid: 01d70df420b766548adcbe4d7199baf8,
+        type: 2}
+      propertyPath: gpc
+      value: 
+      objectReference: {fileID: 1043477090}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01d70df420b766548adcbe4d7199baf8, type: 2}
   m_IsPrefabAsset: 0
@@ -33981,6 +34016,11 @@ Prefab:
       propertyPath: testCam
       value: 
       objectReference: {fileID: 1763107994}
+    - target: {fileID: 114295523607902584, guid: 006177aa26b2c7040ac9cfb07071a41f,
+        type: 2}
+      propertyPath: gpc
+      value: 
+      objectReference: {fileID: 1043477090}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 006177aa26b2c7040ac9cfb07071a41f, type: 2}
   m_IsPrefabAsset: 0
@@ -35817,6 +35857,11 @@ Prefab:
       propertyPath: testCam
       value: 
       objectReference: {fileID: 1763107994}
+    - target: {fileID: 114241480057608320, guid: 423e4331727baae4386d5960584a8255,
+        type: 2}
+      propertyPath: gpc
+      value: 
+      objectReference: {fileID: 1043477090}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 423e4331727baae4386d5960584a8255, type: 2}
   m_IsPrefabAsset: 0
