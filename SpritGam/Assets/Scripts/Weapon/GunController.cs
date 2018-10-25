@@ -67,6 +67,8 @@ public class GunController : MonoBehaviour
     public bool m_is_dual;
     public bool m_is_vape;
 
+    [SerializeField] Camera testCam;
+
     [SerializeField] private GameObject weaponAttachment;
 
     
@@ -376,11 +378,14 @@ public class GunController : MonoBehaviour
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             m_weapon_audio.PlayFireGunSFX();
+            StartCoroutine(ShakeCamera());
+            //ShakeCamera();
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
                 StartCoroutine(reload_weapon());
             }
         }
+        
 
     }
     
@@ -401,6 +406,7 @@ public class GunController : MonoBehaviour
             var item4 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleMidRight);
             var item5 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleWideRight);
             m_weapon_audio.PlayFireGunSFX();
+            StartCoroutine(ShakeCamera());
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             
@@ -411,8 +417,59 @@ public class GunController : MonoBehaviour
             }
         }
 
-
     }
+
+    public IEnumerator ShakeCamera()
+    {
+        //Animator anim = testCam.GetComponent<Animator>();
+        //anim.Play("CamShake");
+
+        var cPos = testCam.transform.position;
+        float xInc = 0.1f;
+        float yInc = 0.3f;
+        float shakeTime = 0;
+        float autoDif = 0.05f;
+
+        switch (m_fire_styles[m_fire_style_index])
+        {
+            case GunFireStyle.SEMI_AUTOMATIC:
+                shakeTime = 0.08f;
+            break;
+
+            case GunFireStyle.SHOTGUN_PUMP:
+            case GunFireStyle.SHOTGUN_SEMIAUTO:
+                xInc = 0.2f;
+                yInc = 0.5f;
+                shakeTime = 0.14f;
+            break;
+
+            case GunFireStyle.AUTOMATIC:
+            case GunFireStyle.BURST_AUTOMATIC:
+            case GunFireStyle.BURST_SEMIAUTOMATIC:
+                xInc = 0.1f;
+                yInc = 0.3f;
+                shakeTime = m_fire_rate_in_seconds - autoDif;
+
+            if (m_fire_rate_in_seconds <= autoDif)
+                {
+                    xInc = 0.08f;
+                    yInc = 0.1f;
+                    shakeTime = 0.03f;
+                }
+            break;
+        }
+
+        cPos = new Vector3 (cPos.x - xInc, cPos.y - yInc, cPos.z);
+        testCam.transform.position = cPos;
+
+        yield return new WaitForSeconds(shakeTime);
+
+        cPos = new Vector3(cPos.x + xInc, cPos.y + yInc, cPos.z);
+        testCam.transform.position = cPos;
+        Debug.Log("Shake Time:" + shakeTime);
+        yield break;
+    }
+
 
     void Update()
     {
