@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1822378420042670
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +73,22 @@ GameObject:
   - component: {fileID: 4371361643307290}
   m_Layer: 0
   m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1975674602658290
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4690308797959878}
+  - component: {fileID: 108904249478141040}
+  m_Layer: 0
+  m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +118,7 @@ Transform:
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_Children:
   - {fileID: 4393211837465098}
+  - {fileID: 4690308797959878}
   m_Father: {fileID: 4997169983914152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,6 +135,19 @@ Transform:
   m_Father: {fileID: 4371361643307290}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4690308797959878
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975674602658290}
+  m_LocalRotation: {x: -0.41770852, y: 0, z: 0, w: 0.90858114}
+  m_LocalPosition: {x: 0, y: -0.1, z: -3.27}
+  m_LocalScale: {x: 0.16666667, y: 0.16666667, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4371361643307290}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -49.38, y: 0, z: 0}
 --- !u!4 &4997169983914152
 Transform:
   m_ObjectHideFlags: 1
@@ -139,7 +169,7 @@ CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460624801555664}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -243,6 +273,43 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!108 &108904249478141040
+Light:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975674602658290}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 0
+  m_Color: {r: 0.9056604, g: 0.8840053, b: 0.7390531, a: 1}
+  m_Intensity: 3.45
+  m_Range: 15.03
+  m_SpotAngle: 81.2
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114295523607902584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,8 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gpc: {fileID: 0}
   weaponType: 0
-  m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
+  m_item_to_shoot: {fileID: 1691174634483652, guid: d30fc7aa9e157644495f03e7cf3eafee,
     type: 2}
   m_fire_point: {fileID: 1822378420042670}
   m_weapon_audio: {fileID: 114452445172581688}
@@ -270,8 +338,14 @@ MonoBehaviour:
   m_burst_count: 3
   m_firerate_inbetween_bursts_in_seconds: 0.15
   m_fire_styles: 01000000
+  crosshair: {fileID: 1390655931605280}
   m_is_shotgun: 0
   m_shotgun_spray_angle: 0
+  m_is_dual: 0
+  m_is_vape: 0
+  testCam: {fileID: 0}
+  weaponAttachment: {fileID: 1975674602658290}
+  impulse: {fileID: 0}
 --- !u!114 &114452445172581688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -307,7 +381,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3614d6d07a1f974d9035b996cc0cccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -353,7 +427,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3614d6d07a1f974d9035b996cc0cccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -399,7 +473,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3614d6d07a1f974d9035b996cc0cccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

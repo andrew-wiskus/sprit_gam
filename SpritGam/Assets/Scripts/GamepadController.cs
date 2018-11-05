@@ -4,7 +4,6 @@ using UnityEngine;
 using XInputDotNetPure;
 
 
-
 public class GamepadController : MonoBehaviour {
 
     [SerializeField] public float quick_Duration;

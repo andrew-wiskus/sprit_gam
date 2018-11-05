@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+
 
 public enum GunAnimationName
 {
@@ -54,6 +56,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private GunFireStyle[] m_fire_styles = new GunFireStyle[] { GunFireStyle.AUTOMATIC, GunFireStyle.SEMI_AUTOMATIC, GunFireStyle.BURST_SEMIAUTOMATIC, GunFireStyle.BURST_AUTOMATIC };
 
     [SerializeField] private GameObject crosshair;
+    
 
 
     private bool m_is_shooting_projectile = false;
@@ -72,17 +75,23 @@ public class GunController : MonoBehaviour
 
     [SerializeField] private GameObject weaponAttachment;
 
+    [SerializeField] private CinemachineImpulseSource impulse;
+    
+
     
     void Start()
     {
         weaponAttachment.SetActive(true);
         m_current_ammo = m_clip_size;
         init_gui();
+
+       
     }
 
 
     private void OnEnable()
     {
+        m_weapon_is_reloading = false;
         init_gui();
         StartCoroutine(start_trigger_listener());
     }
@@ -422,10 +431,18 @@ public class GunController : MonoBehaviour
 
     }
 
+    public IEnumerator ShakeCameraNew()
+    {
+        Vector3 shakeAmount = new Vector3(1, 1, 1);
+        impulse.GenerateImpulse();
+
+        yield break;
+    }
+
     public IEnumerator ShakeCamera()
     {
-        //Animator anim = testCam.GetComponent<Animator>();
-        //anim.Play("CamShake");
+        ///Animator anim = testCam.GetComponent<Animator>();
+        ///anim.Play("CamShake");
 
         var cPos = testCam.transform.position;
         float xInc = 0.1f;
@@ -469,7 +486,6 @@ public class GunController : MonoBehaviour
 
         cPos = new Vector3(cPos.x + xInc, cPos.y + yInc, cPos.z);
         testCam.transform.position = cPos;
-        Debug.Log("Shake Time:" + shakeTime);
         yield break;
     }
 

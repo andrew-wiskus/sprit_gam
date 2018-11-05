@@ -238,8 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gpc: {fileID: 0}
   weaponType: 2
-  m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
+  m_item_to_shoot: {fileID: 1691174634483652, guid: d30fc7aa9e157644495f03e7cf3eafee,
     type: 2}
   m_fire_point: {fileID: 1970240305262736}
   m_weapon_audio: {fileID: 114550792291660798}
@@ -259,6 +260,9 @@ MonoBehaviour:
   m_shotgun_spray_angle: 0
   m_is_dual: 1
   m_is_vape: 0
+  testCam: {fileID: 0}
+  weaponAttachment: {fileID: 0}
+  impulse: {fileID: 0}
 --- !u!114 &114550792291660798
 MonoBehaviour:
   m_ObjectHideFlags: 1
