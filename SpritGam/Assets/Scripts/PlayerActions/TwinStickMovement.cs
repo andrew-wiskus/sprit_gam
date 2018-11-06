@@ -7,7 +7,7 @@ using UnityEngine;
 public class TwinStickMovement : MonoBehaviour
 {
 
-    [SerializeField] private Animator m_animator;
+    [SerializeField] private Animator m_feet_animator;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] public float m_speed_multiplier;
     [SerializeField] public float m_sprint_speed;
@@ -44,14 +44,17 @@ public class TwinStickMovement : MonoBehaviour
         {
             gc.is_ADS = false;
             m_speed_multiplier = m_sprint_speed;
+            m_feet_animator.speed = 1.5f;
 
         } else if (gc.is_ADS == true)
         {
             m_is_sprinting = false;
             m_speed_multiplier = m_ads_speed;
+            m_feet_animator.speed = 0.5f;
         } else
         {
             m_speed_multiplier = m_default_speed;
+            m_feet_animator.speed = 1.0f;
         }
     }
     
@@ -79,12 +82,12 @@ public class TwinStickMovement : MonoBehaviour
                 m_audio_source.Play();
             }
 
-            m_animator.Play("Walk");
+            m_feet_animator.Play("Walk");
         }
 
         if (player_is_walking == false)
         {
-            m_animator.Play("Idle");
+            m_feet_animator.Play("Idle");
         }
         
 
