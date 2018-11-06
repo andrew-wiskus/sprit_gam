@@ -77,6 +77,8 @@ public class GunController : MonoBehaviour
     public bool m_is_dual;
     public bool m_is_vape;
 
+    private Animator muzzleFlash_Animator;
+
     [SerializeField] Camera testCam;
     [SerializeField] private GameObject weaponAttachment;
     [SerializeField] private CinemachineImpulseSource impulse;
@@ -93,6 +95,7 @@ public class GunController : MonoBehaviour
     // #INITS ----------------------------------------------------------------------------------
     private void OnEnable()
     {
+        muzzleFlash_Animator = GetComponentInChildren<Animator>();
         m_weapon_is_reloading = false;
         adsDistance = hipfireDistance * adsMultiplier;
         init_gui();
@@ -411,6 +414,7 @@ public class GunController : MonoBehaviour
         if (m_current_ammo != 0)
         {
             var item = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, transform.rotation);
+            muzzleFlash_Animator.Play("MuzzleFlash");
             
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
@@ -442,6 +446,7 @@ public class GunController : MonoBehaviour
             var item3 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleStraight);
             var item4 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleMidRight);
             var item5 = (GameObject)Instantiate(m_item_to_shoot, m_fire_point.transform.position, angleWideRight);
+            muzzleFlash_Animator.Play("MuzzleFlash");
             m_weapon_audio.PlayFireGunSFX();
             StartCoroutine(gpc.Vibrate(gpc.medium_Duration, gpc.medium_Strength));
             StartCoroutine(ShakeCamera());

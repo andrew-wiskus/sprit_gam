@@ -17,6 +17,8 @@ public class TwinStickMovement : MonoBehaviour
 
     [SerializeField] private GunController gc;
     [SerializeField] private TwinStickButtonMap tsm;
+
+    [SerializeField] private GameObject feet;
     
 
     private Rigidbody2D m_rigid_body;
@@ -77,6 +79,9 @@ public class TwinStickMovement : MonoBehaviour
 
         if (player_is_walking)
         {
+            float angle = Controller.GetLeftAnalogStickAngle();
+            feet.transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+
             if (m_audio_source.isPlaying == false)
             {
                 m_audio_source.Play();
