@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(AudioSource))]
@@ -8,6 +10,13 @@ public class TwinStickMovement : MonoBehaviour
     [SerializeField] private Animator m_animator;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] public float m_speed_multiplier;
+    [SerializeField] public float m_sprint_speed;
+    public bool m_is_sprinting = false;
+    [SerializeField] public float m_ads_speed;
+    public float m_default_speed;
+
+    [SerializeField] private GunController gc;
+    [SerializeField] private TwinStickButtonMap tsm;
     
 
     private Rigidbody2D m_rigid_body;
@@ -15,6 +24,8 @@ public class TwinStickMovement : MonoBehaviour
 
     void Awake()
     {
+        gc = GetComponentInChildren<GunController>();
+        m_default_speed = m_speed_multiplier;
         m_rigid_body = GetComponent<Rigidbody2D>();
         m_audio_source = GetComponent<AudioSource>();
     }
@@ -27,8 +38,30 @@ public class TwinStickMovement : MonoBehaviour
        
     }
 
+    public void SetPlayerSpeed()
+    {
+        if (m_is_sprinting == true)
+        {
+            gc.is_ADS = false;
+            m_speed_multiplier = m_sprint_speed;
+
+        } else if (gc.is_ADS == true)
+        {
+            m_is_sprinting = false;
+            m_speed_multiplier = m_ads_speed;
+        } else
+        {
+            m_speed_multiplier = m_default_speed;
+        }
+    }
+    
+
     void Update()
     {
+        gc = GetComponentInChildren<GunController>();
+
+        SetPlayerSpeed();
+
         bool player_is_walking = ControllerInput.LeftStickHorizontal() != 0 || ControllerInput.LeftStickVertical() != 0;
         bool player_is_aiming = ControllerInput.RightStickHorizontal() != 0 || ControllerInput.RightStickVertical() != 0;
         

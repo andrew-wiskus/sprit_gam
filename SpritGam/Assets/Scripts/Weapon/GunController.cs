@@ -62,8 +62,7 @@ public class GunController : MonoBehaviour
     private float adsDistance;
     [SerializeField] private float adsMultiplier;
 
-    private float default_playerSpeed;
-    private float playerSpeed;
+    public bool is_ADS = false;
     
     
     private bool m_is_shooting_projectile = false;
@@ -86,7 +85,6 @@ public class GunController : MonoBehaviour
     
     void Start()
     {
-        default_playerSpeed = m_twinStickMovement.m_speed_multiplier;
         weaponAttachment.SetActive(true);
         m_current_ammo = m_clip_size;
         init_gui();
@@ -272,25 +270,15 @@ public class GunController : MonoBehaviour
 
     public IEnumerator toggleADS_ON()
     {
-        playerSpeed = m_twinStickMovement.m_speed_multiplier;
-        Debug.Log("Speed:" + playerSpeed);
-        Debug.Log("Default speed:" + default_playerSpeed);
-
         crosshair.transform.localPosition = new Vector3(0, adsDistance, 0);
-        if (playerSpeed == default_playerSpeed)
-        {
-            m_twinStickMovement.m_speed_multiplier *= 0.7f;
-        }
-        
-
+       
         yield break;
     }
 
     public void toggleADS_OFF()
     {
+        is_ADS = false;
         crosshair.transform.localPosition = new Vector3 (0, hipfireDistance, 0);
-
-        m_twinStickMovement.m_speed_multiplier = default_playerSpeed;
     }
 
 

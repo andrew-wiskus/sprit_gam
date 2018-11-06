@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TwinStickButtonMap : MonoBehaviour {
 
+    [SerializeField] TwinStickMovement tsm;
     [SerializeField] GunController m_gun_controller;
     [SerializeField] PlayerWeaponStance playerWeaponStance;
     [SerializeField] GamepadController gpc;
+    
 
     private void Awake ()
     {
@@ -37,7 +39,7 @@ public class TwinStickButtonMap : MonoBehaviour {
 
         /// PRESS B
         /// (Toggle fire mode)
-        if(ControllerInput.Pressed_B(Key.DOWN))
+        if (ControllerInput.Pressed_B(Key.DOWN))
         {
             m_gun_controller.ToggleFireStyle();
         }
@@ -45,7 +47,7 @@ public class TwinStickButtonMap : MonoBehaviour {
 
         /// PRESS Y
         /// (Change weapon)
-        if(ControllerInput.Pressed_Y(Key.DOWN))
+        if (ControllerInput.Pressed_Y(Key.DOWN))
         {
             playerWeaponStance.ToggleEquippedWeapon();
         }
@@ -65,10 +67,21 @@ public class TwinStickButtonMap : MonoBehaviour {
         /// (ADS)
         if (ControllerInput.LeftTrigger() >= 0.2)
         {
+            m_gun_controller.is_ADS = true;
             StartCoroutine(m_gun_controller.toggleADS_ON());
         } else
         {
             m_gun_controller.toggleADS_OFF();
+        }
+
+        /// PRESS L3
+        /// (Sprint)
+        if (ControllerInput.Pressed_L3(Key.IS_PRESSED) && m_gun_controller.is_ADS == false)
+        {
+            tsm.m_is_sprinting = true;
+        } else
+        {
+            tsm.m_is_sprinting = false;
         }
 
 

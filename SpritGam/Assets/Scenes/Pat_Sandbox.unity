@@ -197,6 +197,7 @@ MonoBehaviour:
   crosshair: {fileID: 855570779}
   hipfireDistance: 0
   adsMultiplier: 0
+  is_ADS: 0
   m_is_shotgun: 0
   m_shotgun_spray_angle: 0
   m_is_dual: 0
@@ -5510,6 +5511,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1460624801555664, guid: 72f19afdbd45d884c98f9b388067142e,
     type: 2}
   m_PrefabInternal: {fileID: 71777718}
+--- !u!114 &903504732 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114295523607902584, guid: 72f19afdbd45d884c98f9b388067142e,
+    type: 2}
+  m_PrefabInternal: {fileID: 71777718}
+  m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
 --- !u!1001 &919857586
 Prefab:
   m_ObjectHideFlags: 0
@@ -46575,6 +46582,12 @@ MonoBehaviour:
   m_animator: {fileID: 96748890}
   m_player_transform: {fileID: 1043477088}
   m_speed_multiplier: 10
+  m_sprint_speed: 15
+  m_is_sprinting: 0
+  m_ads_speed: 5
+  m_default_speed: 0
+  gc: {fileID: 903504732}
+  tsm: {fileID: 1043477087}
 --- !u!50 &1043477086
 Rigidbody2D:
   serializedVersion: 4
@@ -46606,6 +46619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1036d86d47b652143876c76dcfe88b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tsm: {fileID: 1043477085}
   m_gun_controller: {fileID: 1692928073}
   playerWeaponStance: {fileID: 1043477084}
   gpc: {fileID: 1043477090}
