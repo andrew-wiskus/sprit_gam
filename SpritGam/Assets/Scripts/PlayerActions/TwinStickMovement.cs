@@ -7,7 +7,7 @@ public class TwinStickMovement : MonoBehaviour
 
     [SerializeField] private Animator m_animator;
     [SerializeField] private Transform m_player_transform;
-    [SerializeField] private float m_speed_multiplier;
+    [SerializeField] public float m_speed_multiplier;
     
 
     private Rigidbody2D m_rigid_body;

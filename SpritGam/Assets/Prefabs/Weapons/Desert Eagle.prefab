@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_twinStickMovement: {fileID: 0}
   gpc: {fileID: 0}
   weaponType: 0
   m_item_to_shoot: {fileID: 1691174634483652, guid: d30fc7aa9e157644495f03e7cf3eafee,
@@ -339,6 +340,8 @@ MonoBehaviour:
   m_firerate_inbetween_bursts_in_seconds: 0.15
   m_fire_styles: 01000000
   crosshair: {fileID: 1390655931605280}
+  hipfireDistance: 0.6
+  adsMultiplier: 1.75
   m_is_shotgun: 0
   m_shotgun_spray_angle: 0
   m_is_dual: 0

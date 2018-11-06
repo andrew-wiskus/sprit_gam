@@ -17,6 +17,8 @@ public class TwinStickButtonMap : MonoBehaviour {
 	void Update () {
         
 
+        /// PRESS X
+        /// (Reload weapon)
         if (ControllerInput.Pressed_X(Key.DOWN))
         {
             
@@ -32,11 +34,17 @@ public class TwinStickButtonMap : MonoBehaviour {
             }
         }
 
+
+        /// PRESS B
+        /// (Toggle fire mode)
         if(ControllerInput.Pressed_B(Key.DOWN))
         {
             m_gun_controller.ToggleFireStyle();
         }
 
+
+        /// PRESS Y
+        /// (Change weapon)
         if(ControllerInput.Pressed_Y(Key.DOWN))
         {
             playerWeaponStance.ToggleEquippedWeapon();
@@ -44,9 +52,23 @@ public class TwinStickButtonMap : MonoBehaviour {
 
         m_gun_controller = playerWeaponStance.currentWeapon.GetComponent<GunController>();
 
+
+        /// PRESS A
+        /// (Toggle weapon attachment)
         if (ControllerInput.Pressed_A(Key.DOWN))
         {
             m_gun_controller.ToggleAttachment();
+        }
+
+
+        /// PRESS LT
+        /// (ADS)
+        if (ControllerInput.LeftTrigger() >= 0.2)
+        {
+            StartCoroutine(m_gun_controller.toggleADS_ON());
+        } else
+        {
+            m_gun_controller.toggleADS_OFF();
         }
 
 

@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_twinStickMovement: {fileID: 0}
   gpc: {fileID: 0}
   weaponType: 1
   m_item_to_shoot: {fileID: 1691174634483652, guid: d30fc7aa9e157644495f03e7cf3eafee,
@@ -383,6 +384,8 @@ MonoBehaviour:
   m_firerate_inbetween_bursts_in_seconds: 0.15
   m_fire_styles: 00000000010000000200000003000000
   crosshair: {fileID: 1046752113921534}
+  hipfireDistance: 1
+  adsMultiplier: 1.5
   m_is_shotgun: 0
   m_shotgun_spray_angle: 0
   m_is_dual: 0
@@ -471,7 +474,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3614d6d07a1f974d9035b996cc0cccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

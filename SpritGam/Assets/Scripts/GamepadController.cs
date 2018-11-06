@@ -15,8 +15,8 @@ public class GamepadController : MonoBehaviour {
     [SerializeField] public float hard_Strength;
 
     private PlayerIndex playerOne = 0;
+    
 
-    // Use this for initialization
     void Start () {
 	}
 
@@ -33,7 +33,7 @@ public class GamepadController : MonoBehaviour {
         GamePad.SetVibration(playerOne, 0, 0);
     }
 	
-	// Update is called once per frame
+
 	void Update () {
 		
 	}

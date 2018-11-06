@@ -37,6 +37,7 @@ public enum WeaponStance
 
 public class GunController : MonoBehaviour
 {
+    [SerializeField] private TwinStickMovement m_twinStickMovement;
     [SerializeField] private GamepadController gpc;
     [SerializeField] public WeaponStance weaponType;
     [SerializeField] private GameObject m_item_to_shoot;
@@ -55,10 +56,16 @@ public class GunController : MonoBehaviour
     [SerializeField] private float m_firerate_inbetween_bursts_in_seconds = 0.15f;
     [SerializeField] private GunFireStyle[] m_fire_styles = new GunFireStyle[] { GunFireStyle.AUTOMATIC, GunFireStyle.SEMI_AUTOMATIC, GunFireStyle.BURST_SEMIAUTOMATIC, GunFireStyle.BURST_AUTOMATIC };
 
+    // Crosshair / Aiming
     [SerializeField] private GameObject crosshair;
+    [SerializeField] public float hipfireDistance;
+    private float adsDistance;
+    [SerializeField] private float adsMultiplier;
+
+    private float default_playerSpeed;
+    private float playerSpeed;
     
-
-
+    
     private bool m_is_shooting_projectile = false;
     private int m_current_ammo = 0;
     private bool m_weapon_is_reloading = false;
@@ -72,26 +79,24 @@ public class GunController : MonoBehaviour
     public bool m_is_vape;
 
     [SerializeField] Camera testCam;
-
     [SerializeField] private GameObject weaponAttachment;
-
     [SerializeField] private CinemachineImpulseSource impulse;
     
 
     
     void Start()
     {
+        default_playerSpeed = m_twinStickMovement.m_speed_multiplier;
         weaponAttachment.SetActive(true);
         m_current_ammo = m_clip_size;
         init_gui();
-
-       
     }
 
-
+    // #INITS ----------------------------------------------------------------------------------
     private void OnEnable()
     {
         m_weapon_is_reloading = false;
+        adsDistance = hipfireDistance * adsMultiplier;
         init_gui();
         StartCoroutine(start_trigger_listener());
     }
@@ -103,6 +108,8 @@ public class GunController : MonoBehaviour
         m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
         m_gun_gui_controller.SetFireMode(m_fire_styles[m_fire_style_index].ToString());
     }
+
+    // #WEAPON OPTION TOGGLES ----------------------------------------------------------------------
 
     public void ToggleFireStyle()
     {
@@ -125,6 +132,8 @@ public class GunController : MonoBehaviour
             weaponAttachment.SetActive(false);
         }
     }
+
+    // #PULL RIGHT TRIGGER ----------------------------------------------------------------------
 
     private IEnumerator start_trigger_listener()
     {
@@ -218,8 +227,8 @@ public class GunController : MonoBehaviour
                     }
 
                     yield break;
+                    
 
-                // PAT
                 case GunFireStyle.SHOTGUN_PUMP:
                     if (m_trigger_was_toggled)
                     {
@@ -254,12 +263,40 @@ public class GunController : MonoBehaviour
                     yield break;
             }
         }
+        
+        yield break;
+    }
 
 
+    // #PULL LEFT TRIGGER -----------------------------------------------------------------------
+
+    public IEnumerator toggleADS_ON()
+    {
+        playerSpeed = m_twinStickMovement.m_speed_multiplier;
+        Debug.Log("Speed:" + playerSpeed);
+        Debug.Log("Default speed:" + default_playerSpeed);
+
+        crosshair.transform.localPosition = new Vector3(0, adsDistance, 0);
+        if (playerSpeed == default_playerSpeed)
+        {
+            m_twinStickMovement.m_speed_multiplier *= 0.7f;
+        }
+        
 
         yield break;
     }
 
+    public void toggleADS_OFF()
+    {
+        crosshair.transform.localPosition = new Vector3 (0, hipfireDistance, 0);
+
+        m_twinStickMovement.m_speed_multiplier = default_playerSpeed;
+    }
+
+
+
+
+    // #RELOAD ----------------------------------------------------------------------------------
 
     public void ReloadWeapon()
     {
@@ -276,8 +313,8 @@ public class GunController : MonoBehaviour
             StartCoroutine(reload_dual());
         }
     }
+    
 
-    // PAT
     public void ReloadShotgun()
     {
         if (m_weapon_is_reloading == false)
@@ -329,8 +366,8 @@ public class GunController : MonoBehaviour
         m_weapon_audio.BlowVape();
         yield break;
     }
+    
 
-    // PAT
     private IEnumerator reload_shotgun()
     {
         m_weapon_is_reloading = true;
@@ -379,6 +416,8 @@ public class GunController : MonoBehaviour
     }
 
 
+    // #FIRE WEAPON --------------------------------------------------------------------------
+
     private void shoot_single_projectile()
     {
         if (m_current_ammo != 0)
@@ -390,7 +429,6 @@ public class GunController : MonoBehaviour
             m_weapon_audio.PlayFireGunSFX();
             StartCoroutine(gpc.Vibrate(gpc.quick_Duration, gpc.soft_Strength));
             StartCoroutine(ShakeCamera());
-            //ShakeCamera();
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
                 StartCoroutine(reload_weapon());
@@ -431,6 +469,8 @@ public class GunController : MonoBehaviour
 
     }
 
+
+    // Old Camera Shake Logic -----------------------------------------------------------
     public IEnumerator ShakeCameraNew()
     {
         Vector3 shakeAmount = new Vector3(1, 1, 1);
@@ -441,9 +481,6 @@ public class GunController : MonoBehaviour
 
     public IEnumerator ShakeCamera()
     {
-        ///Animator anim = testCam.GetComponent<Animator>();
-        ///anim.Play("CamShake");
-
         var cPos = testCam.transform.position;
         float xInc = 0.1f;
         float yInc = 0.3f;
@@ -490,6 +527,7 @@ public class GunController : MonoBehaviour
     }
 
 
+    // #UPDATE ------------------------------------------------------------------------------
     void Update()
     {
         if (m_weapon_is_reloading == true)
