@@ -48,13 +48,13 @@ public class GunController : MonoBehaviour
     [SerializeField] private float m_reload_time_in_seconds = 1.75f;
     [SerializeField] private GunAnimationName m_reload_animation;
     [SerializeField] private GunGUIController m_gun_gui_controller;
-    [SerializeField] private float m_fire_rate_in_seconds = 0.15f;
+    [SerializeField] public float m_fire_rate_in_seconds = 0.15f;
     [SerializeField] private bool m_should_auto_reload = false;
   
     [SerializeField] private float m_burst_speed = 0.05f;
     [SerializeField] private int m_burst_count = 3;
-    [SerializeField] private float m_firerate_inbetween_bursts_in_seconds = 0.15f;
-    [SerializeField] private GunFireStyle[] m_fire_styles = new GunFireStyle[] { GunFireStyle.AUTOMATIC, GunFireStyle.SEMI_AUTOMATIC, GunFireStyle.BURST_SEMIAUTOMATIC, GunFireStyle.BURST_AUTOMATIC };
+    [SerializeField] public float m_firerate_inbetween_bursts_in_seconds = 0.15f;
+    [SerializeField] public GunFireStyle[] m_fire_styles = new GunFireStyle[] { GunFireStyle.AUTOMATIC, GunFireStyle.SEMI_AUTOMATIC, GunFireStyle.BURST_SEMIAUTOMATIC, GunFireStyle.BURST_AUTOMATIC };
 
     // Crosshair / Aiming
     [SerializeField] private GameObject crosshair;
@@ -69,7 +69,7 @@ public class GunController : MonoBehaviour
     private int m_current_ammo = 0;
     private bool m_weapon_is_reloading = false;
     private bool m_trigger_was_toggled = true;
-    private int m_fire_style_index = 0;
+    public int m_fire_style_index = 0;
 
     public bool m_is_shotgun;
     public int m_shotgun_spray_angle;
@@ -82,6 +82,8 @@ public class GunController : MonoBehaviour
     [SerializeField] Camera testCam;
     [SerializeField] private GameObject weaponAttachment;
     [SerializeField] private CinemachineImpulseSource impulse;
+
+    [SerializeField] private WorldShake worldShake;
     
 
     
@@ -420,7 +422,8 @@ public class GunController : MonoBehaviour
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             m_weapon_audio.PlayFireGunSFX();
             StartCoroutine(gpc.Vibrate(gpc.quick_Duration, gpc.soft_Strength));
-            StartCoroutine(ShakeCamera());
+            //StartCoroutine(ShakeCamera());
+            StartCoroutine(worldShake.ShakeWorld());
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
                 StartCoroutine(reload_weapon());
