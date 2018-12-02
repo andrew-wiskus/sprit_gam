@@ -83,13 +83,13 @@ public class GunController : MonoBehaviour
     [SerializeField] private GameObject weaponAttachment;
     [SerializeField] private CinemachineImpulseSource impulse;
 
-    [SerializeField] private WorldShake worldShake;
+    //[SerializeField] private WorldShake worldShake;
     
 
     
     void Start()
     {
-        weaponAttachment.SetActive(true);
+        weaponAttachment.SetActive(false);
         m_current_ammo = m_clip_size;
         init_gui();
     }
@@ -423,7 +423,7 @@ public class GunController : MonoBehaviour
             m_weapon_audio.PlayFireGunSFX();
             StartCoroutine(gpc.Vibrate(gpc.quick_Duration, gpc.soft_Strength));
             //StartCoroutine(ShakeCamera());
-            StartCoroutine(worldShake.ShakeWorld());
+            //StartCoroutine(worldShake.ShakeWorld());
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
                 StartCoroutine(reload_weapon());
@@ -452,7 +452,7 @@ public class GunController : MonoBehaviour
             muzzleFlash_Animator.Play("MuzzleFlash");
             m_weapon_audio.PlayFireGunSFX();
             StartCoroutine(gpc.Vibrate(gpc.medium_Duration, gpc.medium_Strength));
-            StartCoroutine(ShakeCamera());
+            //StartCoroutine(ShakeCamera());
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             
