@@ -13,21 +13,22 @@ public enum WeaponsList
     VAPE
 }
 
-public class PlayerWeaponStance : MonoBehaviour {
+public class PlayerWeaponStance : MonoBehaviour
+{
 
     [SerializeField] private TwinStickButtonMap twinStickButtonMap;
     [SerializeField] private GunController currentWeaponController;
 
     [SerializeField] private WeaponsList[] weaponsInInventory = new WeaponsList[] { WeaponsList.TOMMY_GUN, WeaponsList.MOSSBERG, WeaponsList.DESERT_EAGLE, WeaponsList.MAC_11, WeaponsList.MAC_11_DUAL, WeaponsList.VAPE };
-    
+
     [SerializeField] private GameObject torso;
-    
+
     [SerializeField] private float doubleHand_TorsoAngle;
     [SerializeField] private float singleHand_TorsoAngle;
     [SerializeField] private float dualWield_TorsoAngle;
     [SerializeField] private float melee_TorsoAngle;
     [SerializeField] private float noEquip_TorsoAngle;
-    
+
     [SerializeField] private GameObject twoHandedWeapon;
     [SerializeField] private GameObject oneHandedWeapon;
     [SerializeField] private GameObject dualWieldedWeapon;
@@ -47,17 +48,18 @@ public class PlayerWeaponStance : MonoBehaviour {
 
     [SerializeField] private GunGUIController m_gun_gui_controller;
 
-    // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
         SetEquippedWeapon();
         currentStance = currentWeapon.GetComponent<GunController>().weaponType;
         SetTorsoAngle();
     }
- 
+
 
     public void SetEquippedWeapon()
     {
-        switch (weaponsInInventory[weaponInventoryIndex]){
+        switch (weaponsInInventory[weaponInventoryIndex])
+        {
             case WeaponsList.TOMMY_GUN:
                 currentWeapon = tommyGun;
                 currentWeaponController = tommyGun.GetComponent<GunController>();
@@ -88,8 +90,8 @@ public class PlayerWeaponStance : MonoBehaviour {
                 currentWeapon = vape;
                 currentWeaponController = vape.GetComponent<GunController>();
                 break;
-
         }
+
         currentWeapon.SetActive(true);
         currentStance = currentWeapon.GetComponent<GunController>().weaponType;
         m_gun_gui_controller.SetCurrentWeapon(currentWeapon.name.ToString());
@@ -102,11 +104,12 @@ public class PlayerWeaponStance : MonoBehaviour {
         switch (currentStance)
         {
             case WeaponStance.SINGLE_HAND:
-                
+
                 if (currentWeaponController.m_is_vape == true)
                 {
                     torso.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, dualWield_TorsoAngle));
-                } else
+                }
+                else
                 {
                     torso.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, singleHand_TorsoAngle));
                 }
@@ -114,7 +117,7 @@ public class PlayerWeaponStance : MonoBehaviour {
 
             case WeaponStance.DOUBLE_HAND:
                 torso.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, doubleHand_TorsoAngle));
-               break;
+                break;
 
             case WeaponStance.DUAL_WIELD:
                 torso.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, dualWield_TorsoAngle));
@@ -129,15 +132,16 @@ public class PlayerWeaponStance : MonoBehaviour {
     public void ToggleEquippedWeapon()
     {
         weaponInventoryIndex += 1;
+
         if (weaponInventoryIndex >= weaponsInInventory.Length)
         {
             weaponInventoryIndex = 0;
         }
-        
+
         SetEquippedWeapon();
     }
 
-    private void DeactivateNoncurrentWeapons()
+    private void DeactivateNonCurrentWeapons()
     {
         if (tommyGun != currentWeapon)
         {
@@ -165,15 +169,11 @@ public class PlayerWeaponStance : MonoBehaviour {
         }
     }
 
-    
-	
-	// Update is called once per frame
-	void Update () {
-
-        
+    void Update()
+    {
         currentStance = currentWeapon.GetComponent<GunController>().weaponType;
 
-        DeactivateNoncurrentWeapons();
+        DeactivateNonCurrentWeapons();
 
         if (currentStance == WeaponStance.SINGLE_HAND)
         {
@@ -194,6 +194,5 @@ public class PlayerWeaponStance : MonoBehaviour {
             dualWieldedWeapon.SetActive(true);
         }
 
-        
     }
 }

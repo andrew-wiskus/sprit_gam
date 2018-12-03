@@ -4,33 +4,18 @@ using UnityEngine;
 
 public class BulletDamageController : MonoBehaviour {
 
-    //[SerializeField] private GameObject self;
-    //[SerializeField] private GameObject bullet;
-
-	// Use this for initialization
-	void Start () {
-
-	}
+    [SerializeField] float m_damage = 5.0f;
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy") // TODO: Change `Enemy` to `ShootableObject` because sometimes we may want to shoot world-objects (chest? breakable door?) for a reaction, so we'll need to share the name of this layer
         {
-            Debug.Log("HIT ENEMY");
-            Destroy(col.gameObject);
-            Destroy(gameObject);
+            ShootableObject target = col.gameObject.GetComponent<ShootableObject>(); // ShootableObject will be the base class for anything that is hittable, create a Dragon? It extends `ShootableObject`.
+            target.UpdateHealth(-1.0f * m_damage);
+            Destroy(gameObject); 
         }
-        if(col.gameObject.tag == "Collideable")
-        {
-            Destroy(gameObject);
-        }
+
+        // TODO: Make projectile destroy on walls, make a `Block Projectiles` layer?;
     }
 
-
-
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }
