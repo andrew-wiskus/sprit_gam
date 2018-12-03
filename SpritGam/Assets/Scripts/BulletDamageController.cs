@@ -40,6 +40,7 @@ public class BulletDamageController : MonoBehaviour {
     private IEnumerator HeadExplode()
     {
         headExplosion.SetActive(true);
+        GetComponent<AudioSource>().Play();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
