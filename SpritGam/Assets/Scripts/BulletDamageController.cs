@@ -14,7 +14,6 @@ public class BulletDamageController : MonoBehaviour {
         {
             gameObject.GetComponent<Projectile>().StopBullet();
             
-            Debug.Log("Bullet speed:" + gameObject.GetComponent<Rigidbody2D>().velocity);
             ShootableObject target = col.gameObject.GetComponent<ShootableObject>(); // ShootableObject will be the base class for anything that is hittable, create a Dragon? It extends `ShootableObject`.
             target.UpdateHealth(-1.0f * m_damage);
             if(target.m_current_health <= 0.0f)
@@ -27,13 +26,12 @@ public class BulletDamageController : MonoBehaviour {
             
              
         }
-
-        // TODO: Make projectile destroy on walls, make a `Block Projectiles` layer?;
     }
 
     private IEnumerator BloodSplatter()
     {
         bloodSplatter.SetActive(true);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
         yield break;
@@ -42,6 +40,7 @@ public class BulletDamageController : MonoBehaviour {
     private IEnumerator HeadExplode()
     {
         headExplosion.SetActive(true);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
         yield break;
