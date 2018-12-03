@@ -50,6 +50,7 @@ public class PlayerWeaponStance : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("I AM RUNN");
         SetEquippedWeapon();
         currentStance = currentWeapon.GetComponent<GunController>().weaponType;
         SetTorsoAngle();

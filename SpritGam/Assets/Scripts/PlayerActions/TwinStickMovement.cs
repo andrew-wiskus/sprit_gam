@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class TwinStickMovement : MonoBehaviour
 {
-
+    // TODO: Move all gun controller code out of this file, rather call this file from a different class to get TwinStick + modify TwinStickMovements internal variables
     [SerializeField] private Animator m_feet_animator;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] public float m_speed_multiplier;
@@ -15,7 +15,7 @@ public class TwinStickMovement : MonoBehaviour
     [SerializeField] public float m_ads_speed;
     public float m_default_speed;
 
-    [SerializeField] private GunController gc;
+    //[SerializeField] private GunController gc;
     [SerializeField] private TwinStickButtonMap tsm;
 
     [SerializeField] private GameObject feet;
@@ -26,7 +26,7 @@ public class TwinStickMovement : MonoBehaviour
 
     void Awake()
     {
-        gc = GetComponentInChildren<GunController>();
+        //gc = GetComponentInChildren<GunController>();
         m_default_speed = m_speed_multiplier;
         m_rigid_body = GetComponent<Rigidbody2D>();
         m_audio_source = GetComponent<AudioSource>();
@@ -44,16 +44,18 @@ public class TwinStickMovement : MonoBehaviour
     {
         if (m_is_sprinting == true)
         {
-            gc.is_ADS = false;
+            //gc.is_ADS = false;
             m_speed_multiplier = m_sprint_speed;
             m_feet_animator.speed = 1.5f;
 
-        } else if (gc.is_ADS == true)
-        {
-            m_is_sprinting = false;
-            m_speed_multiplier = m_ads_speed;
-            m_feet_animator.speed = 0.5f;
-        } else
+        }
+        //else if (gc.is_ADS == true)
+        //{
+        //    m_is_sprinting = false;
+        //    m_speed_multiplier = m_ads_speed;
+        //    m_feet_animator.speed = 0.5f;
+        //}
+        else
         {
             m_speed_multiplier = m_default_speed;
             m_feet_animator.speed = 1.0f;
@@ -63,8 +65,6 @@ public class TwinStickMovement : MonoBehaviour
 
     void Update()
     {
-        gc = GetComponentInChildren<GunController>();
-
         SetPlayerSpeed();
 
         bool player_is_walking = ControllerInput.LeftStickHorizontal() != 0 || ControllerInput.LeftStickVertical() != 0;
