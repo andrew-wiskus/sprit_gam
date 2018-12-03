@@ -154,8 +154,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!70 &70717973734873706
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -297,9 +297,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95e0756db3dfac4fa39777a632b07d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 200
   gunController: {fileID: 0}
   bulletCount: 1
+  destroyTime: 3
 --- !u!198 &198689723170191754
 ParticleSystem:
   m_ObjectHideFlags: 1
