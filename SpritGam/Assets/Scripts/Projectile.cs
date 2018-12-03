@@ -6,9 +6,19 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] GunController gunController;
     [SerializeField] int bulletCount;
+    private bool bulletIsMoving = true;
+
+    public void StopBullet()
+    {
+        bulletIsMoving = false;
+    }
 
     void Update()
     {
-        transform.position += transform.up * Time.deltaTime * speed;
+        if (bulletIsMoving == true)
+        {
+            transform.position += transform.up * Time.deltaTime * speed;
+        }
+        
     }
 }
