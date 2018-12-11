@@ -566,7 +566,6 @@ MonoBehaviour:
   testCam: {fileID: 0}
   weaponAttachment: {fileID: 1978828562331908}
   impulse: {fileID: 0}
-  worldShake: {fileID: 0}
 --- !u!114 &114989849011338718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -579,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_audio_source: {fileID: 82118300731253466}
-  m_reload_audioclip: {fileID: 8300000, guid: c2a368ea3ce48e7458199610d518e7e1, type: 3}
+  m_reload_audioclip: {fileID: 8300000, guid: 4e0b099b4b2f7594db6e5e39ab018408, type: 3}
   m_fire_audioclip: {fileID: 8300000, guid: 2e8ee82abb8433b4eb52c3db70aa4fb4, type: 3}
   m_shotgun_startLoad: {fileID: 0}
   m_shotgun_loadOne: {fileID: 0}
