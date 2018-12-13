@@ -422,7 +422,7 @@ public class GunController : MonoBehaviour
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             m_weapon_audio.PlayFireGunSFX();
             StartCoroutine(gpc.Vibrate(gpc.quick_Duration, gpc.soft_Strength));
-            //StartCoroutine(ShakeCamera());
+            StartCoroutine(ShakeCamera()); // temp
             //StartCoroutine(worldShake.ShakeWorld());
             if (m_current_ammo == 0 && m_should_auto_reload)
             {
@@ -452,7 +452,7 @@ public class GunController : MonoBehaviour
             muzzleFlash_Animator.Play("MuzzleFlash");
             m_weapon_audio.PlayFireGunSFX();
             StartCoroutine(gpc.Vibrate(gpc.medium_Duration, gpc.medium_Strength));
-            //StartCoroutine(ShakeCamera());
+            StartCoroutine(ShakeCamera()); // temp
             m_current_ammo -= 1;
             m_gun_gui_controller.SetClipStatus(m_current_ammo, m_clip_size);
             
@@ -478,8 +478,8 @@ public class GunController : MonoBehaviour
     public IEnumerator ShakeCamera()
     {
         var cPos = testCam.transform.position;
-        float xInc = 0.1f;
-        float yInc = 0.3f;
+        float xInc = 0.08f;
+        float yInc = 0.1f;
         float shakeTime = 0;
         float autoDif = 0.05f;
 
@@ -491,22 +491,22 @@ public class GunController : MonoBehaviour
 
             case GunFireStyle.SHOTGUN_PUMP:
             case GunFireStyle.SHOTGUN_SEMIAUTO:
-                xInc = 0.2f;
-                yInc = 0.5f;
+                xInc = 0.1f;
+                yInc = 0.2f;
                 shakeTime = 0.14f;
             break;
 
             case GunFireStyle.AUTOMATIC:
             case GunFireStyle.BURST_AUTOMATIC:
             case GunFireStyle.BURST_SEMIAUTOMATIC:
-                xInc = 0.1f;
-                yInc = 0.3f;
+                xInc = 0.08f;
+                yInc = 0.10f;
                 shakeTime = m_fire_rate_in_seconds - autoDif;
 
             if (m_fire_rate_in_seconds <= autoDif)
                 {
-                    xInc = 0.08f;
-                    yInc = 0.1f;
+                    xInc = 0.05f;
+                    yInc = 0.08f;
                     shakeTime = 0.03f;
                 }
             break;
