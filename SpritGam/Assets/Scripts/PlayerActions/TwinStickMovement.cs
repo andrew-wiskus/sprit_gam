@@ -24,6 +24,9 @@ public class TwinStickMovement : MonoBehaviour
     private Rigidbody2D m_rigid_body;
     private AudioSource m_audio_source;
 
+    [SerializeField] private float m_left_stick_dead_zone;
+    [SerializeField] private float m_right_stick_dead_zone;
+
     void Awake()
     {
         //gc = GetComponentInChildren<GunController>();
@@ -34,10 +37,9 @@ public class TwinStickMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        m_rigid_body.velocity = new Vector2(Mathf.Lerp(0, ControllerInput.LeftStickHorizontal() * m_speed_multiplier, 0.8f),
+            m_rigid_body.velocity = new Vector2(Mathf.Lerp(0, ControllerInput.LeftStickHorizontal() * m_speed_multiplier, 0.8f),
             Mathf.Lerp(0, ControllerInput.LeftStickVertical() * m_speed_multiplier, 0.8f));
         
-       
     }
 
     public void SetPlayerSpeed()
@@ -67,8 +69,9 @@ public class TwinStickMovement : MonoBehaviour
     {
         SetPlayerSpeed();
 
-        bool player_is_walking = ControllerInput.LeftStickHorizontal() != 0 || ControllerInput.LeftStickVertical() != 0;
-        bool player_is_aiming = ControllerInput.RightStickHorizontal() != 0 || ControllerInput.RightStickVertical() != 0;
+        bool player_is_walking = (Mathf.Clamp01(new Vector2(ControllerInput.LeftStickHorizontal(), ControllerInput.LeftStickVertical()).magnitude)) > m_left_stick_dead_zone;
+        bool player_is_aiming = (Mathf.Clamp01(new Vector2(ControllerInput.RightStickHorizontal(), ControllerInput.RightStickVertical()).magnitude)) > m_right_stick_dead_zone;
+        
         
 
         if (player_is_aiming)

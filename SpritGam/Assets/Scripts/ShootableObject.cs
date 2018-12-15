@@ -11,7 +11,7 @@ public class ShootableObject : MonoBehaviour // TODO: We have to style this into
 { 
 
     [SerializeField] float m_max_health;
-    private float m_current_health;
+    public float m_current_health;
 
     private HealthGUI m_health_gui;
 
@@ -29,6 +29,7 @@ public class ShootableObject : MonoBehaviour // TODO: We have to style this into
 
     public void UpdateHealth(float added_health_difference)
     {
+
         m_current_health += added_health_difference;
         m_health_gui.SetHealthTextDisplayByPercent(m_current_health / m_max_health);
 
