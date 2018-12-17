@@ -18,8 +18,13 @@ public class TwinStickMovement : MonoBehaviour
     //[SerializeField] private GunController gc;
     [SerializeField] private TwinStickButtonMap tsm;
 
-    //[SerializeField] private GameObject feet;
-    
+    [SerializeField] private Animator m_playermovement_animator;
+
+    [SerializeField] private GameObject m_weapon;
+
+    private string run_animation = "Player_Run Right";
+
+
 
     private Rigidbody2D m_rigid_body;
     private AudioSource m_audio_source;
@@ -53,12 +58,23 @@ public class TwinStickMovement : MonoBehaviour
         bool player_is_walking = (Mathf.Clamp01(new Vector2(ControllerInput.LeftStickHorizontal(), ControllerInput.LeftStickVertical()).magnitude)) > m_left_stick_dead_zone;
         bool player_is_aiming = (Mathf.Clamp01(new Vector2(ControllerInput.RightStickHorizontal(), ControllerInput.RightStickVertical()).magnitude)) > m_right_stick_dead_zone;
 
-
+        
 
         if (player_is_aiming)
         {
             float angle = Controller.GetRightAnalogStickAngle();
-            m_player_transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+            m_weapon.transform.localRotation = Quaternion.AngleAxis(Mathf.Ceil(angle) + 90.0f, new Vector3(0, 0, 1));
+            Debug.Log("weapon angle: " + angle);
+
+            if(angle <= 180.0f)
+            {
+                //m_weapon.GetComponentInChildren<GunController>().gameObject.transform.localScale = new Vector3 (1.0f, 1.0f, -1.0f);
+                run_animation = "Player_Run Left";
+            } else
+            {
+                //m_weapon.GetComponentInChildren<GunController>().gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                run_animation = "Player_Run Right";
+            }
         }
 
         if (player_is_walking)
@@ -71,7 +87,7 @@ public class TwinStickMovement : MonoBehaviour
                 m_audio_source.Play();
             }
 
-            m_playermovement_animator.Play("Player_Run Right");
+            m_playermovement_animator.Play(run_animation);
         }
 
         if (player_is_walking == false)

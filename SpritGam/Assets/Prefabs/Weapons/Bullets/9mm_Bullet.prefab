@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunController: {fileID: 0}
   bulletCount: 1
-  destroyTime: 3
+  destroyTime: 0
   m_speed: 100
 --- !u!198 &198689723170191754
 ParticleSystem:

@@ -10,7 +10,7 @@ public abstract class GunProperties : MonoBehaviour
     [SerializeField] public Animator m_weapon_animator;
     [SerializeField] public GunGUIController m_gun_gui_controller;
     [SerializeField] public VibrationController m_vibration_controller;
-    [SerializeField] public CameraShakeController m_camera_shake_controller;
+    //[SerializeField] public CameraShakeController m_camera_shake_controller;
 
     [SerializeField] public float fire_rate_in_seconds = 0.25f;
     [SerializeField] public bool should_auto_reload = true;
@@ -49,7 +49,7 @@ public abstract class GunProperties : MonoBehaviour
             m_projectile_fire_sequence.Fire();
             m_weapon_audio.PlayFireGunSFX();
             m_vibration_controller.Vibrate(on_fire_vibration_length, on_fire_vibration_strength);
-            m_camera_shake_controller.ShakeCamera(new ShakeProperties(on_fire_shake_distance, on_fire_shake_duration));
+            //m_camera_shake_controller.ShakeCamera(new ShakeProperties(on_fire_shake_distance, on_fire_shake_duration));
             m_gun_gui_controller.SetClipStatus(current_ammo, clip_size);
 
             PlayMuzzleFlashAnimation();

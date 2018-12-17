@@ -1,5 +1,9 @@
+using UnityEngine;
 
+public class Projectile : MonoBehaviour
 {
+    [SerializeField] GunController gunController;
+    [SerializeField] int bulletCount;
     private bool bulletIsMoving = true;
     [SerializeField] private float destroyTime;
     [SerializeField] private float m_speed = 1.0f;
@@ -8,9 +12,15 @@
     {
         FireBullet();
     }
- 
+
+    public void StopBullet()
+    {
+        bulletIsMoving = false;
+    }
+
     public void FireBullet()
-        GetComponent<Rigidbody2D>().AddForce(transform.up * m_speed);
+    {
+        GetComponent<Rigidbody2D>().AddForce(transform.right * m_speed);
     }
 
     private void Update()
