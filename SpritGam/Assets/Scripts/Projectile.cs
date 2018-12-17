@@ -2,27 +2,12 @@
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float m_speed = 5f;
-
-    [SerializeField] GunController gunController;
-    [SerializeField] int bulletCount;
-
-    void Update()
-    {
-        transform.position += transform.up * Time.deltaTime * speed;
-    }
-
-    public void SetSpeed(float speed)
-    {
-        m_speed = speed;
-    }
-}
-
     [SerializeField] GunController gunController;
     [SerializeField] int bulletCount;
     private bool bulletIsMoving = true;
     [SerializeField] private float destroyTime;
-    
+    [SerializeField] private float m_speed = 1.0f;
+
     void OnEnable()
     {
         FireBullet();
@@ -32,10 +17,19 @@ public class Projectile : MonoBehaviour
     {
         bulletIsMoving = false;
     }
-
+ 
     public void FireBullet()
     {
-        GetComponent<Rigidbody2D>().AddForce(transform.up * speed);
+        GetComponent<Rigidbody2D>().AddForce(transform.up * m_speed);
     }
 
+    private void Update()
+    {
         Destroy(gameObject, destroyTime);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        m_speed = speed;
+    }
+}

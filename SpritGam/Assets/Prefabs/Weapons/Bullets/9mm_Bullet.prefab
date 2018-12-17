@@ -393,10 +393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95e0756db3dfac4fa39777a632b07d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
   gunController: {fileID: 0}
   bulletCount: 1
   destroyTime: 3
+  m_speed: 100
 --- !u!198 &198689723170191754
 ParticleSystem:
   m_ObjectHideFlags: 1

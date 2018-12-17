@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4830733751659268}
   - component: {fileID: 212505330425457334}
   - component: {fileID: 114495130285017820}
+  - component: {fileID: 50670590111653272}
   m_Layer: 0
   m_Name: BuzzSawProjectile
   m_TagString: Untagged
@@ -70,6 +71,26 @@ Transform:
   m_Father: {fileID: 4639410920873806}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50670590111653272
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589392457029996}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &114495130285017820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,6 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95e0756db3dfac4fa39777a632b07d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunController: {fileID: 0}
+  bulletCount: 0
+  destroyTime: 0
   m_speed: 5
 --- !u!212 &212505330425457334
 SpriteRenderer:
