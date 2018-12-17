@@ -6,6 +6,7 @@ public class GridSnap : MonoBehaviour {
 
     public float PPU = 100; // pixels per unit (your tile size)
 
+
     private void LateUpdate()
     {
         Vector3 position = transform.localPosition;
