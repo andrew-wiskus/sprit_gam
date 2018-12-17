@@ -7,7 +7,9 @@ using UnityEngine;
 public class TwinStickMovement : MonoBehaviour
 {
 
-    [SerializeField] private Animator m_feet_animator;
+    [SerializeField] private Animator m_playermovement_animator;
+
+    //[SerializeField] private Animator m_feet_animator;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] public float m_speed_multiplier;
     [SerializeField] public float m_sprint_speed;
@@ -15,10 +17,10 @@ public class TwinStickMovement : MonoBehaviour
     [SerializeField] public float m_ads_speed;
     public float m_default_speed;
 
-    [SerializeField] private GunController gc;
-    [SerializeField] private TwinStickButtonMap tsm;
+    //[SerializeField] private GunController gc;
+    //[SerializeField] private TwinStickButtonMap tsm;
 
-    [SerializeField] private GameObject feet;
+    //[SerializeField] private GameObject feet;
     
 
     private Rigidbody2D m_rigid_body;
@@ -29,7 +31,7 @@ public class TwinStickMovement : MonoBehaviour
 
     void Awake()
     {
-        gc = GetComponentInChildren<GunController>();
+        //gc = GetComponentInChildren<GunController>();
         m_default_speed = m_speed_multiplier;
         m_rigid_body = GetComponent<Rigidbody2D>();
         m_audio_source = GetComponent<AudioSource>();
@@ -46,26 +48,26 @@ public class TwinStickMovement : MonoBehaviour
     {
         if (m_is_sprinting == true)
         {
-            gc.is_ADS = false;
+            //gc.is_ADS = false;
             m_speed_multiplier = m_sprint_speed;
-            m_feet_animator.speed = 1.5f;
+            m_playermovement_animator.speed = 1.5f;
 
-        } else if (gc.is_ADS == true)
-        {
-            m_is_sprinting = false;
-            m_speed_multiplier = m_ads_speed;
-            m_feet_animator.speed = 0.5f;
+        //} else if (gc.is_ADS == true)
+        //{
+        //    m_is_sprinting = false;
+       //     m_speed_multiplier = m_ads_speed;
+        //    m_playermovement_animator.speed = 0.5f;
         } else
         {
             m_speed_multiplier = m_default_speed;
-            m_feet_animator.speed = 1.0f;
+            m_playermovement_animator.speed = 1.0f;
         }
     }
     
 
     void Update()
     {
-        gc = GetComponentInChildren<GunController>();
+        //gc = GetComponentInChildren<GunController>();
 
         SetPlayerSpeed();
 
@@ -83,19 +85,19 @@ public class TwinStickMovement : MonoBehaviour
         if (player_is_walking)
         {
             float angle = Controller.GetLeftAnalogStickAngle();
-            feet.transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+            //feet.transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
 
             if (m_audio_source.isPlaying == false)
             {
                 m_audio_source.Play();
             }
 
-            m_feet_animator.Play("Walk");
+            m_playermovement_animator.Play("Player_Run Right");
         }
 
         if (player_is_walking == false)
         {
-            m_feet_animator.Play("Idle");
+            m_playermovement_animator.Play("Player_Idle");
         }
         
 
