@@ -283,10 +283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95e0756db3dfac4fa39777a632b07d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 160
   gunController: {fileID: 0}
   bulletCount: 5
   destroyTime: 3
+  m_speed: 113.35
 --- !u!114 &114588607136382320
 MonoBehaviour:
   m_ObjectHideFlags: 1

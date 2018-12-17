@@ -1,15 +1,21 @@
-﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float m_speed = 5f;
+    private bool bulletIsMoving = true;
+    [SerializeField] private float destroyTime;
+    [SerializeField] private float m_speed = 1.0f;
 
-    [SerializeField] GunController gunController;
-    [SerializeField] int bulletCount;
-
-    void Update()
+    void OnEnable()
     {
-        transform.position += transform.up * Time.deltaTime * speed;
+        FireBullet();
+    }
+ 
+    public void FireBullet()
+        GetComponent<Rigidbody2D>().AddForce(transform.up * m_speed);
+    }
+
+    private void Update()
+    {
+        Destroy(gameObject, destroyTime);
     }
 
     public void SetSpeed(float speed)
@@ -17,5 +23,3 @@ public class Projectile : MonoBehaviour
         m_speed = speed;
     }
 }
-
-        transform.position += transform.up * Time.deltaTime * m_speed;

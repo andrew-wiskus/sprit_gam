@@ -10,6 +10,14 @@ public class BulletDamageController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if(col.gameObject.tag == "Collideable")
+        {
+            Destroy(gameObject);
+            // play sparky anim :D
+        } 
+
+
+
         if (col.gameObject.tag == "Enemy") // TODO: Change `Enemy` to `ShootableObject` because sometimes we may want to shoot world-objects (chest? breakable door?) for a reaction, so we'll need to share the name of this layer
         {
             gameObject.GetComponent<Projectile>().StopBullet();
@@ -39,7 +47,7 @@ public class BulletDamageController : MonoBehaviour {
 
     private IEnumerator HeadExplode()
     {
-        headExplosion.SetActive(true);
+        headExplosion.SetActive(true); 
         GetComponent<AudioSource>().Play();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(0.5f);

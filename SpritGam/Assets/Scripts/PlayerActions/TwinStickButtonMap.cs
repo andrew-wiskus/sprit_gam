@@ -2,38 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TwinStickButtonMap : MonoBehaviour {
+public class TwinStickButtonMap : MonoBehaviour
+{
 
     [SerializeField] TwinStickMovement tsm;
     [SerializeField] GunController m_gun_controller;
     [SerializeField] PlayerWeaponStance playerWeaponStance;
-    [SerializeField] GamepadController gpc;
-    
+    [SerializeField] VibrationController gpc;
+    [SerializeField] InventoryController m_inventory_controller;
+    [SerializeField] CrossHairController m_cross_hair_controller;
 
-    private void Awake ()
+    void Update()
     {
-        
-    }
-    
+        if (m_inventory_controller.inventoryIsShowing())
+        {
+            if (ControllerInput.Pressed_StartButton(Key.DOWN))
+            {
+                m_inventory_controller.ShowInventory(false);
+            }
 
-	void Update () {
-        
+
+            return;
+        }
 
         /// PRESS X
         /// (Reload weapon)
         if (ControllerInput.Pressed_X(Key.DOWN))
         {
-            
-            if (m_gun_controller.m_is_shotgun == true)
-            {
-                m_gun_controller.ReloadShotgun();
-            } else if(m_gun_controller.m_is_dual == true)
-            {
-                m_gun_controller.ReloadDualWeapon();
-            } else
-            {
-                m_gun_controller.ReloadWeapon();
-            }
+            m_gun_controller.Reload();
         }
 
 
@@ -49,17 +45,19 @@ public class TwinStickButtonMap : MonoBehaviour {
         /// (Change weapon)
         if (ControllerInput.Pressed_Y(Key.DOWN))
         {
-            playerWeaponStance.ToggleEquippedWeapon();
+            //playerWeaponStance.ToggleEquippedWeapon();
+
+            // TODO: Toggle gun controlelr to chance m_current_weapon, on change weapon: set the current weapons GunStance property (to be made)
+            // ex: (not written yet)
+            // in GunController:
+            // m_current_weapon = foo;
+            // m_current_weapon.SetWeaponStanceAnimation();
         }
-
-        m_gun_controller = playerWeaponStance.currentWeapon.GetComponent<GunController>();
-
 
         /// PRESS A
         /// (Toggle weapon attachment)
         if (ControllerInput.Pressed_A(Key.DOWN))
         {
-            m_gun_controller.ToggleAttachment();
         }
 
 
@@ -67,25 +65,29 @@ public class TwinStickButtonMap : MonoBehaviour {
         /// (ADS)
         if (ControllerInput.LeftTrigger() >= 0.2)
         {
-            m_gun_controller.is_ADS = true;
-            StartCoroutine(m_gun_controller.toggleADS_ON());
-        } else
+            m_cross_hair_controller.ToggleADS(true);
+        }
+        else
         {
-            m_gun_controller.toggleADS_OFF();
+            m_cross_hair_controller.ToggleADS(false);
         }
 
         /// PRESS L3
         /// (Sprint)
-        if (ControllerInput.Pressed_L3(Key.IS_PRESSED) && m_gun_controller.is_ADS == false)
+        if (ControllerInput.Pressed_L3(Key.IS_PRESSED) && m_cross_hair_controller.StatusOfADS() == false)
         {
             tsm.m_is_sprinting = true;
-        } else
+        }
+        else
         {
             tsm.m_is_sprinting = false;
         }
 
-
-
+        if(ControllerInput.Pressed_StartButton(Key.DOWN))
+        {
+            m_inventory_controller.ShowInventory(true);
         }
-    
+
+    }
+
 }

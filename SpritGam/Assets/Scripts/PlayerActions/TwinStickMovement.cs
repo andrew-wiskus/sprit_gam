@@ -27,6 +27,7 @@ public class TwinStickMovement : MonoBehaviour
     [SerializeField] private float m_left_stick_dead_zone;
     [SerializeField] private float m_right_stick_dead_zone;
 
+    [SerializeField] private InventoryController m_inventory_controller; 
     void Awake()
     {
         //gc = GetComponentInChildren<GunController>();
@@ -37,42 +38,22 @@ public class TwinStickMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        //if(m_inventory_controller.inventoryIsShowing())
+        //{
+        //    m_rigid_body.velocity = Vector2.zero;
+        //    return;
+        //}
+
             m_rigid_body.velocity = new Vector2(Mathf.Lerp(0, ControllerInput.LeftStickHorizontal() * m_speed_multiplier, 0.8f),
             Mathf.Lerp(0, ControllerInput.LeftStickVertical() * m_speed_multiplier, 0.8f));
-        
-    }
 
-    public void SetPlayerSpeed()
-    {
-        if (m_is_sprinting == true)
-        {
-            //gc.is_ADS = false;
-            m_speed_multiplier = m_sprint_speed;
-            m_playermovement_animator.speed = 1.5f;
-
-        }
-        //else if (gc.is_ADS == true)
-        //{
-        //    m_is_sprinting = false;
-        //    m_speed_multiplier = m_ads_speed;
-        //    m_feet_animator.speed = 0.5f;
-        //}
-        else
-        {
-            m_speed_multiplier = m_default_speed;
-            m_playermovement_animator.speed = 1.0f;
-        }
-    }
-    
-
-    void Update()
-    {
         SetPlayerSpeed();
 
         bool player_is_walking = (Mathf.Clamp01(new Vector2(ControllerInput.LeftStickHorizontal(), ControllerInput.LeftStickVertical()).magnitude)) > m_left_stick_dead_zone;
         bool player_is_aiming = (Mathf.Clamp01(new Vector2(ControllerInput.RightStickHorizontal(), ControllerInput.RightStickVertical()).magnitude)) > m_right_stick_dead_zone;
-        
-        
+
+
 
         if (player_is_aiming)
         {
@@ -97,7 +78,29 @@ public class TwinStickMovement : MonoBehaviour
         {
             m_playermovement_animator.Play("Player_Idle");
         }
-        
 
     }
+
+    public void SetPlayerSpeed()
+    {
+        if (m_is_sprinting == true)
+        {
+            //gc.is_ADS = false;
+            m_speed_multiplier = m_sprint_speed;
+            m_feet_animator.speed = 1.5f;
+
+        }
+        //else if (gc.is_ADS == true)
+        //{
+        //    m_is_sprinting = false;
+        //    m_speed_multiplier = m_ads_speed;
+        //    m_feet_animator.speed = 0.5f;
+        //}
+        else
+        {
+            m_speed_multiplier = m_default_speed;
+            m_feet_animator.speed = 1.0f;
+        }
+    }
+   
 }
