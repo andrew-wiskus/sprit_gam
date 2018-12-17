@@ -6,10 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class TwinStickMovement : MonoBehaviour
 {
-
-    [SerializeField] private Animator m_playermovement_animator;
-
-    //[SerializeField] private Animator m_feet_animator;
+    // TODO: Move all gun controller code out of this file, rather call this file from a different class to get TwinStick + modify TwinStickMovements internal variables
+    [SerializeField] private Animator m_feet_animator;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] public float m_speed_multiplier;
     [SerializeField] public float m_sprint_speed;
@@ -18,7 +16,7 @@ public class TwinStickMovement : MonoBehaviour
     public float m_default_speed;
 
     //[SerializeField] private GunController gc;
-    //[SerializeField] private TwinStickButtonMap tsm;
+    [SerializeField] private TwinStickButtonMap tsm;
 
     //[SerializeField] private GameObject feet;
     
@@ -52,12 +50,14 @@ public class TwinStickMovement : MonoBehaviour
             m_speed_multiplier = m_sprint_speed;
             m_playermovement_animator.speed = 1.5f;
 
-        //} else if (gc.is_ADS == true)
+        }
+        //else if (gc.is_ADS == true)
         //{
         //    m_is_sprinting = false;
-       //     m_speed_multiplier = m_ads_speed;
-        //    m_playermovement_animator.speed = 0.5f;
-        } else
+        //    m_speed_multiplier = m_ads_speed;
+        //    m_feet_animator.speed = 0.5f;
+        //}
+        else
         {
             m_speed_multiplier = m_default_speed;
             m_playermovement_animator.speed = 1.0f;
@@ -67,8 +67,6 @@ public class TwinStickMovement : MonoBehaviour
 
     void Update()
     {
-        //gc = GetComponentInChildren<GunController>();
-
         SetPlayerSpeed();
 
         bool player_is_walking = (Mathf.Clamp01(new Vector2(ControllerInput.LeftStickHorizontal(), ControllerInput.LeftStickVertical()).magnitude)) > m_left_stick_dead_zone;
