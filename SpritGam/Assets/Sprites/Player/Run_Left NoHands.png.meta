@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 08a718e1ee8795644bf38846146a5acd
+guid: 0ad779580fb3bb94780e51d04fd282a5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Run_Left NoHands_0
-    21300002: Run_Left NoHands_1
-    21300004: Run_Left NoHands_2
-    21300006: Run_Left NoHands_3
-    21300008: Run_Left NoHands_4
-    21300010: Run_Left NoHands_5
-    21300012: Run_Left NoHands_6
-    21300014: Run_Left NoHands_7
+    21300000: Run_Left Visor_0
+    21300002: Run_Left Visor_1
+    21300004: Run_Left Visor_2
+    21300006: Run_Left Visor_3
+    21300008: Run_Left Visor_4
+    21300010: Run_Left Visor_5
+    21300012: Run_Left Visor_6
+    21300014: Run_Left Visor_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run_Left NoHands_0
+      name: Run_Left Visor_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,13 +117,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae7ee34612b68a04fa9b701d98e64f3d
+      spriteID: 60ce7ac88da6c5f4e86ff5230e8f7f44
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Left NoHands_1
+      name: Run_Left Visor_1
       rect:
         serializedVersion: 2
         x: 32
@@ -137,13 +137,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcf620653072cbd409e5f0b490c5a4c4
+      spriteID: a519707bc3a2e304cb07dd229351aefe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Left NoHands_2
+      name: Run_Left Visor_2
       rect:
         serializedVersion: 2
         x: 64
@@ -157,13 +157,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0673bd4727fd7314180a4193bf63895d
+      spriteID: 704eea41f25af5549a1f72555537791e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Left NoHands_3
+      name: Run_Left Visor_3
       rect:
         serializedVersion: 2
         x: 0
@@ -177,13 +177,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03ae113d28090ca4ab98c6e3b2e87e8a
+      spriteID: 53bfdb64d36210a4faa8f5a17924b796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Left NoHands_4
+      name: Run_Left Visor_4
       rect:
         serializedVersion: 2
         x: 32
@@ -197,13 +197,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e231a19e03bb6024bb3f8267a94c1fdc
+      spriteID: cecaefac9f3eadf4eb50a3e1969d171c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Left NoHands_5
+      name: Run_Left Visor_5
       rect:
         serializedVersion: 2
         x: 64
@@ -217,13 +217,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e1af6e10a6dc604e944abfe97dede52
+      spriteID: 7013868a5c8972f4c94c15a4e9662daa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Left NoHands_6
+      name: Run_Left Visor_6
       rect:
         serializedVersion: 2
         x: 0
@@ -237,13 +237,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3af25bad84e819e4ba144f0122866869
+      spriteID: 89bbf19f89a3fae41a92c49c7688641e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Left NoHands_7
+      name: Run_Left Visor_7
       rect:
         serializedVersion: 2
         x: 32
@@ -257,7 +257,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2942d69e814c3449b832a4297841cfd
+      spriteID: 9932af7e49c32e442aa580fa4cdbd59a
       vertices: []
       indices: 
       edges: []
@@ -265,7 +265,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 89142656bca23794183abadbbf378740
+    spriteID: b3b3e2c135c9bfb4da26e439ad8b69a2
     vertices: []
     indices: 
     edges: []
