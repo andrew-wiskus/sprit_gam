@@ -7,7 +7,7 @@ public class WorldShake : MonoBehaviour {
     //[SerializeField] Camera testCam;
     //[SerializeField] GameObject worldSpace;
     //[SerializeField] GunController gc;
-    [SerializeField] TwinStickMovement tsm;
+    //[SerializeField] TwinStickMovement tsm;
     private GunController gc;
     [SerializeField] GameObject player;
 
@@ -25,7 +25,7 @@ public class WorldShake : MonoBehaviour {
         float xInc = 0.1f;
         float yInc = 0.3f;
         float shakeTime = 0.05f;
-        float autoDif = 0.05f;
+        //float autoDif = 0.05f;
 
         var worldPos_start = transform.localPosition;
         var worldPos_end = new Vector3(worldPos_start.x - xInc, worldPos_start.y - yInc, worldPos_start.z);
