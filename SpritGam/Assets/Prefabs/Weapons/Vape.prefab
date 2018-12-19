@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a863df7eb0f7ce46800105a0fa7224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_twinStickMovement: {fileID: 0}
   gpc: {fileID: 0}
   weaponType: 0
   m_item_to_shoot: {fileID: 1691174634483652, guid: bfac078be6cdf8c4da653b5f226015f0,
@@ -323,6 +324,9 @@ MonoBehaviour:
   m_firerate_inbetween_bursts_in_seconds: 0.15
   m_fire_styles: 06000000
   crosshair: {fileID: 0}
+  hipfireDistance: 0
+  adsMultiplier: 0
+  is_ADS: 0
   m_is_shotgun: 0
   m_shotgun_spray_angle: 0
   m_is_dual: 0
@@ -383,7 +387,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 80
   m_Sprite: {fileID: 21300000, guid: cc667a6bf13fbb2429c671ea6ed1cd37, type: 3}
   m_Color: {r: 1, g: 0.996644, b: 0.06132078, a: 1}
   m_FlipX: 0
@@ -429,7 +433,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 40
   m_Sprite: {fileID: 21300000, guid: 7752d50d92ee2ee4bba6406e7c66caea, type: 3}
   m_Color: {r: 0.9176471, g: 0.72156864, b: 0.5921569, a: 1}
   m_FlipX: 0
@@ -475,7 +479,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 41
   m_Sprite: {fileID: 21300000, guid: 4f2f1a5dbb91e4a4680c40f121bf23fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

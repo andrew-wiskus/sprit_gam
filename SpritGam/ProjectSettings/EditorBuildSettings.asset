@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SceneCanvas.unity
+    guid: 27c9a913402477c41a08f20ac1c7d441
+  - enabled: 0
+    path: Assets/Scenes/Target_Testing.unity
+    guid: 771ca03bc69335f41999fedd19e28df8
+  - enabled: 0
+    path: Assets/Scenes/AOE_Testing.unity
+    guid: f40d52f1a860ffb49aadb0bb895f6ab1
   - enabled: 1
-    path: Assets/Scenes/Pat_Sandbox.unity
-    guid: ce5ee7ecaa80b1d4c8c3005849c9a0b0
+    path: Assets/Scenes/UI Sandbox.unity
+    guid: 2ebf0f1450a68954e929dbeb6f084461
   m_configObjects: {}

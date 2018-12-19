@@ -32,15 +32,6 @@ public class Controller
         float angle = Mathf.Atan2(y, x) - Mathf.PI / 2;
         angle = Mathf.Rad2Deg * angle;
 
-        //if (angle < 0)
-        //{
-       //     angle = angle * -1.0f;
-        //}
-        //else if (angle > 0)
-        //{
-        //    angle = (90.0f - angle) + 270.0f;
-        //}
-
         return angle;
     }
 }
