@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     // END;
 
 
-
     private void FixedUpdate()
     {
         float speed = m_is_sprinting ? m_sprint_speed : m_default_speed;
