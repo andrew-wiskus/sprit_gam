@@ -66,13 +66,18 @@ public class TwinStickMovement : MonoBehaviour
             m_weapon.transform.localRotation = Quaternion.AngleAxis(Mathf.Ceil(angle) + 90.0f, new Vector3(0, 0, 1));
             Debug.Log("weapon angle: " + angle);
 
-            if(angle <= 180.0f)
+            if(angle <= 180.0f && angle >= 70.0f)
             {
-                //m_weapon.GetComponentInChildren<GunController>().gameObject.transform.localScale = new Vector3 (1.0f, 1.0f, -1.0f);
                 run_animation = "Player_Run Left";
-            } else
+            } else if (angle >= 290.0f)
             {
-                //m_weapon.GetComponentInChildren<GunController>().gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                run_animation = "Player_Run UpRight";
+            } else if (angle < 70.0f)
+            {
+                run_animation = "Player_Run UpLeft";
+            }
+            else
+            {
                 run_animation = "Player_Run Right";
             }
         }
