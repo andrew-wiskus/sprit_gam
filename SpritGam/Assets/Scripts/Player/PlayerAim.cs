@@ -31,14 +31,8 @@ public class PlayerAim : MonoBehaviour
     private float get_adjusted_aim_angle()
     {
         float angle = Controller.GetRightAnalogStickAngle();
-        if(angle < 180.0f)
-        {
-            angle += 180.0f;
-        } else
-        {
-            angle -= 180.0f;
-        }
-
-        return angle;
+//
+        float x = angle - 360.0f;
+        return x >= 0.0f ? x : x * -1.0f;
     }
 }
