@@ -12,6 +12,8 @@ public class GunGUIController : MonoBehaviour {
 
     public void SetClipStatus(int current_ammo, int max_ammo)
     {
+        // todo: update logic to take in sprites instead of text 
+
         //set text
         string prefix = current_ammo >= 10 && max_ammo >= 10 ? "" : "0";
         m_clip_status.text = prefix + current_ammo.ToString() + " / " + max_ammo;
@@ -20,6 +22,7 @@ public class GunGUIController : MonoBehaviour {
         float ammo_left_percent = (float)current_ammo / (float)max_ammo;
         float max_graphics_to_show = Mathf.Max(30.0f, max_ammo); // ammo_graphics.length;
         int current_graphics_to_show = Mathf.FloorToInt(max_graphics_to_show * ammo_left_percent);
+
         m_clip_status_graphic.text = new string('|', current_graphics_to_show);
     }
 
