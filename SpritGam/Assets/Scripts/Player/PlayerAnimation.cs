@@ -59,14 +59,32 @@ public class PlayerAnimation : MonoBehaviour {
     private void set_animation_string_for_angle(float angle)
     {
         string direction = "";
+        Debug.Log("weapon angle: " + angle);
 
-        if (angle <= 180.0f)
+        if (angle > 340.0f || angle < 20.0f)
         {
+            // UP
+            direction = "Up";
+        } else if (angle >= 20.0f && angle <= 70.0f)
+        {
+            // UP RIGHT
+            direction = "UpRight";
+        } else if (angle > 70.0f && angle <= 160.0f)
+        {
+            // RIGHT
             direction = "Right";
-        }
-        else
+        } else if (angle > 160.0f && angle < 200.0f)
         {
+            // DOWN
+            direction = "Down";
+        } else if (angle >= 200.0f && angle < 290.0f)
+        {
+            // LEFT
             direction = "Left";
+        } else if (angle >= 290.0f && angle <= 340.0f)
+        {
+            // UP LEFT
+            direction = "UpLeft";
         }
 
         m_idle_animation = "Player_Idle " + direction; 
