@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour {
     [SerializeField] private Camera m_camera;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] private PlayerAim m_player_aim;
-    [SerializeField] private float m_aim_distance = 5.0f;
+    [SerializeField] private float m_aim_distance = 3.0f;
 
     private float magnitude_increment {  get { return m_player_aim.Magnitude > 0.0f ? 0.015f : -0.02f; } }
     private float m_magnitude = 0.0f;
