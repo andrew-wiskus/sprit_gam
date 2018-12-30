@@ -16,7 +16,7 @@ public class TwinStickMovement : MonoBehaviour
     public float m_default_speed;
 
     //[SerializeField] private GunController gc;
-    [SerializeField] private TwinStickButtonMap tsm;
+    //[SerializeField] private TwinStickButtonMap tsm;
 
     [SerializeField] private Animator m_playermovement_animator;
 
@@ -32,7 +32,7 @@ public class TwinStickMovement : MonoBehaviour
     [SerializeField] private float m_left_stick_dead_zone;
     [SerializeField] private float m_right_stick_dead_zone;
 
-    [SerializeField] private InventoryController m_inventory_controller; 
+    //[SerializeField] private InventoryController m_inventory_controller; 
     void Awake()
     {
         //gc = GetComponentInChildren<GunController>();
@@ -66,13 +66,18 @@ public class TwinStickMovement : MonoBehaviour
             m_weapon.transform.localRotation = Quaternion.AngleAxis(Mathf.Ceil(angle) + 90.0f, new Vector3(0, 0, 1));
             Debug.Log("weapon angle: " + angle);
 
-            if(angle <= 180.0f)
+            if(angle <= 180.0f && angle >= 70.0f)
             {
-                //m_weapon.GetComponentInChildren<GunController>().gameObject.transform.localScale = new Vector3 (1.0f, 1.0f, -1.0f);
                 run_animation = "Player_Run Left";
-            } else
+            } else if (angle >= 290.0f)
             {
-                //m_weapon.GetComponentInChildren<GunController>().gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                run_animation = "Player_Run UpRight";
+            } else if (angle < 70.0f)
+            {
+                run_animation = "Player_Run UpLeft";
+            }
+            else
+            {
                 run_animation = "Player_Run Right";
             }
         }

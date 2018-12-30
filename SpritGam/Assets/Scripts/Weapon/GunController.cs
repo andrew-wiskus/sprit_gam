@@ -3,39 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-
-public enum GunAnimationName
-{
-    TommyGun_Reload,
-    DesertEagle_Reload,
-    Mossberg_Reload,
-    Mac11_Reload,
-    Mac11Dual_Reload,
-    Vape_Reload
-}
-
 public enum GunFireStyle
 {
     AUTOMATIC,
     SEMI_AUTOMATIC,
 }
 
-public enum WeaponStance
-{
-    SINGLE_HAND,
-    DOUBLE_HAND,
-    DUAL_WIELD,
-    MELEE,
-    NONE
-}
-
-
 public class GunController : MonoBehaviour
 {
     private bool m_trigger_was_toggled = true;
     [SerializeField] public GunProperties m_current_weapon;
 
-    // public void SwitchWeapon();
+    // TODO: public void SwitchWeapon();
 
     private void OnEnable()
     {
@@ -69,12 +48,12 @@ public class GunController : MonoBehaviour
 
             case GunFireStyle.SEMI_AUTOMATIC:
 
-                    m_current_weapon.FireWeapon();
-                   while(ControllerInput.RightTrigger() > 0.2f)
-                    {
-                        yield return null;
-                    }
-                    yield break;
+                m_current_weapon.FireWeapon();
+                while (ControllerInput.RightTrigger() > 0.2f)
+                {
+                    yield return null;
+                }
+                yield break;
 
             default:
                 m_current_weapon.FireWeapon();
