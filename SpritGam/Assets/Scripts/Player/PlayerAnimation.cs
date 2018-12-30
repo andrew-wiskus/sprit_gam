@@ -59,7 +59,6 @@ public class PlayerAnimation : MonoBehaviour {
     private void set_animation_string_for_angle(float angle)
     {
         string direction = "";
-        Debug.Log("weapon angle: " + angle);
 
         if (angle > 340.0f || angle < 20.0f)
         {
