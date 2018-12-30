@@ -11,25 +11,45 @@ public class WeaponAnimation : MonoBehaviour {
 
     private SpriteRenderer m_weapon_sprite;
     private SpriteRenderer m_player_sprite;
-    
-	// Use this for initialization
-	void Start () {
+
+    private string direction = "";
+
+
+    void Start () {
         m_weapon_sprite = m_weapon.GetComponent<SpriteRenderer>();
         m_player_sprite = m_player.GetComponent<SpriteRenderer>();
 	}
 
-    void FixedUpdate()
-    {
-        string direction = m_player_animation.direction;
+    void FixedUpdate() {
+        direction = m_player_animation.direction;
 
+        set_weapon_sorting_layer();
+        set_weapon_image_direction();
+    }
+
+    void set_weapon_sorting_layer()
+    {
         if (direction == "Up" || direction == "UpRight" || direction == "UpLeft")
         {
-            // gun sorting layer UNDER
-           m_weapon_sprite.sortingOrder = m_player_sprite.sortingOrder - 1;
+            // gun_sorting_layer UNDER
+            m_weapon_sprite.sortingOrder = m_player_sprite.sortingOrder - 1;
+        }
+        else
+        {
+            // gun_sorting_layer OVER
+            m_weapon_sprite.sortingOrder = m_player_sprite.sortingOrder + 1;
+
+        }
+    }
+
+    void set_weapon_image_direction()
+    {
+        if (direction == "UpLeft" || direction == "Left" || direction == "Down")
+        {
+            m_weapon_sprite.flipY = true;
         } else
         {
-            // gun sorting layer OVER
-            m_weapon_sprite.sortingOrder = m_player_sprite.sortingOrder + 1;
+            m_weapon_sprite.flipY = false;
         }
     }
 }

@@ -31,19 +31,16 @@ public class ControllerInput : MonoBehaviour
 
     public static float LeftStickVertical()
     {
-        Debug.Log("BLAH");
         return Input.GetAxis("Left_Vertical_Analog_Stick");
     }
 
     public static float RightTrigger()
     {
-        Debug.Log("ASDFASDF");
         return Input.GetAxis("Right_Trigger") * -1.0f; //reversing because it returns 0 to -1;
     }
 
     public static float LeftTrigger()
     {
-        Debug.Log("LEFT TRIGGER");
         return -Input.GetAxis("Left_Trigger");
     }
 

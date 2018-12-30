@@ -11,8 +11,8 @@ public class FollowPlayer : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate() {
         //m_camera.transform.position = Pixel.GetClampedPosition(m_player_transform.position, -25);
-        Debug.Log(m_player_aim.Magnitude);
-        Debug.Log(m_player_aim.Angle);
+        //Debug.Log(m_player_aim.Magnitude);
+        //Debug.Log(m_player_aim.Angle);
         m_camera.transform.position = player_position();
     }
 

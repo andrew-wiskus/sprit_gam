@@ -11,7 +11,7 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private float m_right_stick_dead_zone = 0.2f;
 
     private bool m_player_is_aiming;
-    private float m_player_aim_angle;
+    public float m_player_aim_angle;
     private float m_aim_magnitude;
 
     private void FixedUpdate()
