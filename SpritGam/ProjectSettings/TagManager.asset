@@ -17,10 +17,10 @@ TagManager:
   - 
   - 
   - Bullet
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - VisualFX
+  - Environment
   - 
   - 
   - 
