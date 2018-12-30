@@ -43,7 +43,6 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         if (ControllerInput.RightTrigger() > 0.2f)
         {
             yield return pull_trigger();
-            Debug.Log("PULL TRIGGER");
         }
 
         yield return start_trigger_listener();
@@ -78,13 +77,18 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     private void ShotgunFire()
     {
+        SetAsShotgun();
+        ps.Emit(5);
+    }
+
+    private void SetAsShotgun()
+    {
         var sh = ps.shape;
         sh.shapeType = ParticleSystemShapeType.Cone;
         sh.scale = new Vector3(0.1f, 0.98f, 0f);
         sh.angle = 0;
         sh.arc = 60;
         sh.arcMode = ParticleSystemShapeMultiModeValue.BurstSpread;
-        ps.Emit(5);
     }
 
 
@@ -147,7 +151,6 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         //main.loop = false;
         
         //ps.Stop();
-
     }
     
 
