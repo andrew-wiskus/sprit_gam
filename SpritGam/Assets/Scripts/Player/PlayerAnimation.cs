@@ -10,6 +10,7 @@ public class PlayerAnimation : MonoBehaviour {
 
     private string m_run_animation = "Player_Run Right";
     private string m_idle_animation = "Player_Idle Right";
+    public string direction = "";
 
     private void FixedUpdate()
     {
@@ -58,8 +59,8 @@ public class PlayerAnimation : MonoBehaviour {
 
     private void set_animation_string_for_angle(float angle)
     {
-        string direction = "";
-        Debug.Log("weapon angle: " + angle);
+        
+        //Debug.Log("weapon angle: " + angle);
 
         if (angle > 340.0f || angle < 20.0f)
         {

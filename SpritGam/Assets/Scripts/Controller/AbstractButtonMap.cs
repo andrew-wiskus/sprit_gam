@@ -6,11 +6,14 @@ public abstract class AbstractButtonMap : MonoBehaviour
 {
 
     [SerializeField] private float m_left_trigger_deadzone;
+    [SerializeField] private float m_right_trigger_deadzone = 0.2f;
 
-    void Update()
+    void LateUpdate()
     {
         bool START_BUTTON = ControllerInput.Pressed_StartButton(Key.DOWN);
         bool LEFT_TRIGGER = ControllerInput.LeftTrigger() >= m_left_trigger_deadzone;
+        bool RIGHT_TRIGGER = ControllerInput.RightTrigger() >= m_right_trigger_deadzone;
+        bool RIGHT_TRIGGER_UP = ControllerInput.RightTrigger() <= m_right_trigger_deadzone;
         bool L3 = ControllerInput.Pressed_L3(Key.IS_PRESSED);
 
         bool X = ControllerInput.Pressed_X(Key.DOWN);
@@ -20,6 +23,8 @@ public abstract class AbstractButtonMap : MonoBehaviour
 
         if (START_BUTTON) { OnPress_START(); }
         if (LEFT_TRIGGER) { OnPress_LEFT_TRIGGER(); }
+        if (RIGHT_TRIGGER) { OnPress_RIGHT_TRIGGER(); }
+        if (RIGHT_TRIGGER_UP) { OnPress_RIGHT_TRIGGER_UP(); }
         if (L3) { OnPress_L3(); }
 
         if (X) { OnPress_X(); }
@@ -29,7 +34,9 @@ public abstract class AbstractButtonMap : MonoBehaviour
     }
 
     public virtual void OnPress_START() { }
-    public virtual void OnPress_LEFT_TRIGGER() {} 
+    public virtual void OnPress_LEFT_TRIGGER() {}
+    public virtual void OnPress_RIGHT_TRIGGER() {}
+    public virtual void OnPress_RIGHT_TRIGGER_UP() { }
     public virtual void OnPress_L3() {} 
 
     public virtual void OnPress_X() {} 
