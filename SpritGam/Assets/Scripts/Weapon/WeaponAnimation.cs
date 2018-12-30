@@ -44,7 +44,7 @@ public class WeaponAnimation : MonoBehaviour {
 
     void set_weapon_image_direction()
     {
-        if (direction == "UpLeft" || direction == "Left" || direction == "Down")
+        if (direction == "UpLeft" || direction == "Left" || direction == "Up")
         {
             m_weapon_sprite.flipY = true;
         } else
