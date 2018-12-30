@@ -7,48 +7,40 @@ public class FollowPlayer : MonoBehaviour {
     [SerializeField] private Camera m_camera;
     [SerializeField] private Transform m_player_transform;
     [SerializeField] private PlayerAim m_player_aim;
-    [SerializeField] private float m_aim_distance = 5.0f;
+    [SerializeField] private float m_aim_distance = 3.0f;
+
+    private float magnitude_increment {  get { return m_player_aim.Magnitude > 0.0f ? 0.015f : -0.02f; } }
+    private float m_magnitude = 0.0f;
+    private float last_x = 0.0f;
+    private float last_y = 0.0f;
+    private float last_magnitude = 0.0f;
+    private float last_angle = 0.0f;
     // Update is called once per frame
-    void FixedUpdate() {
-        //m_camera.transform.position = Pixel.GetClampedPosition(m_player_transform.position, -25);
-        //Debug.Log(m_player_aim.Magnitude);
-        //Debug.Log(m_player_aim.Angle);
-        m_camera.transform.position = player_position();
+    private void Start()
+    {
+        m_camera.transform.position = get_target_position();
+        StartCoroutine(move_camera());
     }
 
-    private Vector3 player_position()
+    private IEnumerator move_camera()
     {
-        float x_multiplier = 0.0f;
-        float y_multiplier = 0.0f;
-        float angle = Mathf.Max(m_player_aim.Angle, 0.01f);
+        Vector3 current_position = m_camera.transform.position;
+        Vector3 target_position = get_target_position();
+        m_camera.transform.position = Vector3.Lerp(current_position, target_position, 0.05f);
 
-        if (m_player_aim.Angle <= 90.0f)
-        {
-          x_multiplier = 0.0f + (angle / 90.0f);
-          y_multiplier = 1.0f - (angle / 90.0f);
+        yield return new WaitForEndOfFrame();
+        yield return move_camera();
+    }
 
-        } else if (m_player_aim.Angle <= 180.0f)
-        {
-            angle = angle - 90.0f;
+    private Vector3 get_target_position()
+    {
 
-            x_multiplier = 1.0f - (angle / 90.0f);
-            y_multiplier = 0.0f - (angle / 90.0f);
-        } else if (m_player_aim.Angle <= 270.0f)
-        {
-            angle = angle - 180.0f;
+        float angle = m_player_aim.Magnitude == 0.0f ? last_angle : m_player_aim.Angle;
+        last_angle = angle;
 
-            x_multiplier = 0.0f - (angle / 90.0f);
-             y_multiplier = -1.0f + (angle / 90.0f);
-        } else
-        {
-            angle = angle - 270.0f;
-            x_multiplier = -1.0f + (angle / 90.0f);
-            y_multiplier = 0.0f + (angle / 90.0f);
-        }
-
-        float x = m_player_transform.position.x + (m_aim_distance * m_player_aim.Magnitude * x_multiplier);
-        float y = m_player_transform.position.y + (m_aim_distance * m_player_aim.Magnitude * y_multiplier);
-        return new Vector3(x , y, -25);
+        Quaternion quat = Quaternion.AngleAxis(angle, Vector3.back);
+        Vector3 new_pos = m_player_transform.position + quat * Vector3.up * (m_aim_distance * m_player_aim.Magnitude);
+        return new Vector3(new_pos.x, new_pos.y, -25);
     }
 }
 
