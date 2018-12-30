@@ -21,6 +21,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     [SerializeField] private Sprite m_bullet_sprite;
     [SerializeField] private bool m_trail_on;
 
+    public float damage = 5;
+
     
 
 	void Start () {
@@ -54,6 +56,11 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         FireWeapon();
         yield return new WaitForSeconds(m_fire_rate);
         yield break;
+    }
+
+    public override void OnPress_START()
+    {
+        ps.Pause();
     }
 
     // use one at a time, for testing purposes
@@ -95,12 +102,46 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     // detecting particle collision - not working
     void OnParticleCollision(GameObject other)
     {
+        damage = Random.value * 5.0f;
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Hit Enemy");
+            EnemyDamage enemy_damage = other.GetComponent<EnemyDamage>();
+            float enemy_hp = other.GetComponent<EnemyDamage>().m_health_points;
+            
+            enemy_damage.m_health_points -= 5f;
+
+            if (enemy_damage.m_health_points <= 0)
+            {
+                Destroy(other);
+            }
+
+            enemy_damage.damage_text.text = damage.ToString();
+            Debug.Log(enemy_damage.damage_text.text);
+            enemy_damage.m_particle_text.Emit(1);
+            Debug.Log("ENEMY HP: " + enemy_damage.m_health_points);
+
+            // use blood splatter sub emitter
+            // give damage
+            // show damage amount text
+            // destroy if HP = 0
+        } else if (other.CompareTag("MetalObject"))
+        {
+            // use spark sub emitter
+        } else
+        {
+            // use dust sub emitter
+        }
+
+        //Destroy(other);
+
+
         ParticlePhysicsExtensions.GetCollisionEvents(ps, other, collisionEvents);
         
 
         for (int i = 0; i < collisionEvents.Count; i++)
         {
-            EmitAtLocation(collisionEvents[i]);
+            //EmitAtLocation(collisionEvents[i]);
         }
         
         Debug.Log("COLLISION DETECTED");
