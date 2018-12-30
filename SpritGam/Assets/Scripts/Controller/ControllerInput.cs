@@ -31,6 +31,7 @@ public class ControllerInput : MonoBehaviour
 
     public static float LeftStickVertical()
     {
+        Debug.Log("BLAH");
         return Input.GetAxis("Left_Vertical_Analog_Stick");
     }
 
@@ -42,6 +43,7 @@ public class ControllerInput : MonoBehaviour
 
     public static float LeftTrigger()
     {
+        Debug.Log("LEFT TRIGGER");
         return -Input.GetAxis("Left_Trigger");
     }
 

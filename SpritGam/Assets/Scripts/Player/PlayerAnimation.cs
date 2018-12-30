@@ -10,6 +10,7 @@ public class PlayerAnimation : MonoBehaviour {
 
     private string m_run_animation = "Player_Run Right";
     private string m_idle_animation = "Player_Idle Right";
+    public string direction = "";
 
     private void FixedUpdate()
     {
