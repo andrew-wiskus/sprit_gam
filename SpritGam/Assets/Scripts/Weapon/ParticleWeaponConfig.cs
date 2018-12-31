@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 
 public class ParticleWeaponConfig : AbstractButtonMap {
@@ -20,6 +20,16 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     public float damage;
 
+    // MANA BAR
+    //[SerializeField] private Sprite m_mana_bar_graphic;
+    [SerializeField] private Image m_mana_fill_image;
+    [SerializeField] private Text m_mana_text;
+    [SerializeField] private Text m_reload_text;
+    private float currentManaAmount;
+
+    [SerializeField] public float m_mana_capacity;
+    [SerializeField] public float m_mana_cost_per_shot;
+
 
 	void Start () {
         ps = GetComponent<ParticleSystem>();
@@ -33,6 +43,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         main.startSpeed = m_bullet_speed;
         ps.textureSheetAnimation.SetSprite(0, m_bullet_sprite);
         trails.enabled = m_trail_on;
+
+        currentManaAmount = m_mana_capacity;
     }
 
     private IEnumerator start_trigger_listener()
@@ -72,8 +84,16 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     private void AutomaticFire()
     {
-        ps.Emit(1);
-        weaponAudio.Play();
+        if (currentManaAmount - m_mana_cost_per_shot > 0)
+        {
+            ps.Emit(1);
+            currentManaAmount -= m_mana_cost_per_shot;
+            weaponAudio.Play();
+        }
+        
+        // set mana image fill amount
+        // subtract ammo amount
+        
     }
 
     private void SemiAutomaticFire()
@@ -97,7 +117,17 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         sh.arcMode = ParticleSystemShapeMultiModeValue.BurstSpread;
     }
 
-    
+    public override void OnPress_X()
+    {
+        RefillMana();
+    }
+
+    void RefillMana()
+    {
+        currentManaAmount = m_mana_capacity;
+    }
+
+
     void OnParticleCollision(GameObject other)
     {
         //damage = Random.value * 5.0f;
@@ -121,5 +151,19 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         //ParticlePhysicsExtensions.GetCollisionEvents(ps, other, collisionEvents);
     }
     
+    void FixedUpdate()
+    {
+        m_mana_fill_image.fillAmount = currentManaAmount / m_mana_capacity;
+        m_mana_text.text = currentManaAmount.ToString() + " / " + m_mana_capacity;
+
+        if (currentManaAmount - m_mana_cost_per_shot < 0)
+        {
+            m_reload_text.enabled = true;
+        }
+        else
+        {
+            m_reload_text.enabled = false;
+        }
+    }
 
 }
