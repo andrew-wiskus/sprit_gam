@@ -50,6 +50,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     private IEnumerator pull_trigger()
     {
+        Debug.Log("Particle System: " + ps);
         FireWeapon();
         yield return new WaitForSeconds(m_fire_rate);
         yield break;
