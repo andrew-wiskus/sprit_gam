@@ -8,19 +8,12 @@ public class EnemyDamage : MonoBehaviour {
     [SerializeField] public ParticleSystem m_particle_text;
     [SerializeField] public Text damage_text;
 
-    public float m_health_points = 25;
+    public float m_health_points;
 
 	// Use this for initialization
 	void Start () {
 		
 	}
-
-    void OnParticleCollision(GameObject other)
-    {
-        //other.GetComponent<ParticleWeaponConfig>().damage;
-        //Debug.Log("Hit by particle " + other.GetComponent<ParticleWeaponConfig>().damage);
-        //Destroy(gameObject);
-    }
 	
 	// Update is called once per frame
 	void Update () {
