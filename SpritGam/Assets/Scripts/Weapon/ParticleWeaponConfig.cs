@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class ParticleWeaponConfig : AbstractButtonMap {
 
     private ParticleSystem ps;
-    private AudioSource weaponAudio;
+    [SerializeField] private AudioSource weaponAudio;
+    [SerializeField] private AudioSource collisionAudio;
 
     // Particle System Handling
     public List<ParticleCollisionEvent> collisionEvents;
@@ -17,6 +18,10 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     [SerializeField] private float m_bullet_speed;
     [SerializeField] private Sprite m_bullet_sprite;
     [SerializeField] private bool m_trail_on;
+
+    // Sound Properties
+    [SerializeField] private AudioClip m_reload_sound;
+    [SerializeField] private AudioClip m_fire_sound;
 
     public float damage;
 
@@ -88,6 +93,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         {
             ps.Emit(1);
             currentManaAmount -= m_mana_cost_per_shot;
+            weaponAudio.clip = m_fire_sound;
             weaponAudio.Play();
         }
         
@@ -124,6 +130,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     void RefillMana()
     {
+        weaponAudio.clip = m_reload_sound;
+        weaponAudio.Play();
         currentManaAmount = m_mana_capacity;
     }
 
@@ -138,6 +146,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
             float enemy_hp = other.GetComponent<EnemyDamage>().m_health_points;
             
             enemy_damage.m_health_points -= damage;
+            collisionAudio.Play();
 
             if (enemy_damage.m_health_points <= 0)
             {
