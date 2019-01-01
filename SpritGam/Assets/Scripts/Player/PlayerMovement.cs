@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D m_rigid_body;
-    [SerializeField] private float m_default_speed = 1.0f;
-    [SerializeField] private float m_sprint_speed = 1.2f;
+    [SerializeField] public float m_default_speed = 1.0f;
+    [SerializeField] public float m_sprint_speed = 1.2f;
     [SerializeField] private float m_velocity_lerp_value = 0.8f;
     [SerializeField] private float m_left_stick_dead_zone = 0.2f;
     private bool m_is_sprinting = false;
