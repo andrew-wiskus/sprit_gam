@@ -137,7 +137,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         if (Mathf.Floor(randomNum) >= 100 - m_crit_rate)
         {
             // CRIT HIT
-            Debug.Log("CRIT HIT, Num: " + randomNum);
+            Debug.Log("CRIT [[HIT]], Num: " + randomNum);
             damage *= m_crit_damage_factor;
         } else
         {
@@ -182,18 +182,27 @@ public class ParticleWeaponConfig : AbstractButtonMap {
             if (damage > m_default_damage)
             {
                 enemy_damage.damage_text.color = Color.yellow;
+                enemy_damage.damage_text.text = damage.ToString() + "!";
             } else
             {
                 enemy_damage.damage_text.color = Color.red;
+                enemy_damage.damage_text.text = damage.ToString();
             }
-            enemy_damage.damage_text.text = damage.ToString();
+            
+            StartCoroutine(ShortDelay());
             enemy_damage.m_particle_text.Emit(1);
         }
         
         //ParticlePhysicsExtensions.GetCollisionEvents(ps, other, collisionEvents);
     }
-    
-    void FixedUpdate()
+
+    private IEnumerator ShortDelay()
+    {
+        new WaitForEndOfFrame();
+        yield break;
+    }
+
+    private void UpdateManaGraphic()
     {
         m_mana_fill_image.fillAmount = currentManaAmount / m_mana_capacity;
         m_mana_text.text = currentManaAmount.ToString() + " / " + m_mana_capacity;
@@ -206,6 +215,11 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         {
             m_reload_text.enabled = false;
         }
+    }
+
+    void FixedUpdate()
+    {
+        UpdateManaGraphic();
     }
 
 }
