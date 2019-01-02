@@ -179,6 +179,13 @@ public class ParticleWeaponConfig : AbstractButtonMap {
                 Destroy(other);
             }
 
+            if (damage > m_default_damage)
+            {
+                enemy_damage.damage_text.color = Color.yellow;
+            } else
+            {
+                enemy_damage.damage_text.color = Color.red;
+            }
             enemy_damage.damage_text.text = damage.ToString();
             enemy_damage.m_particle_text.Emit(1);
         }
