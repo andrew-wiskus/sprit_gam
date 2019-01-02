@@ -23,7 +23,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     [SerializeField] private AudioClip m_reload_sound;
     [SerializeField] private AudioClip m_fire_sound;
 
-    public float damage;
+    private float damage;
+    public float m_default_damage;
 
     // MANA BAR
     //[SerializeField] private Sprite m_mana_bar_graphic;
@@ -34,6 +35,10 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     [SerializeField] public float m_mana_capacity;
     [SerializeField] public float m_mana_cost_per_shot;
+
+    // CRIT SYSTEM
+    [SerializeField] public float m_crit_rate;
+    [SerializeField] public float m_crit_damage_factor;
 
 
 	void Start () {
@@ -50,6 +55,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         trails.enabled = m_trail_on;
 
         currentManaAmount = m_mana_capacity;
+        damage = m_default_damage;
     }
 
     private IEnumerator start_trigger_listener()
@@ -123,6 +129,25 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         sh.arcMode = ParticleSystemShapeMultiModeValue.BurstSpread;
     }
 
+    private void CalculateCritHit()
+    {
+        damage = m_default_damage;
+        float randomNum = Mathf.Floor(Random.Range(0f, 100f));
+        
+        if (Mathf.Floor(randomNum) >= 100 - m_crit_rate)
+        {
+            // CRIT HIT
+            Debug.Log("CRIT HIT, Num: " + randomNum);
+            damage *= m_crit_damage_factor;
+        } else
+        {
+            // NO CRIT HIT
+            Debug.Log("CRIT MISS, Num: " + randomNum);
+            damage = m_default_damage;
+        }
+
+    }
+
     public override void OnPress_X()
     {
         RefillMana();
@@ -144,7 +169,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         {
             EnemyDamage enemy_damage = other.GetComponent<EnemyDamage>();
             float enemy_hp = other.GetComponent<EnemyDamage>().m_health_points;
-            
+
+            CalculateCritHit();
             enemy_damage.m_health_points -= damage;
             collisionAudio.Play();
 

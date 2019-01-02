@@ -15025,7 +15025,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: sdf
+  m_Text: ERROR
 --- !u!222 &178058066
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -126304,6 +126304,8 @@ MonoBehaviour:
   m_reload_text: {fileID: 81933929}
   m_mana_capacity: 100
   m_mana_cost_per_shot: 6
+  m_crit_rate: 20
+  m_crit_damage_factor: 2
 --- !u!82 &1746742480
 AudioSource:
   m_ObjectHideFlags: 0

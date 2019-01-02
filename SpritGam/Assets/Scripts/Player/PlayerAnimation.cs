@@ -23,7 +23,7 @@ public class PlayerAnimation : MonoBehaviour {
     {
         if(m_player_aim.IsAiming == false)
         {
-            return;
+        //    return;
         }
 
         float angle = m_player_aim.Angle;
@@ -53,7 +53,7 @@ public class PlayerAnimation : MonoBehaviour {
         else
         {
             // TODO: Set player idle for left & right where we set `m_run_animation`;
-            m_movement_animator.Play(m_idle_animation);
+            m_movement_animator.Play(m_run_animation);
         }
     }
 
