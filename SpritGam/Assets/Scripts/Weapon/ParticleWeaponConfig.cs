@@ -10,6 +10,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     [SerializeField] private AudioSource weaponAudio;
     [SerializeField] private AudioSource collisionAudio;
 
+    [SerializeField] private GameObject pauseMenu;
+
     // Particle System Handling
     public List<ParticleCollisionEvent> collisionEvents;
 
@@ -56,6 +58,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
         currentManaAmount = m_mana_capacity;
         damage = m_default_damage;
+        pauseMenu.SetActive(false);
     }
 
     private IEnumerator start_trigger_listener()
@@ -82,7 +85,16 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     // TODO: move this to new Pause script
     public override void OnPress_START()
     {
-        ps.Pause();
+        if (pauseMenu.activeSelf == false)
+        {
+            ps.Pause();
+            pauseMenu.SetActive(true);
+        } else
+        {
+            ps.Play();
+            pauseMenu.SetActive(false);
+        }
+        
     }
 
     // use one at a time (for testing purposes)

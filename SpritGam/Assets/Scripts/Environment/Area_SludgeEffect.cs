@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Area_SludgeEffect : MonoBehaviour {
 
-    [SerializeField] private float m_slow_amount;
+    [SerializeField] private float m_slow_factor;
     private float default_speed;
     private PlayerMovement m_player;
 
@@ -20,7 +20,7 @@ public class Area_SludgeEffect : MonoBehaviour {
             m_player = other.GetComponentInChildren<PlayerMovement>();
             default_speed = m_player.m_default_speed;
 
-            m_player.m_default_speed -= m_slow_amount;
+            m_player.m_default_speed /= m_slow_factor;
         }
     }
 
