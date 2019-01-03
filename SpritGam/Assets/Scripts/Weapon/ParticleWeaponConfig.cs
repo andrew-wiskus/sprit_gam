@@ -141,6 +141,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         if (other.CompareTag("Enemy"))
         {
             EnemyDamage enemy_damage = other.GetComponent<EnemyDamage>();
+            Explodable explodable = other.GetComponent<Explodable>();
             float enemy_hp = other.GetComponent<EnemyDamage>().m_health_points;
 
             CalculateCritHit();
@@ -163,7 +164,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
             if (enemy_damage.m_health_points <= 0)
             {
-                Destroy(other);
+                //Destroy(other);
+                explodable.explode();
             }
         }
         
