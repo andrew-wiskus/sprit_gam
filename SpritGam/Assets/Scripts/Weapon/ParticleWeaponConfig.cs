@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class ParticleWeaponConfig : AbstractButtonMap {
 
     private ParticleSystem ps;
+    [SerializeField] WeaponStatConfig weaponStat;
+    [SerializeField] PlayerStatConfig playerStat;
+
     [SerializeField] private AudioSource weaponAudio;
     [SerializeField] private AudioSource collisionAudio;
 
@@ -16,8 +19,6 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     public List<ParticleCollisionEvent> collisionEvents;
 
     // public Weapon Properties
-    [SerializeField] private float m_fire_rate;
-    [SerializeField] private float m_bullet_speed;
     [SerializeField] private Sprite m_bullet_sprite;
     [SerializeField] private bool m_trail_on;
 
@@ -28,23 +29,10 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     private float damage;
     public float m_default_damage;
 
-    // MANA BAR
-    //[SerializeField] private Sprite m_mana_bar_graphic;
-    [SerializeField] private Image m_mana_fill_image;
-    [SerializeField] private Text m_mana_text;
-    [SerializeField] private Text m_reload_text;
-    private float currentManaAmount;
-
-    [SerializeField] public float m_mana_capacity;
-    [SerializeField] public float m_mana_cost_per_shot;
-
-    // CRIT SYSTEM
-    [SerializeField] public float m_crit_rate;
-    [SerializeField] public float m_crit_damage_factor;
-
 
 	void Start () {
         ps = GetComponent<ParticleSystem>();
+
         var main = ps.main;
         var trails = ps.trails;
 
@@ -52,11 +40,9 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         collisionEvents = new List<ParticleCollisionEvent>();
         StartCoroutine(start_trigger_listener());
 
-        main.startSpeed = m_bullet_speed;
         ps.textureSheetAnimation.SetSprite(0, m_bullet_sprite);
         trails.enabled = m_trail_on;
-
-        currentManaAmount = m_mana_capacity;
+        
         damage = m_default_damage;
         pauseMenu.SetActive(false);
     }
@@ -76,9 +62,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     private IEnumerator pull_trigger()
     {
-        Debug.Log("Particle System: " + ps);
         FireWeapon();
-        yield return new WaitForSeconds(m_fire_rate);
+        yield return new WaitForSeconds(weaponStat.fire_rate);
         yield break;
     }
 
@@ -101,61 +86,35 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     private void FireWeapon()
     {
         AutomaticFire();
-        //SemiAutomaticFire();
-        //ShotgunFire();
     }
 
     private void AutomaticFire()
     {
-        if (currentManaAmount - m_mana_cost_per_shot > 0)
+        if (playerStat.current_mana - weaponStat.mana_cost_per_shot > 0)
         {
             ps.Emit(1);
-            currentManaAmount -= m_mana_cost_per_shot;
+            playerStat.current_mana -= weaponStat.mana_cost_per_shot;
             weaponAudio.clip = m_fire_sound;
             weaponAudio.Play();
         }
         
-        // set mana image fill amount
-        // subtract ammo amount
-        
-    }
-
-    private void SemiAutomaticFire()
-    {
-        ps.Emit(1);
-    }
-
-    private void ShotgunFire()
-    {
-        SetAsShotgun();
-        ps.Emit(5);
-    }
-
-    private void SetAsShotgun()
-    {
-        var sh = ps.shape;
-        sh.shapeType = ParticleSystemShapeType.Cone;
-        sh.scale = new Vector3(0.1f, 0.98f, 0f);
-        sh.angle = 0;
-        sh.arc = 60;
-        sh.arcMode = ParticleSystemShapeMultiModeValue.BurstSpread;
     }
 
     private void CalculateCritHit()
     {
-        damage = m_default_damage;
+        damage = weaponStat.damage;
         float randomNum = Mathf.Floor(Random.Range(0f, 100f));
         
-        if (Mathf.Floor(randomNum) >= 100 - m_crit_rate)
+        if (Mathf.Floor(randomNum) >= 100 - weaponStat.crit_chance)
         {
             // CRIT HIT
             Debug.Log("CRIT [[HIT]], Num: " + randomNum);
-            damage *= m_crit_damage_factor;
+            damage *= weaponStat.crit_multiplier;
         } else
         {
             // NO CRIT HIT
             Debug.Log("CRIT MISS, Num: " + randomNum);
-            damage = m_default_damage;
+            damage = weaponStat.damage;
         }
 
     }
@@ -169,7 +128,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     {
         weaponAudio.clip = m_reload_sound;
         weaponAudio.Play();
-        currentManaAmount = m_mana_capacity;
+        playerStat.current_mana = playerStat.mana_capacity;
     }
 
 
@@ -191,7 +150,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
                 Destroy(other);
             }
 
-            if (damage > m_default_damage)
+            if (damage > weaponStat.damage)
             {
                 enemy_damage.damage_text.color = Color.yellow;
                 enemy_damage.damage_text.text = damage.ToString() + "!";
@@ -214,24 +173,9 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         yield break;
     }
 
-    private void UpdateManaGraphic()
-    {
-        m_mana_fill_image.fillAmount = currentManaAmount / m_mana_capacity;
-        m_mana_text.text = currentManaAmount.ToString() + " / " + m_mana_capacity;
-
-        if (currentManaAmount - m_mana_cost_per_shot < 0)
-        {
-            m_reload_text.enabled = true;
-        }
-        else
-        {
-            m_reload_text.enabled = false;
-        }
-    }
-
     void FixedUpdate()
     {
-        UpdateManaGraphic();
+
     }
 
 }

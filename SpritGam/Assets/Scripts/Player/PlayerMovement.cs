@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerStatConfig playerStat;
+
     [SerializeField] private Rigidbody2D m_rigid_body;
-    [SerializeField] public float m_default_speed = 1.0f;
-    [SerializeField] public float m_sprint_speed = 1.2f;
+    public float m_default_speed;
+    public float m_sprint_speed;
     [SerializeField] private float m_velocity_lerp_value = 0.8f;
     [SerializeField] private float m_left_stick_dead_zone = 0.2f;
     private bool m_is_sprinting = false;
@@ -22,6 +24,13 @@ public class PlayerMovement : MonoBehaviour
     public bool PlayerIsSprinting { get { return m_is_sprinting; } }
     public float Angle { get { return m_movement_angle; } }
     public float Magnitude { get { return m_magnitude; } }
+
+    private void Start()
+    {
+        playerStat = GetComponent<PlayerStatConfig>();
+        m_default_speed = playerStat.run_speed;
+        m_sprint_speed = m_default_speed * 1.5f;
+    }
 
     public void ToggleSprint(bool? is_sprinting)
     {
