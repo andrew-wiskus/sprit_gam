@@ -10970,7 +10970,7 @@ MonoBehaviour:
   weapon_name: Bit Cannon
   damage: 5
   bullet_speed: 12
-  fire_rate: 0.1
+  fire_rate: 7
   bullet_richochet_count: 2
   mana_cost_per_shot: 6
   crit_chance: 30

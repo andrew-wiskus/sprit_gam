@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private PlayerStatConfig playerStat;
 
-    [SerializeField] private Rigidbody2D m_rigid_body;
+    private Rigidbody2D m_rigid_body;
     public float m_default_speed;
     public float m_sprint_speed;
     [SerializeField] private float m_velocity_lerp_value = 0.8f;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         playerStat = GetComponent<PlayerStatConfig>();
+        m_rigid_body = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         m_default_speed = playerStat.run_speed;
         m_sprint_speed = m_default_speed * 1.5f;
     }

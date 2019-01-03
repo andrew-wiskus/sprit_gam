@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponStatConfig : MonoBehaviour {
 
-    [SerializeField] ParticleSystem ps;
+    private ParticleSystem ps;
 
     public string weapon_name;
     //public string weapon_descriptor; TODO
@@ -22,6 +22,7 @@ public class WeaponStatConfig : MonoBehaviour {
 
     
 	void Start () {
+        ps = GameObject.Find("Player").GetComponentInChildren<ParticleSystem>();
         SetWeaponStats();
 	}
 
@@ -30,6 +31,7 @@ public class WeaponStatConfig : MonoBehaviour {
         var main = ps.main;
         var col = ps.collision;
         main.startSpeed = bullet_speed;
+        fire_rate = fire_rate / 100;
 
         // not working yet
         if (bullet_richochet_count > 0)

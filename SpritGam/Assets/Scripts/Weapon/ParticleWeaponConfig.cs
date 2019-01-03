@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class ParticleWeaponConfig : AbstractButtonMap {
 
     private ParticleSystem ps;
-    [SerializeField] WeaponStatConfig weaponStat;
-    [SerializeField] PlayerStatConfig playerStat;
+    private WeaponStatConfig weaponStat;
+    private PlayerStatConfig playerStat;
 
     [SerializeField] private AudioSource weaponAudio;
     [SerializeField] private AudioSource collisionAudio;
@@ -32,6 +32,8 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
 	void Start () {
         ps = GetComponent<ParticleSystem>();
+        weaponStat = GameObject.Find("Player").GetComponentInChildren<WeaponStatConfig>();
+        playerStat = GameObject.Find("Player").GetComponentInChildren<PlayerStatConfig>();
 
         var main = ps.main;
         var trails = ps.trails;

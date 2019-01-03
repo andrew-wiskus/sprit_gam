@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class WeaponAim : MonoBehaviour {
 
-    [SerializeField] PlayerAim m_playeraim;
+    private PlayerAim playerAim;
     private GameObject weapon;
     
 
 	// Use this for initialization
 	void Start () {
-        weapon = GameObject.Find("Weapon");
+        playerAim = GetComponent<PlayerAim>();
+        weapon = GameObject.Find("Player/Weapon");
 
         Quaternion defaultRotation = Quaternion.Euler(0f, 0f, 0f);
         weapon.transform.rotation = defaultRotation;
@@ -18,7 +19,7 @@ public class WeaponAim : MonoBehaviour {
 
     void FixedUpdate()
     {
-        weapon.transform.rotation = Quaternion.Euler(0f, 0f, -m_playeraim.m_player_aim_angle + 90);
+        weapon.transform.rotation = Quaternion.Euler(0f, 0f, -playerAim.m_player_aim_angle + 90);
         
     }
 	

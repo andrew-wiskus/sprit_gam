@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour {
 
-    [SerializeField] private PlayerAim m_player_aim;
-    [SerializeField] private PlayerMovement m_player_movement;
-    [SerializeField] private Animator m_movement_animator;
+    private PlayerAim m_player_aim;
+    private PlayerMovement m_player_movement;
+    private Animator m_movement_animator;
 
     private string m_run_animation = "Player_Run Right";
     private string m_idle_animation = "Player_Idle Right";
     public string direction = "";
+
+    void Start()
+    {
+        m_player_aim = GetComponent<PlayerAim>();
+        m_player_movement = GetComponent<PlayerMovement>();
+        m_movement_animator = GameObject.Find("Player").GetComponent<Animator>();
+    }
 
     private void FixedUpdate()
     {

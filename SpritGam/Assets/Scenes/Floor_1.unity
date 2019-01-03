@@ -11704,7 +11704,7 @@ GameObject:
   - component: {fileID: 433006272}
   - component: {fileID: 433006273}
   m_Layer: 0
-  m_Name: config
+  m_Name: 'config: weapon'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11734,11 +11734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663a56eddc096f54a958d9acef2d838b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 1746742476}
   weapon_name: Bit Cannon
   damage: 5
   bullet_speed: 12
-  fire_rate: 0.1
+  fire_rate: 10
   bullet_richochet_count: 2
   mana_cost_per_shot: 6
   crit_chance: 30
@@ -37665,7 +37664,7 @@ GameObject:
   - component: {fileID: 1150455904}
   - component: {fileID: 1150455905}
   m_Layer: 0
-  m_Name: Config
+  m_Name: 'config: player'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37683,7 +37682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8b3afa7e4b4ed44af86d2792b43ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playeraim: {fileID: 2100943528}
 --- !u!114 &1150455900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37696,7 +37694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6808138f9f07b478a0de4ce272efdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player_animation: {fileID: 1150455901}
   m_weapon: {fileID: 1697879279}
   m_player: {fileID: 1622452489}
 --- !u!114 &1150455901
@@ -37711,9 +37708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5d90fcf225c5a4eb4c1636b7dd13f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player_aim: {fileID: 2100943528}
-  m_player_movement: {fileID: 1150455902}
-  m_movement_animator: {fileID: 1622452490}
   direction: 
 --- !u!114 &1150455902
 MonoBehaviour:
@@ -37727,7 +37721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a55bcabb2365d54c8e2bbc9ca8618bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rigid_body: {fileID: 1622452491}
   m_default_speed: 7
   m_sprint_speed: 1.2
   m_velocity_lerp_value: 0.8
@@ -37773,9 +37766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9451122bcb0c4134fbc75adf65d16c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pwc: {fileID: 1746742479}
-  playerStat: {fileID: 1150455904}
-  weaponStat: {fileID: 433006273}
   m_mana_fill_image: {fileID: 2004846802}
   m_mana_text: {fileID: 1357522868}
   m_reload_text: {fileID: 81933929}
@@ -42591,12 +42581,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1746742477}
   - component: {fileID: 1746742476}
+  - component: {fileID: 1746742479}
   - component: {fileID: 1746742478}
   - component: {fileID: 1746742480}
   - component: {fileID: 1746742481}
-  - component: {fileID: 1746742479}
   m_Layer: 8
-  m_Name: Bullet Fire
+  m_Name: 'config: particle_weapon'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47279,8 +47269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_left_trigger_deadzone: 0
   m_right_trigger_deadzone: 0.2
-  weaponStat: {fileID: 433006273}
-  playerStat: {fileID: 1150455904}
   weaponAudio: {fileID: 1746742480}
   collisionAudio: {fileID: 1746742481}
   pauseMenu: {fileID: 1143560346}
@@ -53114,7 +53102,7 @@ Tilemap:
   - first: {x: -63, y: -68, z: 0}
     second:
       m_TileIndex: 9
-      m_TileSpriteIndex: 19
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -54302,7 +54290,7 @@ Tilemap:
   - first: {x: 69, y: -68, z: 0}
     second:
       m_TileIndex: 8
-      m_TileSpriteIndex: 18
+      m_TileSpriteIndex: 21
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -57659,7 +57647,7 @@ Tilemap:
   - first: {x: -63, y: 17, z: 0}
     second:
       m_TileIndex: 10
-      m_TileSpriteIndex: 17
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -58847,7 +58835,7 @@ Tilemap:
   - first: {x: 69, y: 17, z: 0}
     second:
       m_TileIndex: 7
-      m_TileSpriteIndex: 16
+      m_TileSpriteIndex: 18
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -58964,20 +58952,20 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: ac0e95c8cb6bfe34d8ce066fd1503f46, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: e9b0f45cbda588841a815d170bef37a0, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 0a43ff7fe0b32e742a01e5410f2615dd, type: 3}
   - m_RefCount: 1
+    m_Data: {fileID: 21300026, guid: a9c9b1349b1d7c043a6f1ecdff286463, type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 33ba7d7b5eafa27418dfcc25cd9e18b1, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: a55e4d86bee6b9a4a86e86bce43ee040, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300026, guid: a9c9b1349b1d7c043a6f1ecdff286463, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 4
     m_Data: {fileID: 21300032, guid: a9c9b1349b1d7c043a6f1ecdff286463, type: 3}
   - m_RefCount: 4

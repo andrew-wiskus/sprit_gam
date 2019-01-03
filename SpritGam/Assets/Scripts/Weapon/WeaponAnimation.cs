@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WeaponAnimation : MonoBehaviour {
 
-    [SerializeField] PlayerAnimation m_player_animation;
+    private PlayerAnimation m_player_animation;
 
-    [SerializeField] public GameObject m_weapon;
-    [SerializeField] public GameObject m_player;
+    [HideInInspector] public GameObject m_weapon;
+    [HideInInspector] public GameObject m_player;
 
     private SpriteRenderer m_weapon_sprite;
     private SpriteRenderer m_player_sprite;
@@ -16,6 +16,9 @@ public class WeaponAnimation : MonoBehaviour {
 
 
     void Start () {
+        m_player_animation = GetComponent<PlayerAnimation>();
+        m_player = GameObject.Find("Player");
+        m_weapon = GameObject.Find("Player/Weapon");
         m_weapon_sprite = m_weapon.GetComponent<SpriteRenderer>();
         m_player_sprite = m_player.GetComponent<SpriteRenderer>();
 	}

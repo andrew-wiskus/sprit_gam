@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class PlayerGUI : MonoBehaviour {
 
 
-    [SerializeField] private ParticleWeaponConfig pwc;
-    [SerializeField] private PlayerStatConfig playerStat;
-    [SerializeField] private WeaponStatConfig weaponStat;
+    private ParticleWeaponConfig pwc;
+    private PlayerStatConfig playerStat;
+    private WeaponStatConfig weaponStat;
 
     [SerializeField] private Image m_mana_fill_image;
     [SerializeField] private Text m_mana_text;
@@ -19,6 +19,9 @@ public class PlayerGUI : MonoBehaviour {
     
 
     void Start () {
+        playerStat = GameObject.Find("Player").GetComponentInChildren<PlayerStatConfig>();
+        weaponStat = GameObject.Find("Player").GetComponentInChildren<WeaponStatConfig>();
+        pwc = GameObject.Find("Player").GetComponentInChildren<ParticleWeaponConfig>();
         UpdateGUI();
     }
 
@@ -31,7 +34,6 @@ public class PlayerGUI : MonoBehaviour {
 
         if (playerStat.current_mana - weaponStat.mana_cost_per_shot <= 0)
         {
-            Debug.Log("mana statement: " + (playerStat.current_mana - weaponStat.mana_cost_per_shot));
             m_reload_text.enabled = true;
         }
         else
