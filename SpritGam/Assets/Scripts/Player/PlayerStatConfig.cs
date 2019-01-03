@@ -10,8 +10,8 @@ public class PlayerStatConfig : MonoBehaviour {
 
     public float current_health;
     public float current_mana;
+    
 
-	// Use this for initialization
 	void Start () {
         SetPlayerStats();
         current_health = health_capacity;

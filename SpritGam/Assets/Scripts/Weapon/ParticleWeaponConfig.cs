@@ -145,11 +145,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
             enemy_damage.m_health_points -= damage;
             collisionAudio.Play();
 
-            if (enemy_damage.m_health_points <= 0)
-            {
-                Destroy(other);
-            }
-
+            
             if (damage > weaponStat.damage)
             {
                 enemy_damage.damage_text.color = Color.yellow;
@@ -162,6 +158,11 @@ public class ParticleWeaponConfig : AbstractButtonMap {
             
             StartCoroutine(ShortDelay());
             enemy_damage.m_particle_text.Emit(1);
+
+            if (enemy_damage.m_health_points <= 0)
+            {
+                Destroy(other);
+            }
         }
         
         //ParticlePhysicsExtensions.GetCollisionEvents(ps, other, collisionEvents);
