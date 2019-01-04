@@ -155,7 +155,11 @@ public static class SpriteExploder {
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
         rigidbody.velocity = origVelocity;
 
-        
+        // PAT: SET GRAV 0
+        rigidbody.gravityScale = 0;
+        rigidbody.AddForce(new Vector2(100, 100), ForceMode2D.Impulse);
+
+
 
         return piece;
     }
@@ -296,6 +300,11 @@ public static class SpriteExploder {
         //Create and Add Rigidbody
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
         rigidbody.velocity = origVelocity;
+        Debug.Log("GRAV SCALE BEFORE: " + rigidbody.gravityScale);
+
+        // PAT: TURN OFF GRAVITY
+        rigidbody.gravityScale = 0;
+        Debug.Log("GRAV SCALE BEFORE: " + rigidbody.gravityScale);
 
 
 

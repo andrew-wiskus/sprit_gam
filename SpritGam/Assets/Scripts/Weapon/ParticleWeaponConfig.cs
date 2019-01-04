@@ -29,11 +29,14 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     private float damage;
     public float m_default_damage;
 
+    private CircleCollider2D circleCol;
+
 
 	void Start () {
         ps = GetComponent<ParticleSystem>();
         weaponStat = GameObject.Find("Player").GetComponentInChildren<WeaponStatConfig>();
         playerStat = GameObject.Find("Player").GetComponentInChildren<PlayerStatConfig>();
+
 
         var main = ps.main;
         var trails = ps.trails;

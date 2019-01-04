@@ -10,6 +10,8 @@ public class PlayerStatConfig : MonoBehaviour {
 
     public float current_health;
     public float current_mana;
+
+    public Sprite current_weapon;
     
 
 	void Start () {
