@@ -29,5 +29,7 @@ public class VibrationController : MonoBehaviour {
     private void SetNoVibration()
     {
         GamePad.SetVibration(m_player_one, 0, 0);
+        GamePadDPad dpad = GetComponent<GamePadDPad>();
+        //dpad.Down
     }
 }

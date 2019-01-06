@@ -34,6 +34,16 @@ public class ControllerInput : MonoBehaviour
         return Input.GetAxis("Left_Vertical_Analog_Stick");
     }
 
+    public static float DpadVertical()
+    {
+        return Input.GetAxis("Dpad_Vertical");
+    }
+
+    public static float DpadHorizontal()
+    {
+        return Input.GetAxis("Dpad_Horizontal");
+    }
+
     public static float RightTrigger()
     {
         return Input.GetAxis("Right_Trigger") * -1.0f; //reversing because it returns 0 to -1;

@@ -7,9 +7,11 @@ public abstract class AbstractButtonMap : MonoBehaviour
 
     [SerializeField] private float m_left_trigger_deadzone;
     [SerializeField] private float m_right_trigger_deadzone = 0.2f;
+    
 
     void LateUpdate()
     {
+
         bool START_BUTTON = ControllerInput.Pressed_StartButton(Key.DOWN);
         bool LEFT_TRIGGER = ControllerInput.LeftTrigger() >= m_left_trigger_deadzone;
         bool RIGHT_TRIGGER = ControllerInput.RightTrigger() >= m_right_trigger_deadzone;
@@ -21,6 +23,11 @@ public abstract class AbstractButtonMap : MonoBehaviour
         bool B = ControllerInput.Pressed_B(Key.DOWN);
         bool A = ControllerInput.Pressed_A(Key.DOWN);
 
+        bool DPAD_UP = ControllerInput.DpadVertical() > 0;
+        bool DPAD_DOWN = ControllerInput.DpadVertical() < 0;
+        bool DPAD_LEFT = ControllerInput.DpadHorizontal() > 0;
+        bool DPAD_RIGHT = ControllerInput.DpadHorizontal() < 0;
+
         if (START_BUTTON) { OnPress_START(); }
         if (LEFT_TRIGGER) { OnPress_LEFT_TRIGGER(); }
         if (RIGHT_TRIGGER) { OnPress_RIGHT_TRIGGER(); }
@@ -31,6 +38,11 @@ public abstract class AbstractButtonMap : MonoBehaviour
         if (Y) { OnPress_Y(); }
         if (B) { OnPress_B(); }
         if (A) { OnPress_A(); }
+
+        if (DPAD_UP) { OnPress_DPAD_UP(); }
+        if (DPAD_DOWN) { OnPress_DPAD_DOWN(); }
+        if (DPAD_LEFT) { OnPress_DPAD_LEFT(); }
+        if (DPAD_RIGHT) { OnPress_DPAD_RIGHT(); }
     }
 
     public virtual void OnPress_START() { }
@@ -42,7 +54,12 @@ public abstract class AbstractButtonMap : MonoBehaviour
     public virtual void OnPress_X() {} 
     public virtual void OnPress_Y() {} 
     public virtual void OnPress_B() {} 
-    public virtual void OnPress_A() {} 
+    public virtual void OnPress_A() {}
+
+    public virtual void OnPress_DPAD_UP() { }
+    public virtual void OnPress_DPAD_DOWN() { }
+    public virtual void OnPress_DPAD_LEFT() { }
+    public virtual void OnPress_DPAD_RIGHT() { }
 
 }
 
