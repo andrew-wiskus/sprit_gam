@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponStatConfig : MonoBehaviour {
+public class WeaponStatConfig : AbstractButtonMap {
 
     private ParticleSystem ps;
+
+    private WeaponNameGenerator wng;
 
     public string weapon_name;
     //public string weapon_descriptor; TODO
@@ -20,9 +22,13 @@ public class WeaponStatConfig : MonoBehaviour {
     public float crit_multiplier;
     //public string effect_type; TODO
 
+    public string fire_type;
+    public float accuracy;
+
     
 	void Start () {
         ps = GameObject.Find("Player").GetComponentInChildren<ParticleSystem>();
+        wng = GameObject.Find("WeaponNameGenerator").GetComponent<WeaponNameGenerator>();
         SetWeaponStats();
 	}
 
@@ -32,6 +38,8 @@ public class WeaponStatConfig : MonoBehaviour {
         var col = ps.collision;
         main.startSpeed = bullet_speed;
         fire_rate = fire_rate / 100;
+
+        weapon_name = wng.generated_weapon_name;
 
         // not working yet
         if (bullet_richochet_count > 0)
@@ -44,7 +52,15 @@ public class WeaponStatConfig : MonoBehaviour {
         // TODO: create reload delay system
         // TODO: create bullet penetration system
     }
-    
+
+    public override void OnPress_Y()
+    {
+        wng.GenerateNewWeaponName();
+        weapon_name = wng.generated_weapon_name;
+    }
+
+
+
 
     void FixedUpdate () {
 		
