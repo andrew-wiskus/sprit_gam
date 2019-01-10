@@ -25,6 +25,8 @@ public class WeaponStatConfig : AbstractButtonMap {
     public string fire_type;
     public float accuracy;
 
+    public GameObject[] chip_mods;
+
     
 	void Start () {
         ps = GameObject.Find("Player").GetComponentInChildren<ParticleSystem>();

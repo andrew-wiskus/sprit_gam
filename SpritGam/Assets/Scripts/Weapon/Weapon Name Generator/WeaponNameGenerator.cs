@@ -20,7 +20,10 @@ public class WeaponNameGenerator : MonoBehaviour {
         int adj_int = Random.Range(0, m_adj.weapon_adj.Length);
         int noun_int = Random.Range(0, m_noun.weapon_noun.Length);
 
+        /// adj + noun
         generated_weapon_name = m_adj.weapon_adj[adj_int].ToString() + " " + m_noun.weapon_noun[noun_int].ToString();
 
+        /// adj + noun + noun
+        // int noun_int_2 = Random.Range(0, m_noun.weapon_noun.Length);     generated_weapon_name = m_adj.weapon_adj[adj_int].ToString() + " " + m_noun.weapon_noun[noun_int].ToString() + " " + m_noun.weapon_noun[noun_int_2].ToString();
     }
 }
