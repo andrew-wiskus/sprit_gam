@@ -54,17 +54,10 @@ public class WeaponStatConfig : AbstractButtonMap {
         // TODO: create reload delay system
         // TODO: create bullet penetration system
     }
-
-    public override void OnPress_Y()
-    {
-        wng.GenerateNewWeaponName();
-        weapon_name = wng.generated_weapon_name;
-    }
-
-
-
+    
+    
 
     void FixedUpdate () {
-		
-	}
+        weapon_name = wng.generated_weapon_name;
+    }
 }
