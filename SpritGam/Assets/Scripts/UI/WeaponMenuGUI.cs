@@ -28,11 +28,12 @@ public class WeaponMenuGUI : MonoBehaviour {
     [SerializeField] Text[] chipModThree_effects;
 
     // Use this for initialization
-    void Awake () {
+    void OnEnable () {
         wsc = GameObject.Find("config: weapon").GetComponent<WeaponStatConfig>();
         ResetStrings();
         w_weapon_image.sprite = GameObject.Find("Weapon").GetComponent<SpriteRenderer>().sprite;
         SetChipModDisplay();
+        SetWeaponStatDisplay();
     }
 
     private void ResetStrings()
@@ -91,10 +92,16 @@ public class WeaponMenuGUI : MonoBehaviour {
         w_critChance_num.text = wsc.crit_chance.ToString();
         w_critDamage_num.text = wsc.crit_multiplier.ToString();
     }
+
+    void SetWeaponNameDisplay()
+    {
+        w_weapon_name.text = wsc.weapon_name.ToString();
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        SetWeaponStatDisplay();
-        SetChipModDisplay();
+        //SetWeaponStatDisplay();
+        //SetChipModDisplay();
+        SetWeaponNameDisplay();
     }
 }

@@ -77,12 +77,12 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     {
         if (pauseMenu.activeSelf == false)
         {
-            ps.Pause();
-            pauseMenu.SetActive(true);
+            //ps.Pause();
+            //pauseMenu.SetActive(true);
         } else
         {
-            ps.Play();
-            pauseMenu.SetActive(false);
+            //ps.Play();
+            //pauseMenu.SetActive(false);
         }
         
     }
