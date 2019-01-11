@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WeaponMenuGUI : MonoBehaviour {
 
     private WeaponStatConfig wsc;
+    private BulletModule bulletModule;
 
     [SerializeField] Text w_weapon_name;
     [SerializeField] Image w_weapon_image;
@@ -15,9 +16,7 @@ public class WeaponMenuGUI : MonoBehaviour {
     [SerializeField] Text w_accuracy_num;
     [SerializeField] Text w_critChance_num;
     [SerializeField] Text w_critDamage_num;
-    [SerializeField] public Image b_bullet_image;
 
-    [SerializeField] Text b_manaCost_num;
     //[SerializeField] Text b_damage_num;
     //[SerializeField] Text b_bulletSpeed_num;
     //[SerializeField] Text b_ricochetCount_num;
@@ -27,13 +26,24 @@ public class WeaponMenuGUI : MonoBehaviour {
     [SerializeField] Text[] chipModTwo_effects;
     [SerializeField] Text[] chipModThree_effects;
 
+
+    [SerializeField] Image b_bullet_image;
+    [SerializeField] Text b_bullet_name;
+    [SerializeField] Text b_manaCost_num;
+    [SerializeField] Text b_speed_num;
+    [SerializeField] Text b_effect_description;
+
+    [SerializeField] Text[] bonus_stats;
+
     // Use this for initialization
     void OnEnable () {
         wsc = GameObject.Find("config: weapon").GetComponent<WeaponStatConfig>();
+        bulletModule = wsc.GetComponent<BulletModule>();
         ResetStrings();
         w_weapon_image.sprite = GameObject.Find("Weapon").GetComponent<SpriteRenderer>().sprite;
         SetChipModDisplay();
         SetWeaponStatDisplay();
+        SetCurrentBulletDisplay();
     }
 
     private void ResetStrings()
@@ -51,6 +61,11 @@ public class WeaponMenuGUI : MonoBehaviour {
         for (int i = 0; i < chipModThree_effects.Length; i++)
         {
             chipModThree_effects[i].text = "";
+        }
+
+        for (int i = 0; i < bonus_stats.Length; i++)
+        {
+            bonus_stats[i].text = "";
         }
     }
 
@@ -93,15 +108,31 @@ public class WeaponMenuGUI : MonoBehaviour {
         w_critDamage_num.text = wsc.crit_multiplier.ToString();
     }
 
-    void SetWeaponNameDisplay()
+    void SetNameDisplay()
     {
         w_weapon_name.text = wsc.weapon_name.ToString();
+        b_bullet_name.text = bulletModule.bullet.bullet_name;
+    }
+
+    void SetCurrentBulletDisplay()
+    {
+        b_bullet_image.sprite = bulletModule.bullet.bullet_sprite;
+        b_bullet_image.color = bulletModule.bullet.bullet_color;
+        b_bullet_name.text = bulletModule.bullet.bullet_name;
+        b_manaCost_num.text = bulletModule.bullet.mana_cost_per_shot.ToString();
+        b_speed_num.text = bulletModule.bullet.bullet_speed.ToString();
+        b_effect_description.text = bulletModule.bullet.special_effect.effect_description;
+
+        for (int i = 0; i < bulletModule.bullet.bullet_bonus_stats.Length; i++)
+        {
+            bonus_stats[i].text = bulletModule.bullet.bullet_bonus_stats[i].bonus_stats.ToString() + " +" + bulletModule.bullet.bullet_bonus_stats[i].stat_increase_amount.ToString();
+        }
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         //SetWeaponStatDisplay();
         //SetChipModDisplay();
-        SetWeaponNameDisplay();
+        SetNameDisplay();
     }
 }

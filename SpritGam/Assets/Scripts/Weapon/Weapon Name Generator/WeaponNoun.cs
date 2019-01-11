@@ -27,7 +27,8 @@ public class WeaponNoun : MonoBehaviour {
         "Rifle",
         "Ray",
         "Doctor",
-        "Reaper"
+        "Reaper",
+        "Doom"
 
     };
 

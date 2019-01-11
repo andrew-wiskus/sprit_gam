@@ -9,25 +9,24 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     private ParticleSystem ps;
     private WeaponStatConfig weaponStat;
     private PlayerStatConfig playerStat;
+    private BulletModule bulletModule;
+    private WeaponAudioModule wam;
+    private BulletObject bulletObject;
+    
 
     [SerializeField] private AudioSource weaponAudio;
-    [SerializeField] private AudioSource collisionAudio;
-
-    [SerializeField] private GameObject pauseMenu;
+    
+    [SerializeField] private AudioSource collisionAudio; // Move this
 
     // Particle System Handling
     public List<ParticleCollisionEvent> collisionEvents;
 
     // public Weapon Properties
-    [SerializeField] private Sprite m_bullet_sprite;
-    [SerializeField] private bool m_trail_on;
+    [HideInInspector] public Sprite m_bullet_sprite; // get this from bullet module
 
-    // Sound Properties
-    [SerializeField] private AudioClip m_reload_sound;
-    [SerializeField] private AudioClip m_fire_sound;
+    //[SerializeField] private bool m_trail_on;
 
-    private float damage;
-    public float m_default_damage;
+    private float new_damage;
 
     private CircleCollider2D circleCol;
 
@@ -36,20 +35,29 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         ps = GetComponent<ParticleSystem>();
         weaponStat = GameObject.Find("Player").GetComponentInChildren<WeaponStatConfig>();
         playerStat = GameObject.Find("Player").GetComponentInChildren<PlayerStatConfig>();
+        bulletModule = GameObject.Find("Player").GetComponentInChildren<BulletModule>();
+        wam = GameObject.Find("Player").GetComponentInChildren<WeaponAudioModule>();
 
-
-        var main = ps.main;
-        var trails = ps.trails;
+        SetParticleData();
 
         weaponAudio = GetComponent<AudioSource>();
         collisionEvents = new List<ParticleCollisionEvent>();
         StartCoroutine(start_trigger_listener());
+    }
 
+    void SetParticleData()
+    {
+        var main = ps.main;
+        var trails = ps.trails;
+
+        bulletModule.SetParticleStats();
+
+        main.startColor = bulletModule.bullet.bullet_color;
+        trails.colorOverLifetime = bulletModule.bullet.trail_gradient;
+        main.startSpeed = bulletModule.bullet.bullet_speed;
         ps.textureSheetAnimation.SetSprite(0, m_bullet_sprite);
-        trails.enabled = m_trail_on;
-        
-        damage = m_default_damage;
-        pauseMenu.SetActive(false);
+
+        //trails.enabled = m_trail_on;
     }
 
     private IEnumerator start_trigger_listener()
@@ -72,22 +80,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         yield break;
     }
 
-    // TODO: move this to new Pause script
-    public override void OnPress_START()
-    {
-        if (pauseMenu.activeSelf == false)
-        {
-            //ps.Pause();
-            //pauseMenu.SetActive(true);
-        } else
-        {
-            //ps.Play();
-            //pauseMenu.SetActive(false);
-        }
-        
-    }
-
-    // use one at a time (for testing purposes)
+    
     private void FireWeapon()
     {
         AutomaticFire();
@@ -99,7 +92,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         {
             ps.Emit(1);
             playerStat.current_mana -= weaponStat.mana_cost_per_shot;
-            weaponAudio.clip = m_fire_sound;
+            weaponAudio.clip = wam.fire_sound[0];
             weaponAudio.Play();
         }
         
@@ -107,19 +100,19 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     private void CalculateCritHit()
     {
-        damage = weaponStat.damage;
+        new_damage = weaponStat.damage;
         float randomNum = Mathf.Floor(Random.Range(0f, 100f));
         
         if (Mathf.Floor(randomNum) >= 100 - weaponStat.crit_chance)
         {
             // CRIT HIT
-            Debug.Log("CRIT [[HIT]], Num: " + randomNum);
-            damage *= weaponStat.crit_multiplier;
+            //Debug.Log("CRIT [[HIT]], Num: " + randomNum);
+            new_damage *= weaponStat.crit_multiplier;
         } else
         {
             // NO CRIT HIT
-            Debug.Log("CRIT MISS, Num: " + randomNum);
-            damage = weaponStat.damage;
+            //Debug.Log("CRIT MISS, Num: " + randomNum);
+            new_damage = weaponStat.damage;
         }
 
     }
@@ -131,7 +124,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     void RefillMana()
     {
-        weaponAudio.clip = m_reload_sound;
+        weaponAudio.clip = wam.reload_sound;
         weaponAudio.Play();
         playerStat.current_mana = playerStat.mana_capacity;
     }
@@ -148,18 +141,18 @@ public class ParticleWeaponConfig : AbstractButtonMap {
             float enemy_hp = other.GetComponent<EnemyDamage>().m_health_points;
 
             CalculateCritHit();
-            enemy_damage.m_health_points -= damage;
+            enemy_damage.m_health_points -= new_damage;
             collisionAudio.Play();
 
             
-            if (damage > weaponStat.damage)
+            if (new_damage > weaponStat.damage)
             {
                 enemy_damage.damage_text.color = Color.yellow;
-                enemy_damage.damage_text.text = damage.ToString() + "!";
+                enemy_damage.damage_text.text = new_damage.ToString() + "!";
             } else
             {
                 enemy_damage.damage_text.color = Color.red;
-                enemy_damage.damage_text.text = damage.ToString();
+                enemy_damage.damage_text.text = new_damage.ToString();
             }
             
             StartCoroutine(ShortDelay());

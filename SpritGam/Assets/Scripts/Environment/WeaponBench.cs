@@ -11,11 +11,13 @@ public class WeaponBench : AbstractButtonMap {
     private bool near_bench = false;
 
     private WeaponNameGenerator wng;
+    private BulletGenerator bg;
 
 	// Use this for initialization
 	void Start () {
         enterText.enabled = false;
         wng = GetComponentInChildren<WeaponNameGenerator>();
+        bg = GetComponentInChildren<BulletGenerator>();
 	}
 
     void OnTriggerEnter2D(Collider2D other)
@@ -48,6 +50,14 @@ public class WeaponBench : AbstractButtonMap {
         if (using_bench)
         {
             wng.GenerateNewWeaponName();
+        }
+    }
+
+    public override void OnPress_A()
+    {
+        if (using_bench)
+        {
+            bg.GenerateNewBullet();
         }
     }
 

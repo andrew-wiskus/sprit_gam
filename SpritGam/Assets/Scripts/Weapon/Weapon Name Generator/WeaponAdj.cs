@@ -43,7 +43,12 @@ public class WeaponAdj : MonoBehaviour {
         "Cyber",
         "Shadow",
         "Soul",
-        "Harm"
+        "Harm",
+        "Solo",
+        "Quantum",
+        "Mal",
+        "Particle",
+        "Hell"
     };
 
 }

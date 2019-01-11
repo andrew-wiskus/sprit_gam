@@ -88,7 +88,7 @@ public class ChipMod : MonoBehaviour
 
             if (stat.type == ModType.Fire_Rate)
             {
-                wsc.fire_rate += stat.increase_amount;
+                wsc.fire_rate -= (stat.increase_amount / 100);
             }
 
             if (stat.type == ModType.Accuracy)
