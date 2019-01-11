@@ -62,18 +62,6 @@ public class BulletModule : MonoBehaviour {
         ModifyWeaponStats();
     }
 
-    // gets called from particle weapon config
-    public void SetParticleStats()
-    {
-        /// SET:
-        /// trail gradient
-        /// bullet speed
-        /// size
-
-        pwc.m_bullet_sprite = bullet.bullet_sprite;
-        
-    }
-
     private void ModifyWeaponStats()
     {
         foreach (BonusStat bonusStat in bullet.bullet_bonus_stats)

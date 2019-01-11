@@ -17,15 +17,10 @@ public class WeaponMenuGUI : MonoBehaviour {
     [SerializeField] Text w_critChance_num;
     [SerializeField] Text w_critDamage_num;
 
-    //[SerializeField] Text b_damage_num;
-    //[SerializeField] Text b_bulletSpeed_num;
-    //[SerializeField] Text b_ricochetCount_num;
-
     [SerializeField] Image[] chipMod_images;
     [SerializeField] Text[] chipModOne_effects;
     [SerializeField] Text[] chipModTwo_effects;
     [SerializeField] Text[] chipModThree_effects;
-
 
     [SerializeField] Image b_bullet_image;
     [SerializeField] Text b_bullet_name;
@@ -40,6 +35,7 @@ public class WeaponMenuGUI : MonoBehaviour {
     [SerializeField] Text accuracy_increase_text;
     [SerializeField] Text crit_chance_increase_text;
     [SerializeField] Text crit_multi_increase_text;
+
     private float dmg_increase;
     private float fire_rate_increase;
     private float accuracy_increase;
@@ -170,7 +166,6 @@ public class WeaponMenuGUI : MonoBehaviour {
         accuracy_increase = wsc.accuracy - wsc.base_accuracy;
         crit_chance_increase = wsc.crit_chance - wsc.base_crit_chance;
         crit_multi_increase = wsc.crit_multiplier - wsc.base_crit_multi;
-        Debug.Log("crit increase :" + crit_chance_increase);
     }
 
     void SetNameDisplay()
@@ -196,9 +191,6 @@ public class WeaponMenuGUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        //SetWeaponStatDisplay();
-        //SetChipModDisplay();
-        //CalculateStatIncreases();
         SetNameDisplay();
     }
 }

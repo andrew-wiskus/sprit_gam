@@ -50,14 +50,20 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         var main = ps.main;
         var trails = ps.trails;
 
-        bulletModule.SetParticleStats();
-
         main.startColor = bulletModule.bullet.bullet_color;
         trails.colorOverLifetime = bulletModule.bullet.trail_gradient;
         main.startSpeed = bulletModule.bullet.bullet_speed;
         ps.textureSheetAnimation.SetSprite(0, m_bullet_sprite);
-
         //trails.enabled = m_trail_on;
+
+        foreach (BonusStat bonusStat in bulletModule.bullet.bullet_bonus_stats)
+        {
+            if (bonusStat.bonus_stats == BonusEffect.Size)
+            {
+
+                main.startSizeMultiplier = main.startSizeMultiplier * (1 + bonusStat.stat_increase_amount);
+            }
+        }
     }
 
     private IEnumerator start_trigger_listener()
