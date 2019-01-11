@@ -35,6 +35,17 @@ public class WeaponMenuGUI : MonoBehaviour {
 
     [SerializeField] Text[] bonus_stats;
 
+    [SerializeField] Text dmg_increase_text;
+    [SerializeField] Text fire_rate_increase_text;
+    [SerializeField] Text accuracy_increase_text;
+    [SerializeField] Text crit_chance_increase_text;
+    [SerializeField] Text crit_multi_increase_text;
+    private float dmg_increase;
+    private float fire_rate_increase;
+    private float accuracy_increase;
+    private float crit_chance_increase;
+    private float crit_multi_increase;
+
     // Use this for initialization
     void OnEnable () {
         wsc = GameObject.Find("config: weapon").GetComponent<WeaponStatConfig>();
@@ -42,8 +53,11 @@ public class WeaponMenuGUI : MonoBehaviour {
         ResetStrings();
         w_weapon_image.sprite = GameObject.Find("Weapon").GetComponent<SpriteRenderer>().sprite;
         SetChipModDisplay();
-        SetWeaponStatDisplay();
+        
         SetCurrentBulletDisplay();
+        CalculateStatIncreases();
+
+        SetWeaponStatDisplay();
     }
 
     private void ResetStrings()
@@ -106,6 +120,57 @@ public class WeaponMenuGUI : MonoBehaviour {
         w_accuracy_num.text = wsc.accuracy.ToString();
         w_critChance_num.text = wsc.crit_chance.ToString();
         w_critDamage_num.text = wsc.crit_multiplier.ToString();
+
+        CalculateStatIncreases();
+
+        if (dmg_increase > 0)
+        {
+            dmg_increase_text.text = "+" + dmg_increase.ToString();
+        } else
+        {
+            dmg_increase_text.text = "";
+        }
+        if (fire_rate_increase > 0)
+        {
+            fire_rate_increase_text.text = "+" + fire_rate_increase.ToString();
+        } else
+        {
+            fire_rate_increase_text.text = "";
+        }
+        if (accuracy_increase > 0)
+        {
+            accuracy_increase_text.text = "+" + accuracy_increase.ToString();
+        } else
+        {
+            accuracy_increase_text.text = "";
+        }
+        if (crit_chance_increase > 0)
+        {
+            crit_chance_increase_text.text = "+" + crit_chance_increase.ToString();
+        } else
+        {
+            crit_chance_increase_text.text = "";
+        }
+        if (crit_multi_increase > 0)
+        {
+            crit_multi_increase_text.text = "+" + crit_multi_increase.ToString();
+        } else
+        {
+            crit_multi_increase_text.text = "";
+        }
+        
+
+
+    }
+
+    void CalculateStatIncreases()
+    {
+        dmg_increase = wsc.damage - wsc.base_damage;
+        fire_rate_increase = wsc.fire_rate + wsc.base_fire_rate;
+        accuracy_increase = wsc.accuracy - wsc.base_accuracy;
+        crit_chance_increase = wsc.crit_chance - wsc.base_crit_chance;
+        crit_multi_increase = wsc.crit_multiplier - wsc.base_crit_multi;
+        Debug.Log("crit increase :" + crit_chance_increase);
     }
 
     void SetNameDisplay()
@@ -133,6 +198,7 @@ public class WeaponMenuGUI : MonoBehaviour {
 	void FixedUpdate () {
         //SetWeaponStatDisplay();
         //SetChipModDisplay();
+        //CalculateStatIncreases();
         SetNameDisplay();
     }
 }

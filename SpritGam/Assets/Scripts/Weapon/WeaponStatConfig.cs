@@ -10,36 +10,60 @@ public class WeaponStatConfig : AbstractButtonMap {
 
     public string weapon_name;
     //public string weapon_descriptor; TODO
-    public float damage;
-    public float bullet_speed;
-    public float fire_rate;
+
+    public float base_damage;
+    public float base_fire_rate;
+    public float base_accuracy;
+    public float base_crit_chance;
+    public float base_crit_multi;
+
+    [HideInInspector] public float damage;
+    [HideInInspector] public float bullet_speed;
+    [HideInInspector] public float fire_rate;
+    [HideInInspector] public string fire_type;
+    [HideInInspector] public float accuracy;
+    [HideInInspector] public float crit_chance;
+    [HideInInspector] public float crit_multiplier;
+
+
     //public float accuracy_spread; // TODO
     //public float reload_speed; // TODO
     public float bullet_richochet_count;
     //public float bullet_penetration_count; // TODO
-    public float mana_cost_per_shot;
-    public float crit_chance;
-    public float crit_multiplier;
+    //public float mana_cost_per_shot;
+    
     //public string effect_type; TODO
 
-    public string fire_type;
-    public float accuracy;
+    
 
     public GameObject[] chip_mods;
 
     
 	void Start () {
+        SetInitialAmounts();
         ps = GameObject.Find("Player").GetComponentInChildren<ParticleSystem>();
         wng = GameObject.Find("WeaponNameGenerator").GetComponent<WeaponNameGenerator>();
+        
         SetWeaponStats();
 	}
+
+    void SetInitialAmounts()
+    {
+        base_fire_rate = base_fire_rate / 100;
+        damage = base_damage;
+        fire_rate = base_fire_rate;
+        accuracy = base_accuracy;
+        crit_chance = base_crit_chance;
+        crit_multiplier = base_crit_multi;
+        
+    }
 
     public void SetWeaponStats()
     {
         var main = ps.main;
         var col = ps.collision;
         main.startSpeed = bullet_speed;
-        fire_rate = fire_rate / 100;
+        //fire_rate = fire_rate / 100;
 
         weapon_name = wng.generated_weapon_name;
 
@@ -59,5 +83,6 @@ public class WeaponStatConfig : AbstractButtonMap {
 
     void FixedUpdate () {
         weapon_name = wng.generated_weapon_name;
+        
     }
 }

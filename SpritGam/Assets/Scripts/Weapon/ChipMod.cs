@@ -22,7 +22,7 @@ public enum ModType
 public class ChipModStat
 {
     public ModType type;
-    public int increase_amount;
+    public float increase_amount;
 }
 
 public class ChipMod : MonoBehaviour
@@ -105,8 +105,8 @@ public class ChipMod : MonoBehaviour
             {
                 wsc.crit_multiplier += stat.increase_amount;
             }
+            
 
-           
         }
     }
 }

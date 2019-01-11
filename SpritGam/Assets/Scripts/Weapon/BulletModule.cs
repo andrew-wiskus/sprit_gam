@@ -52,11 +52,14 @@ public class BulletModule : MonoBehaviour {
     private ParticleWeaponConfig pwc;
     private BulletGenerator bg;
     public BulletObject bullet;
+    private WeaponStatConfig wsc;
 
     void Start()
     {
         pwc = GameObject.Find("config: particle_weapon").GetComponent<ParticleWeaponConfig>();
         bg = GameObject.Find("BulletGenerator").GetComponent<BulletGenerator>();
+        wsc = GetComponent<WeaponStatConfig>();
+        ModifyWeaponStats();
     }
 
     // gets called from particle weapon config
@@ -69,6 +72,17 @@ public class BulletModule : MonoBehaviour {
 
         pwc.m_bullet_sprite = bullet.bullet_sprite;
         
+    }
+
+    private void ModifyWeaponStats()
+    {
+        foreach (BonusStat bonusStat in bullet.bullet_bonus_stats)
+        {
+            if (bonusStat.bonus_stats == BonusEffect.Damage)
+            {
+                wsc.damage += bonusStat.stat_increase_amount;
+            }
+        }
     }
 
     void FixedUpdate()

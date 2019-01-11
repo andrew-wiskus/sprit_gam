@@ -88,10 +88,10 @@ public class ParticleWeaponConfig : AbstractButtonMap {
 
     private void AutomaticFire()
     {
-        if (playerStat.current_mana - weaponStat.mana_cost_per_shot > 0)
+        if (playerStat.current_mana - bulletModule.bullet.mana_cost_per_shot > 0)
         {
             ps.Emit(1);
-            playerStat.current_mana -= weaponStat.mana_cost_per_shot;
+            playerStat.current_mana -= bulletModule.bullet.mana_cost_per_shot;
             weaponAudio.clip = wam.fire_sound[0];
             weaponAudio.Play();
         }
