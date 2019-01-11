@@ -69,7 +69,7 @@ public class ChipMod : MonoBehaviour
                 break;
 
             default:
-                sprite = white_sprite;
+                sprite = null;
                 break;
         }
 
@@ -88,7 +88,7 @@ public class ChipMod : MonoBehaviour
 
             if (stat.type == ModType.Fire_Rate)
             {
-                wsc.fire_rate -= (stat.increase_amount / 100);
+                wsc.fire_rate +=  stat.increase_amount;
             }
 
             if (stat.type == ModType.Accuracy)

@@ -25,6 +25,8 @@ public class WeaponStatConfig : AbstractButtonMap {
     [HideInInspector] public float crit_chance;
     [HideInInspector] public float crit_multiplier;
 
+    [HideInInspector] public float bullets_per_second;
+
 
     //public float accuracy_spread; // TODO
     //public float reload_speed; // TODO
@@ -49,13 +51,11 @@ public class WeaponStatConfig : AbstractButtonMap {
 
     void SetInitialAmounts()
     {
-        base_fire_rate = base_fire_rate / 100;
         damage = base_damage;
         fire_rate = base_fire_rate;
         accuracy = base_accuracy;
         crit_chance = base_crit_chance;
         crit_multiplier = base_crit_multi;
-        
     }
 
     public void SetWeaponStats()
@@ -83,6 +83,5 @@ public class WeaponStatConfig : AbstractButtonMap {
 
     void FixedUpdate () {
         weapon_name = wng.generated_weapon_name;
-        
     }
 }

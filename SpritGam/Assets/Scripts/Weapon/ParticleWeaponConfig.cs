@@ -82,7 +82,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
     private IEnumerator pull_trigger()
     {
         FireWeapon();
-        yield return new WaitForSeconds(weaponStat.fire_rate);
+        yield return new WaitForSeconds(1 / weaponStat.fire_rate);
         yield break;
     }
 

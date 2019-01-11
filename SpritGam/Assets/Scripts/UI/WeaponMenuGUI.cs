@@ -41,6 +41,7 @@ public class WeaponMenuGUI : MonoBehaviour {
     private float accuracy_increase;
     private float crit_chance_increase;
     private float crit_multi_increase;
+    
 
     // Use this for initialization
     void OnEnable () {
@@ -77,6 +78,12 @@ public class WeaponMenuGUI : MonoBehaviour {
         {
             bonus_stats[i].text = "";
         }
+
+        dmg_increase_text.text = "";
+        fire_rate_increase_text.text = "";
+        accuracy_increase_text.text = "";
+        crit_chance_increase_text.text = "";
+        crit_multi_increase_text.text = "";
     }
 
     void SetChipModDisplay()
@@ -162,7 +169,7 @@ public class WeaponMenuGUI : MonoBehaviour {
     void CalculateStatIncreases()
     {
         dmg_increase = wsc.damage - wsc.base_damage;
-        fire_rate_increase = wsc.fire_rate + wsc.base_fire_rate;
+        fire_rate_increase = wsc.fire_rate - wsc.base_fire_rate;
         accuracy_increase = wsc.accuracy - wsc.base_accuracy;
         crit_chance_increase = wsc.crit_chance - wsc.base_crit_chance;
         crit_multi_increase = wsc.crit_multiplier - wsc.base_crit_multi;
