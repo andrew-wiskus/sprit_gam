@@ -177,7 +177,7 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Fire Rate x2
@@ -2922,7 +2922,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Damage +7
@@ -17017,12 +17017,14 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     mana_cost_per_shot: 7
-    bullet_speed: 14
+    bullet_speed: 12
     special_effect:
       effect_type: 0
       effect_chance: 15
       effect_description: Chance to stun enemy
-    bullet_bonus_stats: []
+    bullet_bonus_stats:
+    - bonus_stats: 2
+      stat_increase_amount: 1
 --- !u!114 &433006275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28413,7 +28415,7 @@ MonoBehaviour:
     m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Crit Dmg +0.2
@@ -30078,7 +30080,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Damage +2
@@ -30319,7 +30321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2, y: 1}
   m_SizeDelta: {x: 70.06, y: 12.595}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &880016641
@@ -30990,9 +30992,9 @@ MonoBehaviour:
   mod_rating: 2
   chipModStats:
   - type: 0
-    increase_amount: 10
+    increase_amount: 4
   - type: 1
-    increase_amount: 5
+    increase_amount: 2
   gold_sprite: {fileID: 21300000, guid: 453e9c80941c4914a9ee30dae30200a5, type: 3}
   silver_sprite: {fileID: 21300000, guid: 72c80f977aaacf84bbcdd47310bcd33f, type: 3}
   bronze_sprite: {fileID: 21300000, guid: adfe37571bc450e489ce2ec233d510ca, type: 3}
@@ -56596,7 +56598,7 @@ MonoBehaviour:
     m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Damage +5
@@ -57051,7 +57053,7 @@ MonoBehaviour:
     m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Damage +5
@@ -58977,7 +58979,7 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Fire Rate x2
@@ -59062,8 +59064,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc3fc4105a810c408cc3a477cef8efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mod_rating: 0
-  chipModStats: []
+  mod_rating: 3
+  chipModStats:
+  - type: 3
+    increase_amount: 5
+  - type: 0
+    increase_amount: 1
+  - type: 4
+    increase_amount: 0.25
   gold_sprite: {fileID: 21300000, guid: 453e9c80941c4914a9ee30dae30200a5, type: 3}
   silver_sprite: {fileID: 21300000, guid: 72c80f977aaacf84bbcdd47310bcd33f, type: 3}
   bronze_sprite: {fileID: 21300000, guid: adfe37571bc450e489ce2ec233d510ca, type: 3}
@@ -67183,7 +67191,7 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Crit % +10
@@ -71544,7 +71552,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Accuracy +4
@@ -84747,7 +84755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2, y: 1}
   m_SizeDelta: {x: 70.06, y: 13.47}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1948692607

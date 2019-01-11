@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class WeaponMenuGUI : MonoBehaviour {
 
@@ -98,17 +99,17 @@ public class WeaponMenuGUI : MonoBehaviour {
 
         for (int i = 0; i < chip_one.chipModStats.Length; i++)
         {
-            chipModOne_effects[i].text = chip_one.chipModStats[i].type + " +" + chip_one.chipModStats[i].increase_amount.ToString();
+            chipModOne_effects[i].text = chip_one.chipModStats[i].type.ToString().Replace("_", " ") + " +" + chip_one.chipModStats[i].increase_amount.ToString().Replace("0.", ".");
         }
 
         for (int i = 0; i < chip_two.chipModStats.Length; i++)
         {
-            chipModTwo_effects[i].text = chip_two.chipModStats[i].type + " +" + chip_two.chipModStats[i].increase_amount.ToString();
+            chipModTwo_effects[i].text = chip_two.chipModStats[i].type.ToString().Replace("_", " ") + " +" + chip_two.chipModStats[i].increase_amount.ToString().Replace("0.", ".");
         }
 
         for (int i = 0; i < chip_three.chipModStats.Length; i++)
         {
-            chipModThree_effects[i].text = chip_three.chipModStats[i].type + " +" + chip_three.chipModStats[i].increase_amount.ToString();
+            chipModThree_effects[i].text = chip_three.chipModStats[i].type.ToString().Replace("_", " ") + " +" + chip_three.chipModStats[i].increase_amount.ToString().Replace("0.", ".");
         }
         
     }
