@@ -12,7 +12,7 @@ public class WeaponNameGenerator : MonoBehaviour {
     {
         m_adj = GetComponent<WeaponAdj>();
         m_noun = GetComponent<WeaponNoun>();
-        GenerateNewWeaponName();
+        //GenerateNewWeaponName();
     }
 
     public void GenerateNewWeaponName()

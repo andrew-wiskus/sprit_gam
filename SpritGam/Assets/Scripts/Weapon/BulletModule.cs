@@ -75,7 +75,7 @@ public class BulletModule : MonoBehaviour {
 
     void FixedUpdate()
     {
-        bullet.bullet_name = bg.generated_bullet_name;
+        //bullet.bullet_name = bg.generated_bullet_name;
     }
 
 }

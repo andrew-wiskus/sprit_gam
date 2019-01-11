@@ -65,7 +65,7 @@ public class WeaponStatConfig : AbstractButtonMap {
         main.startSpeed = bullet_speed;
         //fire_rate = fire_rate / 100;
 
-        weapon_name = wng.generated_weapon_name;
+        //weapon_name = wng.generated_weapon_name;
 
         // not working yet
         if (bullet_richochet_count > 0)
@@ -82,6 +82,6 @@ public class WeaponStatConfig : AbstractButtonMap {
     
 
     void FixedUpdate () {
-        weapon_name = wng.generated_weapon_name;
+        //weapon_name = wng.generated_weapon_name;
     }
 }

@@ -11,7 +11,7 @@ public class BulletGenerator : MonoBehaviour {
 	void Start () {
         m_adj = GetComponent<BulletAdj>();
         m_noun = GetComponent<BulletNoun>();
-        GenerateNewBullet();
+        //GenerateNewBullet();
 	}
 	
 	public void GenerateNewBullet()
