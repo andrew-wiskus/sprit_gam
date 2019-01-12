@@ -15,6 +15,9 @@ public class FollowPlayer : MonoBehaviour {
     private float last_y = 0.0f;
     private float last_magnitude = 0.0f;
     private float last_angle = 0.0f;
+
+    private bool camera_isActive = true;
+
     // Update is called once per frame
     private void Start()
     {
@@ -24,12 +27,14 @@ public class FollowPlayer : MonoBehaviour {
 
     private IEnumerator move_camera()
     {
-        Vector3 current_position = m_camera.transform.position;
-        Vector3 target_position = get_target_position();
-        m_camera.transform.position = Vector3.Lerp(current_position, target_position, 0.05f);
+        while (camera_isActive)
+        {
+            Vector3 current_position = m_camera.transform.position;
+            Vector3 target_position = get_target_position();
+            m_camera.transform.position = Vector3.Lerp(current_position, target_position, 0.05f);
 
-        yield return new WaitForEndOfFrame();
-        yield return move_camera();
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     private Vector3 get_target_position()

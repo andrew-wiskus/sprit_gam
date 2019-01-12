@@ -48,7 +48,9 @@ public class WeaponAdj : MonoBehaviour {
         "Quantum",
         "Mal",
         "Particle",
-        "Hell"
+        "Hell",
+        "Scarlet",
+        "Void"
     };
 
 }
