@@ -7,10 +7,28 @@ public abstract class AbstractButtonMap : MonoBehaviour
 
     [SerializeField] private float m_left_trigger_deadzone;
     [SerializeField] private float m_right_trigger_deadzone = 0.2f;
-    
+
+    public static bool OverrideToIndex = false;
+    public static int CurrentIndex = 0;
+
+    public abstract int ChannelID();
+
+    public void SetOverrideActive(bool active)
+    {
+        AbstractButtonMap.OverrideToIndex = active;
+        if(active)
+        {
+            AbstractButtonMap.CurrentIndex = ChannelID();
+        }
+    }
+
 
     void LateUpdate()
     {
+        if (AbstractButtonMap.OverrideToIndex && AbstractButtonMap.CurrentIndex != ChannelID())
+        {
+            return;
+        }
 
         bool START_BUTTON = ControllerInput.Pressed_StartButton(Key.DOWN);
         bool LEFT_TRIGGER = ControllerInput.LeftTrigger() >= m_left_trigger_deadzone;
@@ -46,20 +64,19 @@ public abstract class AbstractButtonMap : MonoBehaviour
     }
 
     public virtual void OnPress_START() { }
-    public virtual void OnPress_LEFT_TRIGGER() {}
-    public virtual void OnPress_RIGHT_TRIGGER() {}
+    public virtual void OnPress_LEFT_TRIGGER() { }
+    public virtual void OnPress_RIGHT_TRIGGER() { }
     public virtual void OnPress_RIGHT_TRIGGER_UP() { }
-    public virtual void OnPress_L3() {} 
+    public virtual void OnPress_L3() { }
 
-    public virtual void OnPress_X() {} 
-    public virtual void OnPress_Y() {} 
-    public virtual void OnPress_B() {} 
-    public virtual void OnPress_A() {}
+    public virtual void OnPress_X() { }
+    public virtual void OnPress_Y() { }
+    public virtual void OnPress_B() { }
+    public virtual void OnPress_A() { }
 
     public virtual void OnPress_DPAD_UP() { }
     public virtual void OnPress_DPAD_DOWN() { }
     public virtual void OnPress_DPAD_LEFT() { }
     public virtual void OnPress_DPAD_RIGHT() { }
-
 }
 
