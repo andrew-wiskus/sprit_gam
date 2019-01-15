@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
-public class WeaponMenuGUI : MonoBehaviour {
+public class WeaponMenuGUI : AbstractButtonMap {
 
     private WeaponStatConfig wsc;
     private BulletModule bulletModule;
+    private PlayerMovement player_movement;
 
     [SerializeField] Text w_weapon_name;
     [SerializeField] Image w_weapon_image;
@@ -37,26 +40,137 @@ public class WeaponMenuGUI : MonoBehaviour {
     [SerializeField] Text crit_chance_increase_text;
     [SerializeField] Text crit_multi_increase_text;
 
+    //[SerializeField] GameObject 
+
     private float dmg_increase;
     private float fire_rate_increase;
     private float accuracy_increase;
     private float crit_chance_increase;
     private float crit_multi_increase;
+
+    [SerializeField] GameObject mainInfoPanel;
+    [SerializeField] GameObject bulletInventoryPanel;
+    [SerializeField] GameObject chipModInventoryPanel;
+
+    // CHIP MOD INVENTORY
+    [SerializeField] Button chip_one_button;
+    [SerializeField] Button chip_two_button;
+    [SerializeField] Button chip_three_button;
+    [SerializeField] Button bullet_button;
+    [SerializeField] GameObject chipMod_inventory;
+    [SerializeField] GameObject bullet_inventory;
+
     
+    public GameObject current_selected_chip;
+    [SerializeField] Image current_chip_sprite;
+
+    [HideInInspector] public ChipMod chip_one;
+    [HideInInspector] public ChipMod chip_two;
+    [HideInInspector] public ChipMod chip_three;
 
     // Use this for initialization
     void OnEnable () {
+
+        player_movement = GameObject.Find("config: player").GetComponent<PlayerMovement>();
         wsc = GameObject.Find("config: weapon").GetComponent<WeaponStatConfig>();
         bulletModule = wsc.GetComponent<BulletModule>();
+
+        mainInfoPanel.SetActive(true);
+        bulletInventoryPanel.SetActive(false);
+        chipModInventoryPanel.SetActive(false);
+        
+
+        chip_one = wsc.chip_mods[0].GetComponent<ChipMod>();
+        chip_two = wsc.chip_mods[1].GetComponent<ChipMod>();
+        chip_three = wsc.chip_mods[2].GetComponent<ChipMod>();
+
+        
         ResetStrings();
+
         w_weapon_image.sprite = GameObject.Find("Weapon").GetComponent<SpriteRenderer>().sprite;
         SetChipModDisplay();
+        AddButtonListeners();
         
         SetCurrentBulletDisplay();
         CalculateStatIncreases();
-
         SetWeaponStatDisplay();
+        
+        Button[] buttons = GetComponentsInChildren<Button>();
+        buttons[0].Select();
+
     }
+
+    void AddButtonListeners()
+    {
+        chip_one_button.onClick.AddListener(OpenChipModInventory);
+        chip_two_button.onClick.AddListener(OpenChipModInventory);
+        chip_three_button.onClick.AddListener(OpenChipModInventory);
+
+        bullet_button.onClick.AddListener(OpenBulletInventory);
+        
+    }
+
+    void OpenChipModInventory()
+    {
+        current_selected_chip = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+
+        if (current_selected_chip.name == "ChipMod_1")
+        {
+            current_selected_chip = wsc.chip_mods[0];
+        } else if (current_selected_chip.name == "ChipMod_2")
+        {
+            current_selected_chip = wsc.chip_mods[1];
+        } else if (current_selected_chip.name == "ChipMod_3")
+        {
+            current_selected_chip = wsc.chip_mods[2];
+        } else
+        {
+            Debug.Log("CHIP GUI NAME READ ERROR");
+        }
+        
+
+        current_chip_sprite.sprite = current_selected_chip.transform.parent.GetComponentInChildren<SpriteRenderer>().sprite;
+
+        //SetCurrentChipDisplay();
+
+        mainInfoPanel.SetActive(false);
+        chipMod_inventory.SetActive(true);
+        
+        
+    }
+
+    void SetCurrentChipDisplay()
+    {
+        //current_chip_sprite.sprite = current_selected_chip.GetComponentInChildren<Image>().sprite;
+    }
+
+    void OpenBulletInventory()
+    {
+        mainInfoPanel.SetActive(false);
+        bullet_inventory.SetActive(true);
+        Button[] buttons = bullet_inventory.GetComponentsInChildren<Button>();
+        buttons[0].Select();
+
+        
+    }
+
+    public override void OnPress_A()
+    {
+        
+    }
+
+    public override void OnPress_B()
+    {
+        if (chipMod_inventory.activeInHierarchy || bullet_inventory.activeInHierarchy)
+        {
+            chipMod_inventory.SetActive(false);
+            bullet_inventory.SetActive(false);
+            mainInfoPanel.SetActive(true);
+        }
+        //chipMod_inventory.SetActive(!chipMod_inventory.activeInHierarchy);
+    }
+
+
 
     private void ResetStrings()
     {
@@ -89,10 +203,7 @@ public class WeaponMenuGUI : MonoBehaviour {
 
     void SetChipModDisplay()
     {
-        ChipMod chip_one = wsc.chip_mods[0].GetComponent<ChipMod>();
-        ChipMod chip_two = wsc.chip_mods[1].GetComponent<ChipMod>();
-        ChipMod chip_three = wsc.chip_mods[2].GetComponent<ChipMod>();
-
+        
         chipMod_images[0].sprite = wsc.chip_mods[0].GetComponent<SpriteRenderer>().sprite;
         chipMod_images[1].sprite = wsc.chip_mods[1].GetComponent<SpriteRenderer>().sprite;
         chipMod_images[2].sprite = wsc.chip_mods[2].GetComponent<SpriteRenderer>().sprite;
@@ -112,9 +223,10 @@ public class WeaponMenuGUI : MonoBehaviour {
             chipModThree_effects[i].text = chip_three.chipModStats[i].type.ToString().Replace("_", " ").Replace("Chance", "%").Replace("Multiplier", "Dmg") + "  +" + chip_three.chipModStats[i].increase_amount.ToString().Replace("0.", ".");
         }
         
+        
     }
 
-    void SetWeaponStatDisplay()
+    public void SetWeaponStatDisplay()
     {
         w_weapon_name.text = wsc.weapon_name.ToString();
         
@@ -163,11 +275,10 @@ public class WeaponMenuGUI : MonoBehaviour {
             crit_multi_increase_text.text = "";
         }
         
-
-
+        
     }
 
-    void CalculateStatIncreases()
+    public void CalculateStatIncreases()
     {
         dmg_increase = wsc.damage - wsc.base_damage;
         fire_rate_increase = wsc.fire_rate - wsc.base_fire_rate;
@@ -196,6 +307,9 @@ public class WeaponMenuGUI : MonoBehaviour {
             bonus_stats[i].text = bulletModule.bullet.bullet_bonus_stats[i].bonus_stats.ToString() + " +" + bulletModule.bullet.bullet_bonus_stats[i].stat_increase_amount.ToString();
         }
     }
+
+
+
 	
 	// Update is called once per frame
 	void FixedUpdate () {

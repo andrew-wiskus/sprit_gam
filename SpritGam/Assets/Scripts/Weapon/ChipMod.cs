@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public enum ModRating
 {
@@ -33,6 +34,7 @@ public class ChipMod : MonoBehaviour
     public ChipModStat[] chipModStats;
 
     private SpriteRenderer mod_image;
+    [HideInInspector] public Image mod_UI_image;
     public Sprite gold_sprite;
     public Sprite silver_sprite;
     public Sprite bronze_sprite;
@@ -41,13 +43,22 @@ public class ChipMod : MonoBehaviour
     void Start()
     {
         wsc = GameObject.Find("config: weapon").GetComponent<WeaponStatConfig>();
-        mod_image = GetComponent<SpriteRenderer>();
-        SetSprite();
-        ModifyWeaponStats();
+        
+        if (GetComponent<SpriteRenderer>() != null)
+        {
+            SetSprite();
+            ModifyWeaponStats();
+        } else
+        {
+            SetImage();
+        }
+        
+        
     }
 
     private void SetSprite()
     {
+        mod_image = GetComponent<SpriteRenderer>();
         Sprite sprite = mod_image.sprite;
 
         switch(mod_rating)
@@ -74,9 +85,41 @@ public class ChipMod : MonoBehaviour
         }
 
         mod_image.sprite = sprite;
+        //mod_UI_image.sprite = sprite;
     }
 
-    private void ModifyWeaponStats()
+    private void SetImage()
+    {
+        //mod_UI_image.sprite = mod_image.sprite;
+        mod_UI_image = GetComponent<Image>();
+
+        switch (mod_rating)
+        {
+            case ModRating.GOLD:
+                mod_UI_image.sprite = gold_sprite;
+                break;
+
+            case ModRating.SILVER:
+                mod_UI_image.sprite = silver_sprite;
+                break;
+
+            case ModRating.BRONZE:
+                mod_UI_image.sprite = bronze_sprite;
+                break;
+
+            case ModRating.WHITE:
+                mod_UI_image.sprite = white_sprite;
+                break;
+
+            default:
+                mod_UI_image.sprite = null;
+                break;
+        }
+        
+       // mod_UI_image.sprite = mod_UI_image.sprite;
+    }
+
+    public void ModifyWeaponStats()
     {
 
         foreach(ChipModStat stat in chipModStats)

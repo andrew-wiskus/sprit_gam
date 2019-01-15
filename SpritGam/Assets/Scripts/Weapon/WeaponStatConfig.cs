@@ -33,12 +33,12 @@ public class WeaponStatConfig : AbstractButtonMap {
     public float bullet_richochet_count;
     //public float bullet_penetration_count; // TODO
     //public float mana_cost_per_shot;
-    
     //public string effect_type; TODO
 
     
 
     public GameObject[] chip_mods;
+    private int stat_count = 0;
 
     
 	void Start () {
@@ -48,6 +48,17 @@ public class WeaponStatConfig : AbstractButtonMap {
         
         SetWeaponStats();
 	}
+
+    public void LogWeaponStats()
+    {
+        stat_count++;
+        Debug.Log("NEW SET ----------------------------" + stat_count);
+        Debug.Log("damage: " + damage);
+        Debug.Log("fire rate: " + fire_rate);
+        Debug.Log("accuracy: " + accuracy);
+        Debug.Log("crit chance: " + crit_chance);
+        Debug.Log("crit multiplier: " + crit_multiplier);
+    }
 
     void SetInitialAmounts()
     {

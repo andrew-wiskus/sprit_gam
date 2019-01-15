@@ -15,6 +15,7 @@ public class WeaponBench : AbstractButtonMap {
 
     private WeaponStatConfig wsc;
     private BulletModule bm;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -57,8 +58,8 @@ public class WeaponBench : AbstractButtonMap {
     {
         if (using_bench)
         {
-            wng.GenerateNewWeaponName();
-            wsc.weapon_name = wng.generated_weapon_name;
+            //wng.GenerateNewWeaponName();
+            //wsc.weapon_name = wng.generated_weapon_name;
 
         }
     }
@@ -67,8 +68,8 @@ public class WeaponBench : AbstractButtonMap {
     {
         if (using_bench)
         {
-            bg.GenerateNewBullet();
-            bm.bullet.bullet_name = bg.generated_bullet_name;
+            //bg.GenerateNewBullet();
+            //bm.bullet.bullet_name = bg.generated_bullet_name;
         }
     }
 

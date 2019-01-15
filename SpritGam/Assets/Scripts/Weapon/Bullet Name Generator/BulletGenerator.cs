@@ -9,13 +9,14 @@ public class BulletGenerator : MonoBehaviour {
     private BulletNoun m_noun;
 
 	void Start () {
-        m_adj = GetComponent<BulletAdj>();
-        m_noun = GetComponent<BulletNoun>();
+        
         //GenerateNewBullet();
 	}
 	
 	public void GenerateNewBullet()
     {
+        m_adj = GetComponent<BulletAdj>();
+        m_noun = GetComponent<BulletNoun>();
         int adj_int = Random.Range(0, m_adj.bullet_adj.Length);
         int noun_int = Random.Range(0, m_noun.bullet_noun.Length);
 

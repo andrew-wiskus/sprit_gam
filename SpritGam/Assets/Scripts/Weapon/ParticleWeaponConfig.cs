@@ -45,7 +45,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         StartCoroutine(start_trigger_listener());
     }
 
-    void SetParticleData()
+    public void SetParticleData()
     {
         var main = ps.main;
         var trails = ps.trails;
@@ -53,7 +53,7 @@ public class ParticleWeaponConfig : AbstractButtonMap {
         main.startColor = bulletModule.bullet.bullet_color;
         trails.colorOverLifetime = bulletModule.bullet.trail_gradient;
         main.startSpeed = bulletModule.bullet.bullet_speed;
-        ps.textureSheetAnimation.SetSprite(0, m_bullet_sprite);
+        ps.textureSheetAnimation.SetSprite(0, bulletModule.bullet.bullet_sprite);
         //trails.enabled = m_trail_on;
 
         foreach (BonusStat bonusStat in bulletModule.bullet.bullet_bonus_stats)

@@ -64,13 +64,17 @@ public class BulletModule : MonoBehaviour {
 
     private void ModifyWeaponStats()
     {
-        foreach (BonusStat bonusStat in bullet.bullet_bonus_stats)
+        if (gameObject.name == "config: weapon")
         {
-            if (bonusStat.bonus_stats == BonusEffect.Damage)
+            foreach (BonusStat bonusStat in bullet.bullet_bonus_stats)
             {
-                wsc.damage += bonusStat.stat_increase_amount;
+                if (bonusStat.bonus_stats == BonusEffect.Damage)
+                {
+                    wsc.damage += bonusStat.stat_increase_amount;
+                }
             }
         }
+
     }
 
     void FixedUpdate()
