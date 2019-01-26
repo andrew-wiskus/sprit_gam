@@ -156,7 +156,7 @@ public class WeaponMenuGUI : AbstractButtonMap {
 
     public override void OnPress_A()
     {
-        
+        Debug.Log("Pressed A");
     }
 
     public override void OnPress_B()

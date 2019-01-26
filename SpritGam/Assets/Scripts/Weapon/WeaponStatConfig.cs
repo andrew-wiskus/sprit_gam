@@ -16,9 +16,10 @@ public class WeaponStatConfig : AbstractButtonMap {
     public float base_accuracy;
     public float base_crit_chance;
     public float base_crit_multi;
+    //public float base_bullet_speed;
 
     [HideInInspector] public float damage;
-    [HideInInspector] public float bullet_speed;
+    public float bullet_speed;
     [HideInInspector] public float fire_rate;
     [HideInInspector] public string fire_type;
     [HideInInspector] public float accuracy;

@@ -58,8 +58,7 @@ public class WeaponBench : AbstractButtonMap {
     {
         if (using_bench)
         {
-            //wng.GenerateNewWeaponName();
-            //wsc.weapon_name = wng.generated_weapon_name;
+            Debug.Log("Pressed Y");
 
         }
     }
@@ -68,6 +67,7 @@ public class WeaponBench : AbstractButtonMap {
     {
         if (using_bench)
         {
+            Debug.Log("Pressed A");
             //bg.GenerateNewBullet();
             //bm.bullet.bullet_name = bg.generated_bullet_name;
         }

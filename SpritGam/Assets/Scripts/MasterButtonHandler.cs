@@ -34,7 +34,7 @@ public class MasterButtonHandler : AbstractButtonMap {
     {
         if (weaponDetailDisplay.activeInHierarchy)
         {
-            //Button.
+            Debug.Log("Pressed A");
         }
     }
 
