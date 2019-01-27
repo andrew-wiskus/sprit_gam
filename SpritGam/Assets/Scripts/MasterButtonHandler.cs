@@ -8,7 +8,6 @@ public class MasterButtonHandler : AbstractButtonMap {
     [SerializeField] GameObject weaponDetailDisplay;
     [SerializeField] PlayerMovement playerMovement;
 
-
     void Start()
     {
         weaponDetailDisplay.SetActive(false);
@@ -28,6 +27,7 @@ public class MasterButtonHandler : AbstractButtonMap {
     void FixedUpdate()
     {
         playerMovement.enabled = !weaponDetailDisplay.activeInHierarchy;
+
     }
 
     public override void OnPress_A()
@@ -37,6 +37,4 @@ public class MasterButtonHandler : AbstractButtonMap {
             Debug.Log("Pressed A");
         }
     }
-
-
 }
