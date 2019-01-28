@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float m_sprint_speed;
     [SerializeField] private float m_velocity_lerp_value = 0.8f;
     [SerializeField] private float m_left_stick_dead_zone = 0.2f;
+    [SerializeField] private float m_run_speed = 5.0f;
+
     private bool m_is_sprinting = false;
     private bool m_is_moving = false;
     private float m_movement_angle = 0.0f;
@@ -29,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerStat = GetComponent<PlayerStatConfig>();
         m_rigid_body = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-        m_default_speed = playerStat.run_speed;
+        m_default_speed = m_run_speed;
         m_sprint_speed = m_default_speed * 1.5f;
     }
 
@@ -47,9 +49,21 @@ public class PlayerMovement : MonoBehaviour
 
     // END;
 
+    private bool is_paused = false;
+
+    public void Pause(bool shouldPause)
+    {
+        is_paused = shouldPause;
+        move_player_rigid_body(0);
+    }
 
     private void FixedUpdate()
     {
+        if (is_paused)
+        {
+            return;
+        }
+
         float speed = m_is_sprinting ? m_sprint_speed : m_default_speed;
 
         move_player_rigid_body(speed);

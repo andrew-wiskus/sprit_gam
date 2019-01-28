@@ -14,10 +14,20 @@ public class PlayerAim : MonoBehaviour
     private bool m_player_is_aiming;
     public float m_player_aim_angle;
     private float m_aim_magnitude;
+    private bool is_paused = false;
+
+    public void Pause(bool shouldPause)
+    {
+        is_paused = shouldPause;
+    }
 
     private void FixedUpdate()
     {
-        
+        if(is_paused)
+        {
+            return;
+        }
+
         m_aim_magnitude = aim_magnitude();
         m_player_is_aiming = m_aim_magnitude > m_right_stick_dead_zone;
         m_player_aim_angle = get_adjusted_aim_angle();
