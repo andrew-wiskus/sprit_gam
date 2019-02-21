@@ -26,7 +26,6 @@ public class ShipElementalCollector : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(ElementType.Nickel.ToString());
         elements = new List<Element>(){
             Nickel,
             Iron,
