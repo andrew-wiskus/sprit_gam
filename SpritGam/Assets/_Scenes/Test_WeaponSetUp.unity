@@ -25242,11 +25242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663a56eddc096f54a958d9acef2d838b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_left_trigger_deadzone: 0
-  m_right_trigger_deadzone: 0.2
   weapon_name: Ronan Sniper
   base_damage: 30
-  base_fire_rate: 1
+  base_fire_rate: 10
   base_accuracy: 87
   base_crit_chance: 21
   base_crit_multi: 1.5
@@ -48322,7 +48320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &728947270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -88912,6 +88910,7 @@ MonoBehaviour:
   m_sprint_speed: 1.2
   m_velocity_lerp_value: 0.8
   m_left_stick_dead_zone: 0.2
+  m_run_speed: 5
 --- !u!4 &1150455903
 Transform:
   m_ObjectHideFlags: 0
@@ -98771,10 +98770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bccd1129c46b634c88916876eb40b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_left_trigger_deadzone: 0
-  m_right_trigger_deadzone: 0.2
   enterText: {fileID: 531062018}
   weaponStatDisplay: {fileID: 1519573550}
+  m_player_movement: {fileID: 1150455902}
 --- !u!222 &1336692270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -108866,8 +108864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7164a66d45a3e0848b69fab31ab5e3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_left_trigger_deadzone: 0
-  m_right_trigger_deadzone: 0.2
   w_weapon_name: {fileID: 635982599}
   w_weapon_image: {fileID: 1951182896}
   w_damage_num: {fileID: 302104468}
@@ -110998,10 +110994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97cd1b708dbfb0449ecc85bb464911e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_left_trigger_deadzone: 0
-  m_right_trigger_deadzone: 0.2
-  weaponDetailDisplay: {fileID: 1519573550}
-  playerMovement: {fileID: 1150455902}
 --- !u!4 &1597654233
 Transform:
   m_ObjectHideFlags: 0
@@ -115034,7 +115026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1697879280
 Rigidbody2D:
   serializedVersion: 4
@@ -121043,8 +121035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e318f40110f1b429fa9d125ca854ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_left_trigger_deadzone: 0
-  m_right_trigger_deadzone: 0.2
   weaponAudio: {fileID: 1697879281}
   collisionAudio: {fileID: 1746742481}
   m_bullet_sprite: {fileID: 21300000, guid: d0715187e1dfe214082f845cafd25a3a, type: 3}

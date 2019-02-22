@@ -12,7 +12,7 @@ public class GameTime : MonoBehaviour
     private int m_start_time;
 
     public static DateTime CurrentTime;
-    public static long CurrentTimeUnix;
+    public static float CurrentTimeUnix;
 
     void Start()
     {
@@ -33,8 +33,11 @@ public class GameTime : MonoBehaviour
 
         TimeSpan timeSpan = new TimeSpan(hours, minutes, seconds);
         m_current_time = m_game_base_time.Add(timeSpan);
-        long m_unix = (long)(time * 1000 + DateTime.Now.Millisecond);
+
+        float m_unix = Time.realtimeSinceStartup * 1000;
         GameTime.CurrentTimeUnix = m_unix;
+
         GameTime.CurrentTime = m_current_time;
+
     }
 }

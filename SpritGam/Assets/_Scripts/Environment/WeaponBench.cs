@@ -7,6 +7,7 @@ public class WeaponBench : AbstractButtonMap {
 
     [SerializeField] private Text enterText;
     [SerializeField] private GameObject weaponStatDisplay;
+    [SerializeField] private PlayerMovement m_player_movement;
     private bool using_bench = false;
     private bool near_bench = false;
 
@@ -47,9 +48,11 @@ public class WeaponBench : AbstractButtonMap {
             if (!using_bench)
             {
                 using_bench = true;
+                m_player_movement.Pause(true);
             } else
             {
                 using_bench = false;
+                m_player_movement.Pause(false);
             }
         }
     }

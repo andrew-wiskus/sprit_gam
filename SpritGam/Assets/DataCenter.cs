@@ -57,7 +57,7 @@ public class AstroidMiner
 {
     public string name;
     private float chance_per_ms;
-    private long last_mine_time;
+    private float last_mine_time;
 
     public AstroidMiner(string _name, float _chance_per_ms)
     {
@@ -67,7 +67,7 @@ public class AstroidMiner
 
     public bool attempt_to_mine()
     {
-        long time = get_time();
+        float time = get_time();
         float rand = Random.Range(0.0f, 1.0f);
 
         if (rand < time * chance_per_ms)
@@ -79,14 +79,14 @@ public class AstroidMiner
         return false;
     }
 
-    private long get_time()
+    private float get_time()
     {
         if (last_mine_time == 0)
         {
             last_mine_time = GameTime.CurrentTimeUnix;
         }
 
-        long time = GameTime.CurrentTimeUnix;
+        float time = GameTime.CurrentTimeUnix;
 
 
         return time - last_mine_time;

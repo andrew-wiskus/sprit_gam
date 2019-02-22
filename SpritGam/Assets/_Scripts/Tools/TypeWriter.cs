@@ -9,8 +9,7 @@ public class TypeWriter : MonoBehaviour {
     [SerializeField] private float letterDelay;
     private string m_text = "";
 
-    private string dialogueOne = "This is a test of dialogue script number 1. See the letters as they spell before you. Read them, and decipher their meaning.  " +
-        "             Boobs.                     Cock balls.";
+    private string dialogueOne = "This is a test of dialogue script number 1. See the letters as they spell before you. Read them, and decipher their meaning.  ";
 
     private string thruster_offline_text = "Captain, our ship's main thrusters are offline. Please restore power to the flux capacitor.";
     [SerializeField] private AudioClip thruster_offline_audio;

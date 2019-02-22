@@ -8,27 +8,9 @@ public abstract class AbstractButtonMap : MonoBehaviour
      private float m_left_trigger_deadzone = 0.2f;
      private float m_right_trigger_deadzone = 0.2f;
 
-    //public static bool OverrideToIndex = false;
-    //public static int CurrentIndex = 0;
-
-    //public abstract int ChannelID();
-
-    public void SetOverrideActive(bool active)
-    {
-        //AbstractButtonMap.OverrideToIndex = active;
-        if(active)
-        {
-            //AbstractButtonMap.CurrentIndex = ChannelID();
-        }
-    }
-
 
     void LateUpdate()
     {
-        //if (AbstractButtonMap.OverrideToIndex && AbstractButtonMap.CurrentIndex != ChannelID())
-        //{
-        //    return;
-        //}
 
         bool START_BUTTON = ControllerInput.Pressed_StartButton(Key.DOWN);
         bool LEFT_TRIGGER = ControllerInput.LeftTrigger() >= m_left_trigger_deadzone;
